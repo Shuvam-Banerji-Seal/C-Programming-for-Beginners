@@ -61,8 +61,8 @@
     #define VALIDATE_RANGE(val, min, max) \
         do { \
             if ((val) < (min) || (val) > (max)) { \
-                fprintf(stderr, "Validation failed: %d not in range [%d, %d]\n", \
-                        val, min, max); \
+                fprintf(stderr, "Validation failed: value not in range [%d, %d]\n", \
+                        (int)(min), (int)(max)); \
                 return -1; \
             } \
         } while(0)

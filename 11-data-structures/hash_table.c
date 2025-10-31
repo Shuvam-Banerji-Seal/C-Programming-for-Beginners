@@ -4,11 +4,11 @@
  * Topics: Hash functions, collision resolution, load factor
  */
 
+#define _POSIX_C_SOURCE 200809L
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
-#define _POSIX_C_SOURCE 200809L
 
 #define TABLE_SIZE 10
 
@@ -39,16 +39,35 @@ unsigned int hash(const char *str, int table_size) {
 // Create hash table
 HashTable* createHashTable(int size) {
     HashTable *table = (HashTable*)malloc(sizeof(HashTable));
+    if (table == NULL) {
+        return NULL;
+    }
+    
     table->size = size;
     table->count = 0;
     table->buckets = (Entry**)calloc(size, sizeof(Entry*));
+    
+    if (table->buckets == NULL) {
+        free(table);
+        return NULL;
+    }
+    
     return table;
 }
 
 // Create entry
 Entry* createEntry(const char *key, int value) {
     Entry *entry = (Entry*)malloc(sizeof(Entry));
+    if (entry == NULL) {
+        return NULL;
+    }
+    
     entry->key = strdup(key);
+    if (entry->key == NULL) {
+        free(entry);
+        return NULL;
+    }
+    
     entry->value = value;
     entry->next = NULL;
     return entry;
@@ -70,6 +89,11 @@ void insert(HashTable *table, const char *key, int value) {
     
     // Insert new entry at head
     Entry *new_entry = createEntry(key, value);
+    if (new_entry == NULL) {
+        printf("   Error: Failed to create entry\n");
+        return;
+    }
+    
     new_entry->next = table->buckets[index];
     table->buckets[index] = new_entry;
     table->count++;
@@ -181,6 +205,10 @@ int main() {
     printf("=== Hash Table with Chaining ===\n\n");
     
     HashTable *table = createHashTable(TABLE_SIZE);
+    if (table == NULL) {
+        printf("Error: Failed to create hash table\n");
+        return 1;
+    }
     
     // Insert operations
     printf("1. Insert Operations:\n");

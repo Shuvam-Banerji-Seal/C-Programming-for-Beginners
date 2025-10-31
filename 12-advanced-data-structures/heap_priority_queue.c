@@ -145,16 +145,19 @@ void buildHeap(Heap *heap, int arr[], int n) {
     }
 }
 
-// Heap sort
+// Heap sort (in-place using max heap)
 void heapSort(int arr[], int n) {
-    Heap *heap = createHeap(n, false);  // Min heap
+    Heap *heap = createHeap(n, true);  // Max heap for descending extraction
     buildHeap(heap, arr, n);
     
-    // Extract elements in sorted order
-    for (int i = 0; i < n; i++) {
+    // Extract elements from heap and place at end of array (in-place)
+    int original_size = heap->size;
+    for (int i = n - 1; i >= 0; i--) {
         arr[i] = extract(heap);
     }
     
+    // Restore heap size for cleanup
+    heap->size = original_size;
     free(heap->data);
     free(heap);
 }
