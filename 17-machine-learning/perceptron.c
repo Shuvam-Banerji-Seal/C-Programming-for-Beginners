@@ -63,6 +63,8 @@ void train(Perceptron *p, double **training_inputs, int *expected_outputs,
             printf("Epoch %d: %d errors\n", epoch, errors);
         }
         
+        // Convergence: when the perceptron makes no classification errors
+        // on the training set (perfect separation of classes)
         if (errors == 0) {
             printf("Converged at epoch %d!\n", epoch);
             break;

@@ -61,7 +61,9 @@ int readMNISTImages(const char *filename, MNISTImage **images, int *num_images) 
     fread(&rows, 4, 1, file);
     fread(&cols, 4, 1, file);
     
-    // Swap endianness if needed
+    // Swap endianness if needed (MNIST uses big-endian)
+    // Note: __builtin_bswap32 is GCC-specific; for portability use:
+    // ((x>>24)&0xff) | ((x<<8)&0xff0000) | ((x>>8)&0xff00) | ((x<<24)&0xff000000)
     magic_number = __builtin_bswap32(magic_number);
     num_imgs = __builtin_bswap32(num_imgs);
     rows = __builtin_bswap32(rows);

@@ -7,6 +7,7 @@
 #define BOX_SIZE 10.0
 #define DT 0.001
 #define NUM_STEPS 1000
+#define MIN_DISTANCE 0.0001  // Minimum distance to avoid division by zero
 
 typedef struct {
     double x, y, z;
@@ -56,7 +57,7 @@ void calculateForces(Particle particles[], int n) {
             
             double r2 = dx*dx + dy*dy + dz*dz;
             
-            if (r2 < cutoff * cutoff && r2 > 0.0001) {
+            if (r2 < cutoff * cutoff && r2 > MIN_DISTANCE) {
                 double r2inv = sigma * sigma / r2;
                 double r6inv = r2inv * r2inv * r2inv;
                 double force = 24.0 * epsilon * r6inv * (2.0 * r6inv - 1.0) / r2;
