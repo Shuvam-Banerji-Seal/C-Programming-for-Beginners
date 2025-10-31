@@ -183,16 +183,74 @@ Modules 16-20 provide cutting-edge applications of C programming.
 
 1. **Read the Theory**: Each module starts with conceptual explanations
 2. **Study the Examples**: Carefully examine the provided code examples
-3. **Practice**: Complete the exercises at the end of each section
-4. **Build Projects**: Apply your knowledge in the projects
-5. **Review**: Revisit difficult concepts and practice more
+3. **Compile and Run**: Use the provided Makefiles to compile examples
+4. **Learn from Bugs**: Study the buggy examples to understand common mistakes
+5. **Practice**: Complete the exercises at the end of each section
+6. **Build Projects**: Apply your knowledge in the projects
+7. **Review**: Revisit difficult concepts and practice more
 
 ## 🛠️ Prerequisites
 
 - A computer (Windows, macOS, or Linux)
-- A C compiler (GCC, Clang, or MSVC)
+- A C compiler (GCC or Clang - both supported)
 - A text editor or IDE (VS Code, CLion, Vim, etc.)
+- Basic command-line knowledge
 - Enthusiasm to learn!
+
+## 🔧 Compilation Quick Start
+
+Each module includes a **Makefile** for easy compilation:
+
+```bash
+# Navigate to any module
+cd 03-control-flow
+
+# Compile all programs
+make
+
+# Run programs
+./conditionals
+./loops
+./switch_demo
+
+# Clean up compiled files
+make clean
+
+# Use Clang instead of GCC
+make CC=clang
+```
+
+📘 **For detailed compilation instructions**, see [COMPILATION_GUIDE.md](./COMPILATION_GUIDE.md)
+
+### Available Make Targets
+
+Most modules support these targets:
+- `make` - Compile all programs
+- `make clean` - Remove compiled files
+- `make run` - Compile and run all programs
+- `make run-buggy` - Run buggy examples (educational)
+- `make debug` - Compile with debug symbols
+- `make asan` - Compile with AddressSanitizer (memory error detection)
+
+### Example Compilation
+
+```bash
+# Module 03: Control Flow
+cd 03-control-flow
+make                    # Compile with GCC
+make CC=clang          # Compile with Clang
+make run               # Run all correct examples
+make run-buggy         # Run buggy examples
+
+# Module 06: Pointers
+cd ../06-pointers
+make asan              # Compile with memory sanitizer
+./pointer_basics
+
+# Module 07: Memory Management
+cd ../07-memory-management
+make valgrind          # Run with Valgrind (if installed)
+```
 
 ## 💡 Features
 
@@ -201,10 +259,17 @@ Modules 16-20 provide cutting-edge applications of C programming.
 - ✅ **Hands-on Projects**: Real-world applications in every advanced module
 - ✅ **Best Practices**: Learn industry-standard coding practices
 - ✅ **Complete Examples**: Every concept is demonstrated with working code
+- ✅ **Buggy Examples**: Learn from deliberately wrong code with explanations
+- ✅ **Compilation Guide**: Comprehensive guide for GCC and Clang with all flags explained
+- ✅ **Makefiles**: Each module includes a Makefile with detailed flag documentation
+- ✅ **Memory Safety**: Examples include sanitizers for detecting memory errors
 - ✅ **Exercises**: Reinforce learning with practical problems
 
 ## 📖 Additional Resources
 
+- **[Compilation Guide](./COMPILATION_GUIDE.md)**: Complete guide to GCC and Clang compiler flags
+- **Makefiles**: Each module has a Makefile with detailed comments
+- **Buggy Code**: Learn from common mistakes with `*_buggy.c` files
 - **Cheat Sheets**: Quick reference guides in each module
 - **Common Pitfalls**: Learn from common mistakes
 - **FAQs**: Answers to frequently asked questions
