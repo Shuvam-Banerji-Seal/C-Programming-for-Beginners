@@ -172,3 +172,4 @@ dkms.conf
 
 # debug information files
 *.dwo
+11-data-structures/hash_table_debug
