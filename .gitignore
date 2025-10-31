@@ -71,6 +71,26 @@ fundamentals/variables
 06-pointers/pointer_to_pointer
 06-pointers/pointers_functions
 
+# Module 07: Memory Management
+07-memory-management/dynamic_memory
+07-memory-management/memory_buggy
+07-memory-management/stack_vs_heap
+
+# Module 08: Structures and Unions
+08-structures-unions/structures_demo
+08-structures-unions/unions_demo
+
+# Module 09: File I/O
+09-file-io/file_operations
+
+# Module 10: Preprocessor
+10-preprocessor/preprocessor_demo
+10-preprocessor/preprocessor_demo.i
+
+# Module 11: Data Structures
+11-data-structures/linked_list
+11-data-structures/stack
+
 # Assembly and intermediate files
 *.s
 *.i
