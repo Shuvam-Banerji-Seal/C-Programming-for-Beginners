@@ -2,13 +2,18 @@
 # Builds all modules with examples
 
 # Modules to build
-MODULES = 03-control-flow \
+MODULES = 01-basics \
+          02-variables-and-types \
+          03-control-flow \
+          04-functions \
+          05-arrays-and-strings \
           06-pointers \
           07-memory-management \
           08-structures-unions \
           09-file-io \
           10-preprocessor \
-          11-data-structures
+          11-data-structures \
+          12-advanced-data-structures
 
 .PHONY: all clean help test $(MODULES)
 
@@ -34,6 +39,14 @@ all:
 	@echo "For compilation help, see COMPILATION_GUIDE.md"
 
 # Build individual modules
+01-basics:
+	@echo "Building Module 01: Basics"
+	@$(MAKE) -C 01-basics
+
+02-variables-and-types:
+	@echo "Building Module 02: Variables and Types"
+	@$(MAKE) -C 02-variables-and-types
+
 03-control-flow:
 	@echo "Building Module 03: Control Flow"
 	@$(MAKE) -C 03-control-flow
@@ -58,9 +71,21 @@ all:
 	@echo "Building Module 10: Preprocessor"
 	@$(MAKE) -C 10-preprocessor
 
+04-functions:
+	@echo "Building Module 04: Functions"
+	@$(MAKE) -C 04-functions
+
+05-arrays-and-strings:
+	@echo "Building Module 05: Arrays and Strings"
+	@$(MAKE) -C 05-arrays-and-strings
+
 11-data-structures:
 	@echo "Building Module 11: Data Structures"
 	@$(MAKE) -C 11-data-structures
+
+12-advanced-data-structures:
+	@echo "Building Module 12: Advanced Data Structures"
+	@$(MAKE) -C 12-advanced-data-structures
 
 # Clean all modules
 clean:

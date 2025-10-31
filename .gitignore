@@ -53,6 +53,22 @@ fundamentals/takinh_user_inputs
 fundamentals/using_strings_in_c
 fundamentals/variables
 
+# Module 01: Basics
+01-basics/hello_world
+01-basics/hello_user
+01-basics/basic_io
+01-basics/compilation_demo
+01-basics/*.i
+01-basics/*.s
+
+# Module 02: Variables and Types
+02-variables-and-types/simple_int_printing
+02-variables-and-types/data_types
+02-variables-and-types/sizeof_demo
+02-variables-and-types/operators
+02-variables-and-types/increment_decrement
+02-variables-and-types/type_conversion
+
 # Module 03: Control Flow
 03-control-flow/conditionals
 03-control-flow/conditionals_buggy
@@ -87,9 +103,23 @@ fundamentals/variables
 10-preprocessor/preprocessor_demo
 10-preprocessor/preprocessor_demo.i
 
+# Module 04: Functions
+04-functions/basic_functions
+04-functions/pass_by_value_reference
+04-functions/recursion_examples
+04-functions/scope_lifetime
+04-functions/function_pointers
+
+# Module 05: Arrays and Strings
+05-arrays-and-strings/array_algorithms
+05-arrays-and-strings/string_operations
+
 # Module 11: Data Structures
 11-data-structures/linked_list
 11-data-structures/stack
+
+# Module 12: Advanced Data Structures
+12-advanced-data-structures/bst
 
 # Assembly and intermediate files
 *.s
