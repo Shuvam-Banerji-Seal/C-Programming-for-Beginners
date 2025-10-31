@@ -14,7 +14,11 @@ MODULES = 01-basics \
           10-preprocessor \
           11-data-structures \
           12-advanced-data-structures \
-          13-debugging-gdb
+          13-debugging-gdb \
+          15-game-projects \
+          16-network-programming \
+          17-machine-learning \
+          19-scientific-computing
 
 .PHONY: all clean help test $(MODULES)
 
@@ -91,6 +95,22 @@ all:
 13-debugging-gdb:
 	@echo "Building Module 13: Debugging with GDB"
 	@$(MAKE) -C 13-debugging-gdb
+
+15-game-projects:
+	@echo "Building Module 15: Game Projects"
+	@$(MAKE) -C 15-game-projects
+
+16-network-programming:
+	@echo "Building Module 16: Network Programming"
+	@$(MAKE) -C 16-network-programming
+
+17-machine-learning:
+	@echo "Building Module 17: Machine Learning"
+	@$(MAKE) -C 17-machine-learning
+
+19-scientific-computing:
+	@echo "Building Module 19: Scientific Computing"
+	@$(MAKE) -C 19-scientific-computing
 
 # Clean all modules
 clean:

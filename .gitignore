@@ -126,6 +126,19 @@ fundamentals/variables
 13-debugging-gdb/segfault_example
 13-debugging-gdb/watchpoint_example
 
+# Module 15: Game Projects
+15-game-projects/tictactoe
+
+# Module 16: Network Programming
+16-network-programming/tcp_server
+16-network-programming/tcp_client
+
+# Module 17: Machine Learning
+17-machine-learning/perceptron
+
+# Module 19: Scientific Computing
+19-scientific-computing/molecular_dynamics
+
 # Assembly and intermediate files
 *.s
 *.i
