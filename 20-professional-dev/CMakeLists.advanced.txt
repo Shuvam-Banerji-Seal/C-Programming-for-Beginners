@@ -1,0 +1,286 @@
+# Advanced CMake Example
+# Demonstrates advanced CMake features for complex projects
+
+cmake_minimum_required(VERSION 3.15)
+
+# Project information
+project(AdvancedProject
+    VERSION 1.2.3
+    DESCRIPTION "Advanced C project with CMake"
+    LANGUAGES C
+)
+
+# ============================================================================
+# OPTIONS
+# ============================================================================
+
+option(BUILD_SHARED_LIBS "Build shared libraries" OFF)
+option(ENABLE_TESTS "Build test programs" ON)
+option(ENABLE_DOCS "Generate documentation" OFF)
+option(ENABLE_PROFILING "Enable profiling" OFF)
+option(ENABLE_LTO "Enable Link Time Optimization" OFF)
+
+# ============================================================================
+# BUILD CONFIGURATION
+# ============================================================================
+
+# Set default build type
+if(NOT CMAKE_BUILD_TYPE)
+    set(CMAKE_BUILD_TYPE Release)
+endif()
+
+# C standard
+set(CMAKE_C_STANDARD 11)
+set(CMAKE_C_STANDARD_REQUIRED ON)
+set(CMAKE_C_EXTENSIONS OFF)
+
+# Output directories
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+
+# ============================================================================
+# COMPILER FLAGS
+# ============================================================================
+
+# Common flags
+add_compile_options(
+    -Wall
+    -Wextra
+    -Wpedantic
+    -Wformat=2
+    -Wstrict-prototypes
+)
+
+# Debug flags
+set(CMAKE_C_FLAGS_DEBUG "-g3 -Og -DDEBUG -fno-omit-frame-pointer")
+
+# Release flags
+set(CMAKE_C_FLAGS_RELEASE "-O3 -DNDEBUG -march=native")
+
+# Enable profiling if requested
+if(ENABLE_PROFILING)
+    add_compile_options(-pg)
+    add_link_options(-pg)
+endif()
+
+# Enable LTO if requested
+if(ENABLE_LTO)
+    set(CMAKE_INTERPROCEDURAL_OPTIMIZATION TRUE)
+endif()
+
+# ============================================================================
+# DEPENDENCIES
+# ============================================================================
+
+# Find required packages
+find_package(Threads REQUIRED)
+
+# Math library
+find_library(MATH_LIB m)
+
+# Optional: OpenSSL
+find_package(OpenSSL)
+if(OpenSSL_FOUND)
+    message(STATUS "Found OpenSSL: ${OPENSSL_VERSION}")
+endif()
+
+# ============================================================================
+# LIBRARY
+# ============================================================================
+
+# Collect library sources
+file(GLOB LIBRARY_SOURCES
+    ${CMAKE_SOURCE_DIR}/lib/*.c
+)
+
+# Create library
+add_library(mylib ${LIBRARY_SOURCES})
+
+# Set library properties
+set_target_properties(mylib PROPERTIES
+    VERSION ${PROJECT_VERSION}
+    SOVERSION ${PROJECT_VERSION_MAJOR}
+    PUBLIC_HEADER "${CMAKE_SOURCE_DIR}/include/mylib.h"
+)
+
+# Include directories
+target_include_directories(mylib
+    PUBLIC
+        $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/include>
+        $<INSTALL_INTERFACE:include>
+    PRIVATE
+        ${CMAKE_SOURCE_DIR}/lib
+)
+
+# Link libraries
+target_link_libraries(mylib
+    PRIVATE
+        ${MATH_LIB}
+        Threads::Threads
+)
+
+# ============================================================================
+# EXECUTABLE
+# ============================================================================
+
+# Collect application sources
+file(GLOB APP_SOURCES
+    ${CMAKE_SOURCE_DIR}/src/*.c
+)
+
+# Create executable
+add_executable(myprogram ${APP_SOURCES})
+
+# Link with library
+target_link_libraries(myprogram
+    PRIVATE
+        mylib
+        ${MATH_LIB}
+)
+
+# Include directories
+target_include_directories(myprogram
+    PRIVATE
+        ${CMAKE_SOURCE_DIR}/include
+)
+
+# ============================================================================
+# TESTS
+# ============================================================================
+
+if(ENABLE_TESTS)
+    enable_testing()
+    
+    # Find test sources
+    file(GLOB TEST_SOURCES ${CMAKE_SOURCE_DIR}/tests/*.c)
+    
+    # Create test executables
+    foreach(test_src ${TEST_SOURCES})
+        get_filename_component(test_name ${test_src} NAME_WE)
+        add_executable(${test_name} ${test_src})
+        target_link_libraries(${test_name} PRIVATE mylib)
+        target_include_directories(${test_name} PRIVATE ${CMAKE_SOURCE_DIR}/include)
+        add_test(NAME ${test_name} COMMAND ${test_name})
+    endforeach()
+    
+    # Test properties
+    set_tests_properties(test_basic PROPERTIES
+        TIMEOUT 30
+        PASS_REGULAR_EXPRESSION "All tests passed"
+    )
+endif()
+
+# ============================================================================
+# DOCUMENTATION
+# ============================================================================
+
+if(ENABLE_DOCS)
+    find_package(Doxygen)
+    if(DOXYGEN_FOUND)
+        set(DOXYGEN_GENERATE_HTML YES)
+        set(DOXYGEN_GENERATE_MAN YES)
+        
+        doxygen_add_docs(docs
+            ${CMAKE_SOURCE_DIR}/src
+            ${CMAKE_SOURCE_DIR}/include
+            ${CMAKE_SOURCE_DIR}/lib
+            COMMENT "Generating documentation"
+        )
+    else()
+        message(WARNING "Doxygen not found, documentation will not be generated")
+    endif()
+endif()
+
+# ============================================================================
+# INSTALLATION
+# ============================================================================
+
+# Install executable
+install(TARGETS myprogram
+    RUNTIME DESTINATION bin
+)
+
+# Install library
+install(TARGETS mylib
+    EXPORT mylibTargets
+    LIBRARY DESTINATION lib
+    ARCHIVE DESTINATION lib
+    RUNTIME DESTINATION bin
+    PUBLIC_HEADER DESTINATION include
+)
+
+# Install headers
+install(DIRECTORY ${CMAKE_SOURCE_DIR}/include/
+    DESTINATION include
+    FILES_MATCHING PATTERN "*.h"
+)
+
+# Export targets
+install(EXPORT mylibTargets
+    FILE mylibTargets.cmake
+    NAMESPACE mylib::
+    DESTINATION lib/cmake/mylib
+)
+
+# Create config file
+include(CMakePackageConfigHelpers)
+configure_package_config_file(
+    ${CMAKE_SOURCE_DIR}/cmake/mylibConfig.cmake.in
+    ${CMAKE_BINARY_DIR}/mylibConfig.cmake
+    INSTALL_DESTINATION lib/cmake/mylib
+)
+
+# Install config files
+install(FILES
+    ${CMAKE_BINARY_DIR}/mylibConfig.cmake
+    DESTINATION lib/cmake/mylib
+)
+
+# Install documentation
+install(FILES
+    ${CMAKE_SOURCE_DIR}/README.md
+    ${CMAKE_SOURCE_DIR}/LICENSE
+    DESTINATION share/doc/${PROJECT_NAME}
+)
+
+# ============================================================================
+# PACKAGING
+# ============================================================================
+
+include(CPack)
+
+set(CPACK_PACKAGE_NAME ${PROJECT_NAME})
+set(CPACK_PACKAGE_VERSION ${PROJECT_VERSION})
+set(CPACK_PACKAGE_DESCRIPTION_SUMMARY ${PROJECT_DESCRIPTION})
+set(CPACK_PACKAGE_VENDOR "Your Name")
+set(CPACK_PACKAGE_CONTACT "email@example.com")
+
+# Package generators
+set(CPACK_GENERATOR "TGZ;DEB")
+
+# Debian specific
+set(CPACK_DEBIAN_PACKAGE_MAINTAINER "Your Name")
+set(CPACK_DEBIAN_PACKAGE_DEPENDS "libc6 (>= 2.14)")
+
+# ============================================================================
+# STATUS OUTPUT
+# ============================================================================
+
+message(STATUS "")
+message(STATUS "========================================")
+message(STATUS "  ${PROJECT_NAME} ${PROJECT_VERSION}")
+message(STATUS "========================================")
+message(STATUS "Build type: ${CMAKE_BUILD_TYPE}")
+message(STATUS "C Compiler: ${CMAKE_C_COMPILER}")
+message(STATUS "C Flags: ${CMAKE_C_FLAGS}")
+message(STATUS "Install prefix: ${CMAKE_INSTALL_PREFIX}")
+message(STATUS "")
+message(STATUS "Options:")
+message(STATUS "  BUILD_SHARED_LIBS: ${BUILD_SHARED_LIBS}")
+message(STATUS "  ENABLE_TESTS: ${ENABLE_TESTS}")
+message(STATUS "  ENABLE_DOCS: ${ENABLE_DOCS}")
+message(STATUS "  ENABLE_PROFILING: ${ENABLE_PROFILING}")
+message(STATUS "  ENABLE_LTO: ${ENABLE_LTO}")
+message(STATUS "========================================")
+message(STATUS "")

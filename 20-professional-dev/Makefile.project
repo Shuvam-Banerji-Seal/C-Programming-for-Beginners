@@ -1,0 +1,272 @@
+# Complete Project Makefile
+# Full-featured Makefile for production projects
+
+# ============================================================================
+# PROJECT CONFIGURATION
+# ============================================================================
+
+PROJECT_NAME = myproject
+VERSION = 1.0.0
+
+# Compiler and tools
+CC = gcc
+CXX = g++
+AR = ar
+LD = ld
+STRIP = strip
+
+# Compilation flags
+CFLAGS = -Wall -Wextra -Wpedantic -std=c11
+CXXFLAGS = -Wall -Wextra -Wpedantic -std=c++11
+CPPFLAGS = -MMD -MP
+LDFLAGS =
+LDLIBS = -lm -lpthread
+
+# Directories
+ROOT_DIR = $(shell pwd)
+SRC_DIR = src
+INC_DIR = include
+LIB_DIR = lib
+BUILD_DIR = build
+BIN_DIR = bin
+OBJ_DIR = $(BUILD_DIR)/obj
+DEP_DIR = $(BUILD_DIR)/dep
+TEST_DIR = tests
+DOC_DIR = docs
+
+# Installation
+PREFIX ?= /usr/local
+BINDIR = $(DESTDIR)$(PREFIX)/bin
+LIBDIR = $(DESTDIR)$(PREFIX)/lib
+INCDIR = $(DESTDIR)$(PREFIX)/include/$(PROJECT_NAME)
+DOCDIR = $(DESTDIR)$(PREFIX)/share/doc/$(PROJECT_NAME)
+
+# ============================================================================
+# BUILD CONFIGURATION
+# ============================================================================
+
+# Build mode (debug/release/profile)
+MODE ?= release
+
+ifeq ($(MODE),debug)
+	CFLAGS += -g3 -Og -DDEBUG -fno-omit-frame-pointer
+	CXXFLAGS += -g3 -Og -DDEBUG -fno-omit-frame-pointer
+	BUILD_SUFFIX = debug
+else ifeq ($(MODE),profile)
+	CFLAGS += -pg -O2 -DNDEBUG
+	CXXFLAGS += -pg -O2 -DNDEBUG
+	LDFLAGS += -pg
+	BUILD_SUFFIX = profile
+else
+	CFLAGS += -O3 -DNDEBUG -march=native
+	CXXFLAGS += -O3 -DNDEBUG -march=native
+	LDFLAGS += -s
+	BUILD_SUFFIX = release
+endif
+
+# Verbose output
+V ?= 0
+ifeq ($(V),0)
+	Q = @
+	ECHO = @echo
+else
+	Q =
+	ECHO = @true
+endif
+
+# ============================================================================
+# SOURCE FILES
+# ============================================================================
+
+# Application sources
+APP_SRCS = $(wildcard $(SRC_DIR)/*.c)
+APP_OBJS = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/$(BUILD_SUFFIX)/%.o,$(APP_SRCS))
+APP_DEPS = $(patsubst $(SRC_DIR)/%.c,$(DEP_DIR)/$(BUILD_SUFFIX)/%.d,$(APP_SRCS))
+
+# Library sources
+LIB_SRCS = $(wildcard $(LIB_DIR)/*.c)
+LIB_OBJS = $(patsubst $(LIB_DIR)/%.c,$(OBJ_DIR)/$(BUILD_SUFFIX)/lib/%.o,$(LIB_SRCS))
+LIB_DEPS = $(patsubst $(LIB_DIR)/%.c,$(DEP_DIR)/$(BUILD_SUFFIX)/lib/%.d,$(LIB_SRCS))
+
+# Test sources
+TEST_SRCS = $(wildcard $(TEST_DIR)/*.c)
+TEST_BINS = $(patsubst $(TEST_DIR)/%.c,$(BUILD_DIR)/$(BUILD_SUFFIX)/tests/%,$(TEST_SRCS))
+
+# All headers
+HEADERS = $(wildcard $(INC_DIR)/*.h)
+
+# ============================================================================
+# TARGETS
+# ============================================================================
+
+# Main targets
+TARGET_BIN = $(BIN_DIR)/$(PROJECT_NAME)
+TARGET_LIB_STATIC = $(BUILD_DIR)/$(BUILD_SUFFIX)/lib$(PROJECT_NAME).a
+TARGET_LIB_SHARED = $(BUILD_DIR)/$(BUILD_SUFFIX)/lib$(PROJECT_NAME).so
+
+# ============================================================================
+# RULES
+# ============================================================================
+
+.DEFAULT_GOAL := all
+
+# Build everything
+all: $(TARGET_BIN)
+	$(ECHO) "Build complete [$(MODE)]"
+
+# Build executable
+$(TARGET_BIN): $(APP_OBJS) $(TARGET_LIB_STATIC)
+	$(ECHO) "Linking $@"
+	$(Q)mkdir -p $(BIN_DIR)
+	$(Q)$(CC) $(LDFLAGS) -o $@ $(APP_OBJS) $(TARGET_LIB_STATIC) $(LDLIBS)
+
+# Build static library
+$(TARGET_LIB_STATIC): $(LIB_OBJS)
+	$(ECHO) "Creating static library $@"
+	$(Q)mkdir -p $(dir $@)
+	$(Q)$(AR) rcs $@ $^
+
+# Build shared library
+$(TARGET_LIB_SHARED): $(LIB_OBJS)
+	$(ECHO) "Creating shared library $@"
+	$(Q)mkdir -p $(dir $@)
+	$(Q)$(CC) -shared $(LDFLAGS) -o $@ $^ $(LDLIBS)
+
+# Compile application sources
+$(OBJ_DIR)/$(BUILD_SUFFIX)/%.o: $(SRC_DIR)/%.c
+	$(ECHO) "Compiling $<"
+	$(Q)mkdir -p $(dir $@) $(dir $(DEP_DIR)/$(BUILD_SUFFIX)/$*.d)
+	$(Q)$(CC) $(CFLAGS) $(CPPFLAGS) -I$(INC_DIR) -c $< -o $@ -MF $(DEP_DIR)/$(BUILD_SUFFIX)/$*.d
+
+# Compile library sources
+$(OBJ_DIR)/$(BUILD_SUFFIX)/lib/%.o: $(LIB_DIR)/%.c
+	$(ECHO) "Compiling $<"
+	$(Q)mkdir -p $(dir $@) $(dir $(DEP_DIR)/$(BUILD_SUFFIX)/lib/$*.d)
+	$(Q)$(CC) $(CFLAGS) $(CPPFLAGS) -I$(INC_DIR) -fPIC -c $< -o $@ -MF $(DEP_DIR)/$(BUILD_SUFFIX)/lib/$*.d
+
+# Build tests
+tests: $(TEST_BINS)
+
+$(BUILD_DIR)/$(BUILD_SUFFIX)/tests/%: $(TEST_DIR)/%.c $(TARGET_LIB_STATIC)
+	$(ECHO) "Building test $@"
+	$(Q)mkdir -p $(dir $@)
+	$(Q)$(CC) $(CFLAGS) -I$(INC_DIR) $(LDFLAGS) -o $@ $< $(TARGET_LIB_STATIC) $(LDLIBS)
+
+# Run tests
+test: tests
+	$(ECHO) "Running tests..."
+	$(Q)for test in $(TEST_BINS); do \
+		echo "Running $$test..."; \
+		$$test || exit 1; \
+	done
+	$(ECHO) "All tests passed!"
+
+# Coverage report (requires lcov)
+coverage:
+	$(ECHO) "Generating coverage report..."
+	$(Q)lcov --capture --directory $(BUILD_DIR) --output-file coverage.info
+	$(Q)genhtml coverage.info --output-directory coverage
+	$(ECHO) "Coverage report generated in coverage/"
+
+# Static analysis (requires cppcheck)
+analyze:
+	$(ECHO) "Running static analysis..."
+	$(Q)cppcheck --enable=all --inconclusive --std=c11 $(SRC_DIR) $(LIB_DIR)
+
+# Format code (requires clang-format)
+format:
+	$(ECHO) "Formatting code..."
+	$(Q)find $(SRC_DIR) $(LIB_DIR) $(INC_DIR) -name "*.c" -o -name "*.h" | xargs clang-format -i
+
+# Generate documentation (requires Doxygen)
+docs:
+	$(ECHO) "Generating documentation..."
+	$(Q)doxygen Doxyfile
+	$(ECHO) "Documentation generated in $(DOC_DIR)"
+
+# Install
+install: $(TARGET_BIN) $(TARGET_LIB_STATIC)
+	$(ECHO) "Installing to $(PREFIX)..."
+	$(Q)install -d $(BINDIR) $(LIBDIR) $(INCDIR) $(DOCDIR)
+	$(Q)install -m 755 $(TARGET_BIN) $(BINDIR)
+	$(Q)install -m 644 $(TARGET_LIB_STATIC) $(LIBDIR)
+	$(Q)install -m 644 $(HEADERS) $(INCDIR)
+	$(Q)install -m 644 README.md LICENSE $(DOCDIR)
+	$(ECHO) "Installation complete"
+
+# Uninstall
+uninstall:
+	$(ECHO) "Uninstalling from $(PREFIX)..."
+	$(Q)rm -f $(BINDIR)/$(PROJECT_NAME)
+	$(Q)rm -f $(LIBDIR)/lib$(PROJECT_NAME).a
+	$(Q)rm -rf $(INCDIR)
+	$(Q)rm -rf $(DOCDIR)
+	$(ECHO) "Uninstallation complete"
+
+# Clean build artifacts
+clean:
+	$(ECHO) "Cleaning build artifacts..."
+	$(Q)rm -rf $(BUILD_DIR) $(BIN_DIR)
+
+# Clean everything
+distclean: clean
+	$(ECHO) "Cleaning all generated files..."
+	$(Q)rm -rf $(DOC_DIR)/html coverage coverage.info
+
+# Run the program
+run: $(TARGET_BIN)
+	$(Q)$(TARGET_BIN)
+
+# Debug with GDB
+debug: MODE=debug
+debug: $(TARGET_BIN)
+	$(Q)gdb $(TARGET_BIN)
+
+# Profile with gprof
+profile: MODE=profile
+profile: $(TARGET_BIN)
+	$(Q)$(TARGET_BIN)
+	$(Q)gprof $(TARGET_BIN) gmon.out > profile.txt
+	$(ECHO) "Profile saved to profile.txt"
+
+# Show build info
+info:
+	$(ECHO) "Project: $(PROJECT_NAME) $(VERSION)"
+	$(ECHO) "Mode: $(MODE)"
+	$(ECHO) "Compiler: $(CC)"
+	$(ECHO) "CFLAGS: $(CFLAGS)"
+	$(ECHO) "Build directory: $(BUILD_DIR)/$(BUILD_SUFFIX)"
+	$(ECHO) "Installation prefix: $(PREFIX)"
+
+# Help
+help:
+	$(ECHO) "$(PROJECT_NAME) Makefile"
+	$(ECHO) ""
+	$(ECHO) "Targets:"
+	$(ECHO) "  all       - Build the program (default)"
+	$(ECHO) "  tests     - Build test programs"
+	$(ECHO) "  test      - Build and run tests"
+	$(ECHO) "  coverage  - Generate coverage report"
+	$(ECHO) "  analyze   - Run static analysis"
+	$(ECHO) "  format    - Format source code"
+	$(ECHO) "  docs      - Generate documentation"
+	$(ECHO) "  install   - Install to $(PREFIX)"
+	$(ECHO) "  uninstall - Uninstall from $(PREFIX)"
+	$(ECHO) "  clean     - Remove build artifacts"
+	$(ECHO) "  distclean - Remove all generated files"
+	$(ECHO) "  run       - Build and run the program"
+	$(ECHO) "  debug     - Build with debug and run in GDB"
+	$(ECHO) "  profile   - Build with profiling and run gprof"
+	$(ECHO) "  info      - Show build configuration"
+	$(ECHO) "  help      - Show this help"
+	$(ECHO) ""
+	$(ECHO) "Variables:"
+	$(ECHO) "  MODE=<mode>    - Build mode: debug, release, profile (default: release)"
+	$(ECHO) "  PREFIX=<path>  - Installation prefix (default: /usr/local)"
+	$(ECHO) "  V=1            - Verbose output"
+
+# Include dependencies
+-include $(APP_DEPS) $(LIB_DEPS)
+
+# Phony targets
+.PHONY: all tests test coverage analyze format docs install uninstall clean distclean run debug profile info help
