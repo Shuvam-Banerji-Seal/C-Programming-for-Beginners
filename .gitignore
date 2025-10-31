@@ -53,6 +53,16 @@ fundamentals/takinh_user_inputs
 fundamentals/using_strings_in_c
 fundamentals/variables
 
+# Module 03: Control Flow
+03-control-flow/conditionals
+03-control-flow/conditionals_buggy
+03-control-flow/switch_demo
+03-control-flow/switch_buggy
+03-control-flow/loops
+03-control-flow/loops_buggy
+03-control-flow/nested_loops
+03-control-flow/loop_control
+
 # Assembly and intermediate files
 *.s
 *.i
