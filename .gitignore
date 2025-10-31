@@ -121,6 +121,11 @@ fundamentals/variables
 # Module 12: Advanced Data Structures
 12-advanced-data-structures/bst
 
+# Module 13: Debugging with GDB
+13-debugging-gdb/debug_example
+13-debugging-gdb/segfault_example
+13-debugging-gdb/watchpoint_example
+
 # Assembly and intermediate files
 *.s
 *.i

@@ -13,7 +13,8 @@ MODULES = 01-basics \
           09-file-io \
           10-preprocessor \
           11-data-structures \
-          12-advanced-data-structures
+          12-advanced-data-structures \
+          13-debugging-gdb
 
 .PHONY: all clean help test $(MODULES)
 
@@ -86,6 +87,10 @@ all:
 12-advanced-data-structures:
 	@echo "Building Module 12: Advanced Data Structures"
 	@$(MAKE) -C 12-advanced-data-structures
+
+13-debugging-gdb:
+	@echo "Building Module 13: Debugging with GDB"
+	@$(MAKE) -C 13-debugging-gdb
 
 # Clean all modules
 clean:
