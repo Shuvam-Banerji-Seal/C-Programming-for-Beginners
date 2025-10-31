@@ -63,6 +63,14 @@ fundamentals/variables
 03-control-flow/nested_loops
 03-control-flow/loop_control
 
+# Module 06: Pointers
+06-pointers/pointer_basics
+06-pointers/pointer_basics_buggy
+06-pointers/pointer_arithmetic
+06-pointers/pointers_arrays
+06-pointers/pointer_to_pointer
+06-pointers/pointers_functions
+
 # Assembly and intermediate files
 *.s
 *.i
