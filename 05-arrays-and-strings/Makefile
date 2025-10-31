@@ -4,7 +4,7 @@
 CC = gcc
 CFLAGS = -std=c11 -Wall -Wextra -Wpedantic -O2 -g
 
-PROGRAMS = array_algorithms string_operations
+PROGRAMS = array_algorithms string_operations multidimensional_arrays advanced_strings
 
 all: $(PROGRAMS)
 	@echo ""
@@ -15,6 +15,8 @@ all: $(PROGRAMS)
 	@echo "Run programs to explore arrays and strings:"
 	@echo "  ./array_algorithms"
 	@echo "  ./string_operations"
+	@echo "  ./multidimensional_arrays"
+	@echo "  ./advanced_strings"
 	@echo ""
 
 array_algorithms: array_algorithms.c
@@ -25,11 +27,23 @@ string_operations: string_operations.c
 	$(CC) $(CFLAGS) -o string_operations string_operations.c
 	@echo "Built: string_operations"
 
+multidimensional_arrays: multidimensional_arrays.c
+	$(CC) $(CFLAGS) -o multidimensional_arrays multidimensional_arrays.c
+	@echo "Built: multidimensional_arrays"
+
+advanced_strings: advanced_strings.c
+	$(CC) $(CFLAGS) -o advanced_strings advanced_strings.c
+	@echo "Built: advanced_strings"
+
 run: all
 	@echo "\n========== Running: array_algorithms =========="
 	./array_algorithms
 	@echo "\n========== Running: string_operations =========="
 	./string_operations
+	@echo "\n========== Running: multidimensional_arrays =========="
+	./multidimensional_arrays
+	@echo "\n========== Running: advanced_strings =========="
+	./advanced_strings
 
 clean:
 	rm -f $(PROGRAMS) *.o
