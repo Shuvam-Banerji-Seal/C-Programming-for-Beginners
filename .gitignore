@@ -95,13 +95,19 @@ fundamentals/variables
 # Module 08: Structures and Unions
 08-structures-unions/structures_demo
 08-structures-unions/unions_demo
+08-structures-unions/advanced_structures
+08-structures-unions/bitfields_and_unions
 
 # Module 09: File I/O
 09-file-io/file_operations
+09-file-io/advanced_file_io
+09-file-io/file_processing
 
 # Module 10: Preprocessor
 10-preprocessor/preprocessor_demo
 10-preprocessor/preprocessor_demo.i
+10-preprocessor/advanced_preprocessor
+10-preprocessor/conditional_compilation
 
 # Module 04: Functions
 04-functions/basic_functions
@@ -113,13 +119,19 @@ fundamentals/variables
 # Module 05: Arrays and Strings
 05-arrays-and-strings/array_algorithms
 05-arrays-and-strings/string_operations
+05-arrays-and-strings/multidimensional_arrays
+05-arrays-and-strings/advanced_strings
 
 # Module 11: Data Structures
 11-data-structures/linked_list
 11-data-structures/stack
+11-data-structures/doubly_linked_list
+11-data-structures/hash_table
 
 # Module 12: Advanced Data Structures
 12-advanced-data-structures/bst
+12-advanced-data-structures/graph_algorithms
+12-advanced-data-structures/heap_priority_queue
 
 # Module 13: Debugging with GDB
 13-debugging-gdb/debug_example
