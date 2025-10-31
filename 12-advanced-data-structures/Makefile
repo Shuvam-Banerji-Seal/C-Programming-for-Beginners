@@ -4,7 +4,7 @@
 CC = gcc
 CFLAGS = -std=c11 -Wall -Wextra -Wpedantic -O2 -g
 
-PROGRAMS = bst
+PROGRAMS = bst graph_algorithms heap_priority_queue
 
 all: $(PROGRAMS)
 	@echo ""
@@ -12,14 +12,31 @@ all: $(PROGRAMS)
 	@echo "Module 12 programs compiled successfully!"
 	@echo "=========================================="
 	@echo ""
+	@echo "Run programs:"
+	@echo "  ./bst"
+	@echo "  ./graph_algorithms"
+	@echo "  ./heap_priority_queue"
+	@echo ""
 
 bst: bst.c
 	$(CC) $(CFLAGS) -o bst bst.c
 	@echo "Built: bst (Binary Search Tree)"
 
+graph_algorithms: graph_algorithms.c
+	$(CC) $(CFLAGS) -o graph_algorithms graph_algorithms.c
+	@echo "Built: graph_algorithms"
+
+heap_priority_queue: heap_priority_queue.c
+	$(CC) $(CFLAGS) -o heap_priority_queue heap_priority_queue.c
+	@echo "Built: heap_priority_queue"
+
 run: all
 	@echo "\n========== Running: bst =========="
 	./bst
+	@echo "\n========== Running: graph_algorithms =========="
+	./graph_algorithms
+	@echo "\n========== Running: heap_priority_queue =========="
+	./heap_priority_queue
 
 clean:
 	rm -f $(PROGRAMS) *.o
