@@ -36,6 +36,27 @@
 *.x86_64
 *.hex
 
+# Compiled binaries without extensions
+fundamentals/difference_between_char_string
+fundamentals/differnt_types_of_variables
+fundamentals/functions_in_c
+fundamentals/lets_do_2d_arrays
+fundamentals/loops_in_c
+fundamentals/loops_performance_comparision
+fundamentals/main
+fundamentals/preincrement_vs_postincrement
+fundamentals/preincrement_vs_postincrement_clang
+fundamentals/preincrement_vs_postincrement_gcc
+fundamentals/printf_exploitation
+fundamentals/simple_int_printing
+fundamentals/takinh_user_inputs
+fundamentals/using_strings_in_c
+fundamentals/variables
+
+# Assembly and intermediate files
+*.s
+*.i
+
 # Debug files
 *.dSYM/
 *.su
