@@ -1,0 +1,180 @@
+# Library CMake Example
+# Demonstrates building a library with CMake
+
+cmake_minimum_required(VERSION 3.12)
+
+# Project
+project(MyLibrary
+    VERSION 2.0.0
+    DESCRIPTION "Example C library with CMake"
+    LANGUAGES C
+)
+
+# ============================================================================
+# OPTIONS
+# ============================================================================
+
+option(BUILD_SHARED_LIBS "Build shared library" OFF)
+option(BUILD_EXAMPLES "Build example programs" ON)
+option(INSTALL_HEADERS "Install header files" ON)
+
+# ============================================================================
+# CONFIGURATION
+# ============================================================================
+
+# C standard
+set(CMAKE_C_STANDARD 11)
+set(CMAKE_C_STANDARD_REQUIRED ON)
+
+# Include GNUInstallDirs for standard paths
+include(GNUInstallDirs)
+
+# ============================================================================
+# LIBRARY
+# ============================================================================
+
+# Library sources
+set(LIB_SOURCES
+    src/core.c
+    src/utils.c
+    src/io.c
+)
+
+# Public headers
+set(PUBLIC_HEADERS
+    include/mylib/mylib.h
+    include/mylib/utils.h
+)
+
+# Create library (shared or static based on BUILD_SHARED_LIBS)
+add_library(mylib ${LIB_SOURCES})
+
+# Add alias for namespaced usage
+add_library(MyLib::mylib ALIAS mylib)
+
+# Set library properties
+set_target_properties(mylib PROPERTIES
+    VERSION ${PROJECT_VERSION}
+    SOVERSION ${PROJECT_VERSION_MAJOR}
+    PUBLIC_HEADER "${PUBLIC_HEADERS}"
+    OUTPUT_NAME "mylib"
+)
+
+# Include directories
+target_include_directories(mylib
+    PUBLIC
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+        $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
+    PRIVATE
+        ${CMAKE_CURRENT_SOURCE_DIR}/src
+)
+
+# Compiler options
+target_compile_options(mylib PRIVATE
+    -Wall -Wextra -Wpedantic
+)
+
+# Link libraries
+find_library(MATH_LIB m)
+if(MATH_LIB)
+    target_link_libraries(mylib PUBLIC ${MATH_LIB})
+endif()
+
+# Position independent code for shared library
+if(BUILD_SHARED_LIBS)
+    set_target_properties(mylib PROPERTIES
+        POSITION_INDEPENDENT_CODE ON
+    )
+endif()
+
+# ============================================================================
+# EXAMPLES
+# ============================================================================
+
+if(BUILD_EXAMPLES)
+    add_executable(example_basic examples/basic.c)
+    target_link_libraries(example_basic PRIVATE mylib)
+    
+    add_executable(example_advanced examples/advanced.c)
+    target_link_libraries(example_advanced PRIVATE mylib)
+endif()
+
+# ============================================================================
+# INSTALLATION
+# ============================================================================
+
+# Install library
+install(TARGETS mylib
+    EXPORT mylibTargets
+    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+    PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/mylib
+)
+
+# Install additional headers if needed
+if(INSTALL_HEADERS)
+    install(DIRECTORY include/
+        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
+        FILES_MATCHING PATTERN "*.h"
+    )
+endif()
+
+# Export targets
+install(EXPORT mylibTargets
+    FILE mylibTargets.cmake
+    NAMESPACE MyLib::
+    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/mylib
+)
+
+# Create package config file
+include(CMakePackageConfigHelpers)
+
+# Generate the config file
+configure_package_config_file(
+    ${CMAKE_CURRENT_SOURCE_DIR}/cmake/mylibConfig.cmake.in
+    ${CMAKE_CURRENT_BINARY_DIR}/mylibConfig.cmake
+    INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/mylib
+)
+
+# Generate version file
+write_basic_package_version_file(
+    ${CMAKE_CURRENT_BINARY_DIR}/mylibConfigVersion.cmake
+    VERSION ${PROJECT_VERSION}
+    COMPATIBILITY SameMajorVersion
+)
+
+# Install config files
+install(FILES
+    ${CMAKE_CURRENT_BINARY_DIR}/mylibConfig.cmake
+    ${CMAKE_CURRENT_BINARY_DIR}/mylibConfigVersion.cmake
+    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/mylib
+)
+
+# Install pkg-config file
+configure_file(
+    ${CMAKE_CURRENT_SOURCE_DIR}/cmake/mylib.pc.in
+    ${CMAKE_CURRENT_BINARY_DIR}/mylib.pc
+    @ONLY
+)
+
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/mylib.pc
+    DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig
+)
+
+# ============================================================================
+# USAGE INFORMATION
+# ============================================================================
+
+# Print usage information
+message(STATUS "")
+message(STATUS "Library: ${PROJECT_NAME} ${PROJECT_VERSION}")
+message(STATUS "Library type: ${LIB_TYPE}")
+message(STATUS "")
+message(STATUS "After installation, use the library in your CMake project:")
+message(STATUS "  find_package(mylib REQUIRED)")
+message(STATUS "  target_link_libraries(your_target PRIVATE MyLib::mylib)")
+message(STATUS "")
+message(STATUS "Or use pkg-config:")
+message(STATUS "  pkg-config --cflags --libs mylib")
+message(STATUS "")

@@ -1,0 +1,49 @@
+# Simple Makefile Example
+# This demonstrates basic Makefile concepts
+
+# Compiler and flags
+CC = gcc
+CFLAGS = -Wall -Wextra -std=c11 -pedantic
+
+# Target executable
+TARGET = simple_program
+
+# Source files
+SRCS = main.c utils.c
+
+# Object files (automatically derived from source files)
+OBJS = $(SRCS:.c=.o)
+
+# Default target - builds everything
+all: $(TARGET)
+	@echo "Build complete!"
+
+# Link object files to create executable
+$(TARGET): $(OBJS)
+	$(CC) $(CFLAGS) -o $@ $^
+	@echo "Linking complete: $@"
+
+# Compile .c files to .o files
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
+	@echo "Compiled: $<"
+
+# Clean build artifacts
+clean:
+	rm -f $(OBJS) $(TARGET)
+	@echo "Cleanup complete"
+
+# Run the program
+run: $(TARGET)
+	./$(TARGET)
+
+# Help target
+help:
+	@echo "Available targets:"
+	@echo "  all     - Build the program (default)"
+	@echo "  clean   - Remove build artifacts"
+	@echo "  run     - Build and run the program"
+	@echo "  help    - Show this help message"
+
+# Phony targets (not actual files)
+.PHONY: all clean run help

@@ -1,0 +1,182 @@
+# Advanced Makefile Example
+# Demonstrates advanced features for larger projects
+
+# ============================================================================
+# CONFIGURATION
+# ============================================================================
+
+# Project name
+PROJECT = advanced_program
+
+# Compiler settings
+CC = gcc
+AR = ar
+CFLAGS = -Wall -Wextra -std=c11 -pedantic
+CPPFLAGS = -I$(INC_DIR)
+LDFLAGS = -L$(LIB_DIR)
+LDLIBS = -lm
+
+# Directories
+SRC_DIR = src
+BUILD_DIR = build
+INC_DIR = include
+LIB_DIR = lib
+BIN_DIR = bin
+TEST_DIR = tests
+
+# Installation directories
+PREFIX ?= /usr/local
+BINDIR = $(PREFIX)/bin
+LIBDIR = $(PREFIX)/lib
+INCDIR = $(PREFIX)/include
+
+# Build configuration
+DEBUG ?= 0
+ifeq ($(DEBUG), 1)
+	CFLAGS += -g -O0 -DDEBUG
+	BUILD_DIR := $(BUILD_DIR)/debug
+else
+	CFLAGS += -O2 -DNDEBUG
+	BUILD_DIR := $(BUILD_DIR)/release
+endif
+
+# Platform detection
+UNAME_S := $(shell uname -s)
+ifeq ($(UNAME_S),Linux)
+	CFLAGS += -D_GNU_SOURCE
+	LDLIBS += -lrt -lpthread
+endif
+ifeq ($(UNAME_S),Darwin)
+	CFLAGS += -D__APPLE__
+endif
+
+# ============================================================================
+# FILES
+# ============================================================================
+
+# Find all source files
+SRCS = $(wildcard $(SRC_DIR)/*.c)
+OBJS = $(patsubst $(SRC_DIR)/%.c,$(BUILD_DIR)/%.o,$(SRCS))
+DEPS = $(OBJS:.o=.d)
+
+# Library sources
+LIB_SRCS = $(wildcard $(LIB_DIR)/*.c)
+LIB_OBJS = $(patsubst $(LIB_DIR)/%.c,$(BUILD_DIR)/lib/%.o,$(LIB_SRCS))
+LIB_NAME = libmylib.a
+
+# Test sources
+TEST_SRCS = $(wildcard $(TEST_DIR)/*.c)
+TEST_BINS = $(patsubst $(TEST_DIR)/%.c,$(BUILD_DIR)/tests/%,$(TEST_SRCS))
+
+# Target executable
+TARGET = $(BIN_DIR)/$(PROJECT)
+
+# ============================================================================
+# TARGETS
+# ============================================================================
+
+# Default target
+all: $(TARGET)
+
+# Build executable
+$(TARGET): $(OBJS) $(BUILD_DIR)/lib/$(LIB_NAME)
+	@mkdir -p $(BIN_DIR)
+	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $(OBJS) -L$(BUILD_DIR)/lib -lmylib $(LDLIBS)
+	@echo "Built: $@"
+
+# Build static library
+$(BUILD_DIR)/lib/$(LIB_NAME): $(LIB_OBJS)
+	@mkdir -p $(BUILD_DIR)/lib
+	$(AR) rcs $@ $^
+	@echo "Created library: $@"
+
+# Compile source files
+$(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
+	@mkdir -p $(BUILD_DIR)
+	$(CC) $(CFLAGS) $(CPPFLAGS) -MMD -MP -c $< -o $@
+
+# Compile library files
+$(BUILD_DIR)/lib/%.o: $(LIB_DIR)/%.c
+	@mkdir -p $(BUILD_DIR)/lib
+	$(CC) $(CFLAGS) $(CPPFLAGS) -MMD -MP -c $< -o $@
+
+# Build tests
+tests: $(TEST_BINS)
+
+$(BUILD_DIR)/tests/%: $(TEST_DIR)/%.c $(BUILD_DIR)/lib/$(LIB_NAME)
+	@mkdir -p $(BUILD_DIR)/tests
+	$(CC) $(CFLAGS) $(CPPFLAGS) $(LDFLAGS) -o $@ $< -L$(BUILD_DIR)/lib -lmylib $(LDLIBS)
+
+# Run tests
+test: tests
+	@echo "Running tests..."
+	@for test in $(TEST_BINS); do \
+		echo "Running $$test..."; \
+		$$test || exit 1; \
+	done
+	@echo "All tests passed!"
+
+# Install
+install: $(TARGET)
+	install -d $(DESTDIR)$(BINDIR)
+	install -m 755 $(TARGET) $(DESTDIR)$(BINDIR)
+	install -d $(DESTDIR)$(INCDIR)
+	install -m 644 $(INC_DIR)/*.h $(DESTDIR)$(INCDIR)
+	@echo "Installation complete"
+
+# Uninstall
+uninstall:
+	rm -f $(DESTDIR)$(BINDIR)/$(PROJECT)
+	rm -f $(DESTDIR)$(INCDIR)/*.h
+	@echo "Uninstallation complete"
+
+# Clean
+clean:
+	rm -rf $(BUILD_DIR) $(BIN_DIR)
+	@echo "Cleanup complete"
+
+# Clean everything including dependencies
+distclean: clean
+	rm -rf build bin
+
+# Run the program
+run: $(TARGET)
+	$(TARGET)
+
+# Generate documentation (requires Doxygen)
+docs:
+	doxygen Doxyfile
+
+# Show build configuration
+info:
+	@echo "Project: $(PROJECT)"
+	@echo "CC: $(CC)"
+	@echo "CFLAGS: $(CFLAGS)"
+	@echo "Build directory: $(BUILD_DIR)"
+	@echo "Debug mode: $(DEBUG)"
+	@echo "Platform: $(UNAME_S)"
+
+# Help
+help:
+	@echo "Available targets:"
+	@echo "  all       - Build the program (default)"
+	@echo "  tests     - Build test programs"
+	@echo "  test      - Build and run tests"
+	@echo "  install   - Install to $(PREFIX)"
+	@echo "  uninstall - Remove from $(PREFIX)"
+	@echo "  clean     - Remove build artifacts"
+	@echo "  distclean - Remove all generated files"
+	@echo "  run       - Build and run the program"
+	@echo "  docs      - Generate documentation"
+	@echo "  info      - Show build configuration"
+	@echo "  help      - Show this help message"
+	@echo ""
+	@echo "Variables:"
+	@echo "  DEBUG=1   - Build with debug symbols"
+	@echo "  PREFIX=path - Set installation prefix"
+
+# Include automatically generated dependencies
+-include $(DEPS)
+
+# Phony targets
+.PHONY: all tests test install uninstall clean distclean run docs info help
