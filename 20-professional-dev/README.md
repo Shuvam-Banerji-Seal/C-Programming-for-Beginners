@@ -1,8 +1,8 @@
-# Module 20: Professional Development 🎓
+# Module 20: Professional Development
 
 Master professional C development practices and build systems!
 
-## 📚 What You'll Learn
+## What You'll Learn
 
 1. **Build Systems** - Make and CMake in depth
 2. Unit testing in C
@@ -11,7 +11,7 @@ Master professional C development practices and build systems!
 5. Profiling and optimization
 6. Writing maintainable code
 
-## 🔨 Mastering Makefiles
+## Mastering Makefiles
 
 ### Makefile Basics
 
@@ -138,7 +138,7 @@ See [Makefile.project](./Makefile.project) for a full-featured example with:
 - Documentation generation
 - Installation targets
 
-## 📋 Mastering CMake
+## Mastering CMake
 
 ### CMake Basics
 
@@ -162,7 +162,7 @@ add_executable(myprogram main.c utils.c)
 
 # Compiler warnings
 target_compile_options(myprogram PRIVATE
-    -Wall -Wextra -pedantic
+ -Wall -Wextra -pedantic
 )
 ```
 
@@ -190,19 +190,19 @@ sudo make install
 
 ```
 project/
-├── CMakeLists.txt          # Root CMake file
+├── CMakeLists.txt # Root CMake file
 ├── src/
-│   ├── CMakeLists.txt      # Source directory CMake
-│   ├── main.c
-│   └── utils.c
+│ ├── CMakeLists.txt # Source directory CMake
+│ ├── main.c
+│ └── utils.c
 ├── include/
-│   └── utils.h
+│ └── utils.h
 ├── lib/
-│   ├── CMakeLists.txt      # Library CMake
-│   └── mylib.c
+│ ├── CMakeLists.txt # Library CMake
+│ └── mylib.c
 └── tests/
-    ├── CMakeLists.txt      # Tests CMake
-    └── test_main.c
+ ├── CMakeLists.txt # Tests CMake
+ └── test_main.c
 ```
 
 ### Advanced CMake Features
@@ -238,14 +238,14 @@ message(STATUS "Building ${PROJECT_NAME} version ${PROJECT_VERSION}")
 ```cmake
 # Static library
 add_library(mylib_static STATIC
-    src/lib1.c
-    src/lib2.c
+ src/lib1.c
+ src/lib2.c
 )
 
 # Shared library
 add_library(mylib_shared SHARED
-    src/lib1.c
-    src/lib2.c
+ src/lib1.c
+ src/lib2.c
 )
 
 # Header-only library (interface library)
@@ -268,9 +268,9 @@ find_library(MATH_LIB m)
 
 # Link to target
 target_link_libraries(myprogram PRIVATE
-    Threads::Threads
-    OpenSSL::SSL
-    ${MATH_LIB}
+ Threads::Threads
+ OpenSSL::SSL
+ ${MATH_LIB}
 )
 ```
 
@@ -279,25 +279,25 @@ target_link_libraries(myprogram PRIVATE
 ```cmake
 # Install executable
 install(TARGETS myprogram
-    RUNTIME DESTINATION bin
+ RUNTIME DESTINATION bin
 )
 
 # Install libraries
 install(TARGETS mylib_static mylib_shared
-    ARCHIVE DESTINATION lib
-    LIBRARY DESTINATION lib
-    RUNTIME DESTINATION bin
+ ARCHIVE DESTINATION lib
+ LIBRARY DESTINATION lib
+ RUNTIME DESTINATION bin
 )
 
 # Install headers
 install(DIRECTORY include/
-    DESTINATION include
-    FILES_MATCHING PATTERN "*.h"
+ DESTINATION include
+ FILES_MATCHING PATTERN "*.h"
 )
 
 # Install documentation
 install(FILES README.md LICENSE
-    DESTINATION share/doc/${PROJECT_NAME}
+ DESTINATION share/doc/${PROJECT_NAME}
 )
 ```
 
@@ -317,8 +317,8 @@ add_test(NAME test_advanced COMMAND test_main --advanced)
 
 # Set test properties
 set_tests_properties(test_basic PROPERTIES
-    TIMEOUT 30
-    PASS_REGULAR_EXPRESSION "All tests passed"
+ TIMEOUT 30
+ PASS_REGULAR_EXPRESSION "All tests passed"
 )
 ```
 
@@ -327,7 +327,7 @@ set_tests_properties(test_basic PROPERTIES
 ```cmake
 # Set default build type
 if(NOT CMAKE_BUILD_TYPE)
-    set(CMAKE_BUILD_TYPE Release)
+ set(CMAKE_BUILD_TYPE Release)
 endif()
 
 # Debug configuration
@@ -340,7 +340,7 @@ set(CMAKE_C_FLAGS_RELEASE "-O3 -DNDEBUG")
 set(CMAKE_C_FLAGS_PROFILE "-pg -O2")
 ```
 
-## 📖 Code Examples
+## Code Examples
 
 1. [Makefile.simple](./Makefile.simple) - Basic Makefile
 2. [Makefile.advanced](./Makefile.advanced) - Advanced features
@@ -350,7 +350,7 @@ set(CMAKE_C_FLAGS_PROFILE "-pg -O2")
 6. [CMakeLists.library.txt](./CMakeLists.library.txt) - Library project
 7. [example_project/](./example_project/) - Complete example with both
 
-## 🧪 Unit Testing
+## Unit Testing
 
 ```c
 // Simple test framework
@@ -358,22 +358,22 @@ set(CMAKE_C_FLAGS_PROFILE "-pg -O2")
 #include <stdio.h>
 
 void test_addition() {
-    assert(add(2, 3) == 5);
+ assert(add(2, 3) == 5);
 }
 
 void test_multiplication() {
-    assert(multiply(2, 3) == 6);
+ assert(multiply(2, 3) == 6);
 }
 
 int main() {
-    test_addition();
-    test_multiplication();
-    printf("All tests passed!\n");
-    return 0;
+ test_addition();
+ test_multiplication();
+ printf("All tests passed!\n");
+ return 0;
 }
 ```
 
-## 📊 Profiling with gprof
+## Profiling with gprof
 
 ```bash
 gcc -pg -o program program.c
@@ -381,7 +381,7 @@ gcc -pg -o program program.c
 gprof program gmon.out > analysis.txt
 ```
 
-## 🎯 Code Style Guidelines
+## Code Style Guidelines
 
 1. **Naming**: Use descriptive names
 2. **Indentation**: 4 spaces or tabs
@@ -390,7 +390,7 @@ gprof program gmon.out > analysis.txt
 5. **Error handling**: Always check return values
 6. **Memory**: Free what you allocate
 
-## 🔜 Congratulations!
+## Congratulations!
 
 You've completed the course! Keep practicing and building projects.
 

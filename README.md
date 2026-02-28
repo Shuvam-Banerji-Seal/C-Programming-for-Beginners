@@ -1,12 +1,12 @@
-# Complete C Programming Course 🚀
+# Complete C Programming Course
 
 Welcome to the **Complete C Programming Course** - a comprehensive journey from absolute beginner to advanced C programmer! This course covers everything from basic syntax to advanced topics like machine learning, network programming, and scientific simulations.
 
-## 📚 Course Overview
+## Course Overview
 
 This course is structured into 20 modules, each building upon the previous one. Whether you're a complete beginner or looking to master advanced C programming, this course has something for you.
 
-## 🗺️ Course Structure
+## Course Structure
 
 ### **Beginner Level** (Modules 1-5)
 
@@ -165,7 +165,7 @@ This course is structured into 20 modules, each building upon the previous one. 
 - Profiling and Optimization
 - Writing Maintainable Code
 
-## 🎯 Learning Path
+## Learning Path
 
 ### For Complete Beginners
 Start with Module 01 and work through Modules 1-5 sequentially. Take your time with each concept.
@@ -179,7 +179,7 @@ Jump to Modules 6-15, focusing on areas where you need improvement.
 ### For Advanced Learners
 Modules 16-20 provide cutting-edge applications of C programming.
 
-## 📝 How to Use This Course
+## How to Use This Course
 
 1. **Read the Theory**: Each module starts with conceptual explanations
 2. **Study the Examples**: Carefully examine the provided code examples
@@ -189,7 +189,7 @@ Modules 16-20 provide cutting-edge applications of C programming.
 6. **Build Projects**: Apply your knowledge in the projects
 7. **Review**: Revisit difficult concepts and practice more
 
-## 🛠️ Prerequisites
+## Prerequisites
 
 - A computer (Windows, macOS, or Linux)
 - A C compiler (GCC or Clang - both supported)
@@ -197,7 +197,7 @@ Modules 16-20 provide cutting-edge applications of C programming.
 - Basic command-line knowledge
 - Enthusiasm to learn!
 
-## 🔧 Compilation Quick Start
+## Compilation Quick Start
 
 Each module includes a **Makefile** for easy compilation:
 
@@ -220,7 +220,7 @@ make clean
 make CC=clang
 ```
 
-📘 **For detailed compilation instructions**, see [COMPILATION_GUIDE.md](./COMPILATION_GUIDE.md)
+ **For detailed compilation instructions**, see [COMPILATION_GUIDE.md](./COMPILATION_GUIDE.md)
 
 ### Available Make Targets
 
@@ -237,35 +237,35 @@ Most modules support these targets:
 ```bash
 # Module 03: Control Flow
 cd 03-control-flow
-make                    # Compile with GCC
-make CC=clang          # Compile with Clang
-make run               # Run all correct examples
-make run-buggy         # Run buggy examples
+make # Compile with GCC
+make CC=clang # Compile with Clang
+make run # Run all correct examples
+make run-buggy # Run buggy examples
 
 # Module 06: Pointers
 cd ../06-pointers
-make asan              # Compile with memory sanitizer
+make asan # Compile with memory sanitizer
 ./pointer_basics
 
 # Module 07: Memory Management
 cd ../07-memory-management
-make valgrind          # Run with Valgrind (if installed)
+make valgrind # Run with Valgrind (if installed)
 ```
 
-## 💡 Features
+## Features
 
-- ✅ **Progressive Learning**: Concepts build upon each other logically
-- ✅ **Visual Aids**: Mermaid diagrams for data structures and algorithms
-- ✅ **Hands-on Projects**: Real-world applications in every advanced module
-- ✅ **Best Practices**: Learn industry-standard coding practices
-- ✅ **Complete Examples**: Every concept is demonstrated with working code
-- ✅ **Buggy Examples**: Learn from deliberately wrong code with explanations
-- ✅ **Compilation Guide**: Comprehensive guide for GCC and Clang with all flags explained
-- ✅ **Makefiles**: Each module includes a Makefile with detailed flag documentation
-- ✅ **Memory Safety**: Examples include sanitizers for detecting memory errors
-- ✅ **Exercises**: Reinforce learning with practical problems
+- **Progressive Learning**: Concepts build upon each other logically
+- **Visual Aids**: Mermaid diagrams for data structures and algorithms
+- **Hands-on Projects**: Real-world applications in every advanced module
+- **Best Practices**: Learn industry-standard coding practices
+- **Complete Examples**: Every concept is demonstrated with working code
+- **Buggy Examples**: Learn from deliberately wrong code with explanations
+- **Compilation Guide**: Comprehensive guide for GCC and Clang with all flags explained
+- **Makefiles**: Each module includes a Makefile with detailed flag documentation
+- **Memory Safety**: Examples include sanitizers for detecting memory errors
+- **Exercises**: Reinforce learning with practical problems
 
-## 📖 Additional Resources
+## Additional Resources
 
 - **[Compilation Guide](./COMPILATION_GUIDE.md)**: Complete guide to GCC and Clang compiler flags
 - **Makefiles**: Each module has a Makefile with detailed comments
@@ -275,20 +275,20 @@ make valgrind          # Run with Valgrind (if installed)
 - **FAQs**: Answers to frequently asked questions
 - **External Resources**: Curated links to additional learning materials
 
-## 🤝 Contributing
+## Contributing
 
 This is an educational resource. If you find errors or want to suggest improvements, please feel free to contribute!
 
-## 📜 License
+## License
 
 This course is released under the MIT License. See [LICENSE](./LICENSE) for details.
 
-## 🚀 Getting Started
+## Getting Started
 
 Ready to begin? Head over to [Module 01: Getting Started with C](./01-basics/README.md) and start your journey!
 
 ---
 
-**Happy Coding!** 💻✨
+**Happy Coding!**
 
 Remember: The best way to learn programming is by doing. Don't just read the code—type it out, modify it, break it, and fix it. That's how you truly learn!

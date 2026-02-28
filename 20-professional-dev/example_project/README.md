@@ -6,16 +6,16 @@ This is a complete example demonstrating both Make and CMake build systems.
 
 ```
 example_project/
-├── Makefile           # Makefile for building with make
-├── CMakeLists.txt     # CMake configuration
-├── src/               # Application source files
-│   └── main.c
-├── include/           # Public header files
-│   └── math_utils.h
-├── lib/               # Library source files
-│   └── math_utils.c
-└── tests/             # Test files
-    └── test_math.c
+├── Makefile # Makefile for building with make
+├── CMakeLists.txt # CMake configuration
+├── src/ # Application source files
+│ └── main.c
+├── include/ # Public header files
+│ └── math_utils.h
+├── lib/ # Library source files
+│ └── math_utils.c
+└── tests/ # Test files
+ └── test_math.c
 ```
 
 ## Building with Make
