@@ -55,15 +55,19 @@ typedef union {
     char raw[24];
 } FlexibleData;
 
-// Packed structure using pragma
+// Packed structure using pragma (implementation-specific, supported by GCC/Clang/MSVC)
+#if defined(__GNUC__) || defined(_MSC_VER)
 #pragma pack(push, 1)
+#endif
 typedef struct {
     uint8_t type;
     uint16_t length;
     uint32_t timestamp;
     uint8_t data[10];
 } PackedMessage;
+#if defined(__GNUC__) || defined(_MSC_VER)
 #pragma pack(pop)
+#endif
 
 // Union for IPv4 address representation
 typedef union {
@@ -214,11 +218,22 @@ int main() {
         char d;
     };
     
+    /* __attribute__((packed)) is a GCC/Clang extension; use #pragma pack fallback */
+#ifdef __GNUC__
     struct __attribute__((packed)) Packed {
         char c;
         int i;
         char d;
     };
+#else
+    #pragma pack(push, 1)
+    struct Packed {
+        char c;
+        int i;
+        char d;
+    };
+    #pragma pack(pop)
+#endif
     
     printf("   Regular struct size: %zu bytes (with padding)\n", sizeof(struct Regular));
     printf("   Packed struct size: %zu bytes (no padding)\n", sizeof(struct Packed));

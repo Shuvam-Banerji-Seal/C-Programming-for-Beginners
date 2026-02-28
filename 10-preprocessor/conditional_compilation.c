@@ -90,11 +90,11 @@
 
 #define CURRENT_VERSION MAKE_VERSION(VERSION_MAJOR, VERSION_MINOR, VERSION_PATCH)
 
-// Optimization hints
+// Optimization hints (GCC/Clang compiler extensions, guarded for portability)
 #ifdef __GNUC__
     #define LIKELY(x)   __builtin_expect(!!(x), 1)
     #define UNLIKELY(x) __builtin_expect(!!(x), 0)
-    #define INLINE      __attribute__((always_inline)) inline
+    #define INLINE      __attribute__((always_inline)) inline  /* GCC extension */
 #else
     #define LIKELY(x)   (x)
     #define UNLIKELY(x) (x)
