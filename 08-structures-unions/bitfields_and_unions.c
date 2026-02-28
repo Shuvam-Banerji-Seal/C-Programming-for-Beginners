@@ -67,6 +67,9 @@ typedef struct {
 } PackedMessage;
 #if defined(__GNUC__) || defined(_MSC_VER)
 #pragma pack(pop)
+#else
+// NOTE: Your compiler may not support structure packing.
+// PackedMessage may contain padding on this platform.
 #endif
 
 // Union for IPv4 address representation

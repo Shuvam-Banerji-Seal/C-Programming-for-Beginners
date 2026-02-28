@@ -7,6 +7,9 @@ LATEXFLAGS := -interaction=nonstopmode
 
 all: $(PDFS)
 
+# pdflatex is run twice so that cross-references, the table of contents,
+# and page numbers are resolved correctly (the first pass collects them,
+# the second pass inserts them).
 module-%.pdf: module-%.tex
 	$(LATEX) $(LATEXFLAGS) $<
 	$(LATEX) $(LATEXFLAGS) $<

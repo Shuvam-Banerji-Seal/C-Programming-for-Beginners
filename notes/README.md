@@ -45,8 +45,16 @@ make clean    # Remove generated PDFs and auxiliary files
 
 ## Requirements
 
-A LaTeX distribution with `pdflatex` is required. On Ubuntu/Debian:
+A LaTeX distribution with `pdflatex` is required. The notes use the following
+LaTeX packages: `amsmath`, `amssymb`, `listings`, `hyperref`, `geometry`, and
+`fancyhdr`. These are included in most standard distributions but may be missing
+from minimal installs.
+
+On Ubuntu/Debian:
 
 ```bash
 sudo apt-get install texlive-latex-base texlive-latex-recommended texlive-fonts-recommended
 ```
+
+If compilation fails with a missing package error, install the corresponding
+`texlive` package or the full distribution (`texlive-full`).

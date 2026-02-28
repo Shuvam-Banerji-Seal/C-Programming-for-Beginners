@@ -38,7 +38,10 @@ int safe_divide(int numerator, int denominator, int *result) {
     if (denominator == 0) {
         return ERR_OUT_OF_RANGE;
     }
-    /* Check for overflow: INT_MIN / -1 overflows in two's complement */
+    /* Check for overflow: INT_MIN / -1 overflows in two's complement
+     * because -INT_MIN cannot be represented as a signed int.
+     * For example on a 32-bit system, INT_MIN is -2147483648 and the
+     * maximum positive value is 2147483647, so the result wraps around. */
     if (numerator == INT_MIN && denominator == -1) {
         return ERR_OVERFLOW;
     }

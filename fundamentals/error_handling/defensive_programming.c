@@ -473,6 +473,32 @@ void demonstrate_safe_strings(void) {
            written, sizeof(msg));
 
     printf("\n");
+
+    /* Edge-case tests for safe_string_copy and safe_string_concat */
+    printf("  Edge-case tests:\n");
+    char tiny[1];
+    rc = safe_string_copy(tiny, sizeof(tiny), "x");
+    printf("  Copy \"x\" into buf[1]:      \"%s\" (rc=%d, %s)\n",
+           tiny, rc, rc == 0 ? "ok" : "truncated");
+
+    rc = safe_string_copy(NULL, 10, "test");
+    printf("  Copy into NULL dest:       rc=%d (expected -1)\n", rc);
+
+    char exact[6];
+    rc = safe_string_copy(exact, sizeof(exact), "Hello");
+    printf("  Copy \"Hello\" into buf[6]:  \"%s\" (rc=%d, %s)\n",
+           exact, rc, rc == 0 ? "ok" : "truncated");
+
+    char cat_buf[6];
+    safe_string_copy(cat_buf, sizeof(cat_buf), "Hello");
+    rc = safe_string_concat(cat_buf, sizeof(cat_buf), "!");
+    printf("  Concat \"!\" to full buf[6]: \"%s\" (rc=%d, %s)\n",
+           cat_buf, rc, rc == 0 ? "ok" : "truncated");
+
+    rc = safe_string_copy(small_buf, 0, "test");
+    printf("  Copy into zero-size buf:   rc=%d (expected -1)\n", rc);
+
+    printf("\n");
 }
 
 /* ============================================================================
