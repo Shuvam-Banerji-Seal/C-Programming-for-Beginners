@@ -1,0 +1,106 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage[margin=1in]{geometry}
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{Module 09: File I/O}
+\fancyhead[R]{C Programming Course}
+\fancyfoot[C]{\thepage}
+
+\lstset{
+  language=C,
+  basicstyle=\ttfamily\small,
+  keywordstyle=\bfseries,
+  commentstyle=\itshape,
+  numbers=left,
+  numberstyle=\tiny,
+  frame=single,
+  breaklines=true,
+  tabsize=4
+}
+
+\title{Module 09: File I/O}
+\author{C Programming Course}
+\date{}
+
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+
+\section{File Handling Basics}
+Files are accessed through \texttt{FILE *} pointers using \texttt{fopen} and
+\texttt{fclose}. Common modes: \texttt{"r"} (read), \texttt{"w"} (write),
+\texttt{"a"} (append), \texttt{"rb"}/\texttt{"wb"} (binary).
+
+\section{Reading and Writing Text Files}
+\begin{lstlisting}
+#include <stdio.h>
+
+int main(void) {
+    FILE *fp = fopen("output.txt", "w");
+    if (fp == NULL) {
+        perror("fopen");
+        return 1;
+    }
+    fprintf(fp, "Hello, File I/O!\n");
+    fprintf(fp, "Line number: %d\n", 2);
+    fclose(fp);
+
+    /* Read the file back */
+    fp = fopen("output.txt", "r");
+    if (fp == NULL) {
+        perror("fopen");
+        return 1;
+    }
+    char buf[128];
+    while (fgets(buf, sizeof(buf), fp) != NULL) {
+        printf("%s", buf);
+    }
+    fclose(fp);
+    return 0;
+}
+\end{lstlisting}
+
+\section{Binary File Operations}
+\begin{lstlisting}
+#include <stdio.h>
+
+int main(void) {
+    int data[4] = {10, 20, 30, 40};
+    FILE *fp = fopen("data.bin", "wb");
+    if (fp == NULL) return 1;
+    fwrite(data, sizeof(int), 4, fp);
+    fclose(fp);
+
+    int result[4];
+    fp = fopen("data.bin", "rb");
+    if (fp == NULL) return 1;
+    fread(result, sizeof(int), 4, fp);
+    fclose(fp);
+    return 0;
+}
+\end{lstlisting}
+
+\section{File Positioning}
+\begin{itemize}
+  \item \texttt{fseek(fp, offset, whence)} -- moves the file position.
+  \item \texttt{ftell(fp)} -- returns the current position.
+  \item \texttt{rewind(fp)} -- resets position to the beginning.
+\end{itemize}
+
+Whence values: \texttt{SEEK\_SET} (beginning), \texttt{SEEK\_CUR} (current),
+\texttt{SEEK\_END} (end).
+
+\section{Error Handling in File Operations}
+\begin{itemize}
+  \item Always check if \texttt{fopen} returns \texttt{NULL}.
+  \item Use \texttt{perror} or \texttt{strerror(errno)} for diagnostics.
+  \item Check return values of \texttt{fread}/\texttt{fwrite} for partial I/O.
+  \item Use \texttt{ferror(fp)} to detect stream errors.
+\end{itemize}
+
+\end{document}

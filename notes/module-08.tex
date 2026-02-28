@@ -1,0 +1,128 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage[margin=1in]{geometry}
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{Module 08: Structures and Unions}
+\fancyhead[R]{C Programming Course}
+\fancyfoot[C]{\thepage}
+
+\lstset{
+  language=C,
+  basicstyle=\ttfamily\small,
+  keywordstyle=\bfseries,
+  commentstyle=\itshape,
+  numbers=left,
+  numberstyle=\tiny,
+  frame=single,
+  breaklines=true,
+  tabsize=4
+}
+
+\title{Module 08: Structures and Unions}
+\author{C Programming Course}
+\date{}
+
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+
+\section{Defining Structures}
+\begin{lstlisting}
+#include <stdio.h>
+
+struct Point {
+    double x;
+    double y;
+};
+
+int main(void) {
+    struct Point p = {3.0, 4.0};
+    printf("(%.1f, %.1f)\n", p.x, p.y);
+    return 0;
+}
+\end{lstlisting}
+
+\section{Nested Structures}
+\begin{lstlisting}
+struct Address {
+    char city[50];
+    int zip;
+};
+
+struct Person {
+    char name[50];
+    struct Address addr;
+};
+\end{lstlisting}
+
+\section{Arrays of Structures}
+\begin{lstlisting}
+struct Student {
+    char name[30];
+    int grade;
+};
+
+struct Student class[3] = {
+    {"Alice", 90}, {"Bob", 85}, {"Carol", 92}
+};
+\end{lstlisting}
+
+\section{Pointers to Structures}
+Use the arrow operator (\texttt{->}) to access members through a pointer.
+
+\begin{lstlisting}
+#include <stdio.h>
+
+struct Point {
+    double x;
+    double y;
+};
+
+void print_point(const struct Point *p) {
+    printf("(%.1f, %.1f)\n", p->x, p->y);
+}
+
+int main(void) {
+    struct Point pt = {1.0, 2.0};
+    print_point(&pt);
+    return 0;
+}
+\end{lstlisting}
+
+\section{Unions and Bit Fields}
+A union shares memory among its members; only one member is valid at a time.
+
+\begin{lstlisting}
+union Data {
+    int i;
+    float f;
+    char c;
+};
+\end{lstlisting}
+
+Bit fields allow packing flags into minimal space:
+\begin{lstlisting}
+struct Flags {
+    unsigned int active : 1;
+    unsigned int ready  : 1;
+    unsigned int mode   : 3;
+};
+\end{lstlisting}
+
+\section{typedef and enum}
+\begin{lstlisting}
+typedef struct {
+    double x, y;
+} Vec2;
+
+typedef enum { RED, GREEN, BLUE } Color;
+\end{lstlisting}
+
+\texttt{typedef} creates an alias for a type; \texttt{enum} defines named integer constants.
+
+\end{document}

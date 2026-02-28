@@ -1,0 +1,103 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage[margin=1in]{geometry}
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{Module 07: Advanced Memory Management}
+\fancyhead[R]{C Programming Course}
+\fancyfoot[C]{\thepage}
+
+\lstset{
+  language=C,
+  basicstyle=\ttfamily\small,
+  keywordstyle=\bfseries,
+  commentstyle=\itshape,
+  numbers=left,
+  numberstyle=\tiny,
+  frame=single,
+  breaklines=true,
+  tabsize=4
+}
+
+\title{Module 07: Advanced Memory Management}
+\author{C Programming Course}
+\date{}
+
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+
+\section{Stack vs Heap Memory}
+\begin{itemize}
+  \item \textbf{Stack} -- automatically managed, stores local variables, limited size.
+  \item \textbf{Heap} -- manually managed via \texttt{malloc}/\texttt{free}, larger capacity.
+\end{itemize}
+
+\section{Dynamic Memory Allocation}
+\begin{lstlisting}
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(void) {
+    int n = 5;
+    int *arr = malloc(n * sizeof(int));
+    if (arr == NULL) {
+        fprintf(stderr, "Allocation failed\n");
+        return 1;
+    }
+    for (int i = 0; i < n; i++) {
+        arr[i] = i * 10;
+    }
+    for (int i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+    free(arr);
+    return 0;
+}
+\end{lstlisting}
+
+\subsection{calloc and realloc}
+\begin{itemize}
+  \item \texttt{calloc(n, size)} -- allocates and zero-initializes memory.
+  \item \texttt{realloc(ptr, new\_size)} -- resizes a previously allocated block.
+\end{itemize}
+
+\section{Memory Leaks and Debugging}
+A memory leak occurs when allocated memory is never freed. Tools for detection:
+\begin{itemize}
+  \item Valgrind: \texttt{valgrind --leak-check=full ./program}
+  \item AddressSanitizer: compile with \texttt{-fsanitize=address}
+\end{itemize}
+
+\section{Custom Memory Allocators}
+A simple pool allocator pre-allocates a large block and hands out fixed-size chunks.
+
+\begin{lstlisting}
+#include <stddef.h>
+
+#define POOL_SIZE 1024
+static char pool[POOL_SIZE];
+static size_t offset = 0;
+
+void *pool_alloc(size_t size) {
+    if (offset + size > POOL_SIZE) return NULL;
+    void *ptr = &pool[offset];
+    offset += size;
+    return ptr;
+}
+\end{lstlisting}
+
+\section{Best Practices}
+\begin{itemize}
+  \item Always check the return value of \texttt{malloc}.
+  \item Pair every \texttt{malloc} with a \texttt{free}.
+  \item Set pointers to \texttt{NULL} after freeing.
+  \item Avoid double-free and use-after-free bugs.
+\end{itemize}
+
+\end{document}

@@ -1,8 +1,8 @@
-# Module 13: Debugging with GDB 🐛
+# Module 13: Debugging with GDB
 
 Master the GNU Debugger (GDB) for efficient debugging and problem-solving!
 
-## 📚 What You'll Learn
+## What You'll Learn
 
 1. Introduction to GDB
 2. Setting breakpoints and watchpoints
@@ -11,7 +11,7 @@ Master the GNU Debugger (GDB) for efficient debugging and problem-solving!
 5. Advanced GDB techniques
 6. Debugging memory issues
 
-## 🎯 Introduction to GDB
+## Introduction to GDB
 
 GDB (GNU Debugger) is a powerful tool for debugging C programs. It allows you to:
 - Pause program execution at specific points
@@ -28,7 +28,7 @@ Always compile with debug symbols (`-g` flag):
 gcc -g -o program program.c
 ```
 
-## 🔧 Basic GDB Commands
+## Basic GDB Commands
 
 ### Starting GDB
 
@@ -49,22 +49,22 @@ gdb --args ./program arg1 arg2
 ### Essential Commands Cheat Sheet
 
 ```
-Command         Short   Description
--------         -----   -----------
-run             r       Start/restart program
-break           b       Set breakpoint
-continue        c       Continue execution
-next            n       Step over (next line)
-step            s       Step into (enter functions)
-print           p       Print variable value
-list            l       Show source code
-quit            q       Exit GDB
-help            h       Get help
-backtrace       bt      Show call stack
-info            i       Show information
+Command Short Description
+------- ----- -----------
+run r Start/restart program
+break b Set breakpoint
+continue c Continue execution
+next n Step over (next line)
+step s Step into (enter functions)
+print p Print variable value
+list l Show source code
+quit q Exit GDB
+help h Get help
+backtrace bt Show call stack
+info i Show information
 ```
 
-## 🎯 Setting Breakpoints
+## Setting Breakpoints
 
 ### Basic Breakpoints
 
@@ -109,7 +109,7 @@ Watch when a variable changes:
 (gdb) awatch myVar
 ```
 
-## 🚶 Stepping Through Code
+## Stepping Through Code
 
 ```bash
 # Step to next line (skip function calls)
@@ -131,7 +131,7 @@ Watch when a variable changes:
 (gdb) c
 ```
 
-## 🔍 Examining Variables
+## Examining Variables
 
 ### Print Variables
 
@@ -141,15 +141,15 @@ Watch when a variable changes:
 (gdb) p myVar
 
 # Print with format
-(gdb) p/x myVar    # Hexadecimal
-(gdb) p/d myVar    # Decimal
-(gdb) p/t myVar    # Binary
-(gdb) p/c myVar    # Character
-(gdb) p/f myVar    # Float
+(gdb) p/x myVar # Hexadecimal
+(gdb) p/d myVar # Decimal
+(gdb) p/t myVar # Binary
+(gdb) p/c myVar # Character
+(gdb) p/f myVar # Float
 
 # Print array
 (gdb) p myArray
-(gdb) p myArray[0]@10  # First 10 elements
+(gdb) p myArray[0]@10 # First 10 elements
 
 # Print structure
 (gdb) p myStruct
@@ -171,21 +171,21 @@ Auto-display after each step:
 (gdb) undisplay 1
 ```
 
-## 🧠 Examining Memory
+## Examining Memory
 
 ```bash
 # Examine memory
-(gdb) x/10x address    # 10 hex values
-(gdb) x/10d address    # 10 decimal values
-(gdb) x/10s address    # 10 strings
-(gdb) x/10i address    # 10 instructions
+(gdb) x/10x address # 10 hex values
+(gdb) x/10d address # 10 decimal values
+(gdb) x/10s address # 10 strings
+(gdb) x/10i address # 10 instructions
 
 # Format: x/[count][format][size] address
 # Formats: x(hex) d(decimal) s(string) i(instruction)
 # Sizes: b(byte) h(halfword) w(word) g(giant/8bytes)
 ```
 
-## 📊 Call Stack
+## Call Stack
 
 ```bash
 # Show backtrace
@@ -206,7 +206,7 @@ Auto-display after each step:
 (gdb) info frame
 ```
 
-## 🐞 Debugging Example
+## Debugging Example
 
 ### Sample Program with Bugs
 
@@ -215,31 +215,31 @@ Auto-display after each step:
 #include <stdlib.h>
 
 int factorial(int n) {
-    if (n == 0) return 1;
-    return n * factorial(n - 1);  // Missing base case check
+ if (n == 0) return 1;
+ return n * factorial(n - 1); // Missing base case check
 }
 
 int divide(int a, int b) {
-    return a / b;  // Potential division by zero
+ return a / b; // Potential division by zero
 }
 
 int main() {
-    int x = 5;
-    int *ptr = NULL;
-    
-    printf("Factorial of %d: %d\n", x, factorial(x));
-    
-    // Bug: dereferencing NULL pointer
-    // printf("Value: %d\n", *ptr);
-    
-    // Bug: division by zero
-    printf("Division: %d\n", divide(10, 0));
-    
-    // Bug: memory leak
-    int *arr = (int*)malloc(10 * sizeof(int));
-    // No free(arr)
-    
-    return 0;
+ int x = 5;
+ int *ptr = NULL;
+
+ printf("Factorial of %d: %d\n", x, factorial(x));
+
+ // Bug: dereferencing NULL pointer
+ // printf("Value: %d\n", *ptr);
+
+ // Bug: division by zero
+ printf("Division: %d\n", divide(10, 0));
+
+ // Bug: memory leak
+ int *arr = (int*)malloc(10 * sizeof(int));
+ // No free(arr)
+
+ return 0;
 }
 ```
 
@@ -260,19 +260,19 @@ Breakpoint 1, main () at debug.c:14
 (gdb) print x
 $1 = 5
 
-(gdb) step  # Step into factorial
+(gdb) step # Step into factorial
 factorial (n=5) at debug.c:5
 
 (gdb) backtrace
-#0  factorial (n=5) at debug.c:5
-#1  0x... in main () at debug.c:16
+#0 factorial (n=5) at debug.c:5
+#1 0x... in main () at debug.c:16
 
 (gdb) continue
 Continuing.
 Program received signal SIGFPE, Arithmetic exception.
 ```
 
-## 🔧 Advanced Techniques
+## Advanced Techniques
 
 ### Core Dumps
 
@@ -295,7 +295,7 @@ gdb ./program core
 (gdb) break 25 if i == 10
 
 # Break after N hits
-(gdb) ignore 1 10  # Ignore first 10 hits
+(gdb) ignore 1 10 # Ignore first 10 hits
 ```
 
 ### Commands on Breakpoint
@@ -309,7 +309,7 @@ gdb ./program core
 > end
 ```
 
-## 🧪 Debugging Memory Issues
+## Debugging Memory Issues
 
 ### Valgrind Integration
 
@@ -333,29 +333,29 @@ gdb ./program
 #include <string.h>
 
 void memoryLeakExample() {
-    int *arr = (int*)malloc(100 * sizeof(int));
-    // Forgot to free
+ int *arr = (int*)malloc(100 * sizeof(int));
+ // Forgot to free
 }
 
 void bufferOverflow() {
-    char buffer[10];
-    strcpy(buffer, "This is way too long!");  // Buffer overflow
+ char buffer[10];
+ strcpy(buffer, "This is way too long!"); // Buffer overflow
 }
 
 void useAfterFree() {
-    int *ptr = (int*)malloc(sizeof(int));
-    *ptr = 42;
-    free(ptr);
-    printf("%d\n", *ptr);  // Use after free
+ int *ptr = (int*)malloc(sizeof(int));
+ *ptr = 42;
+ free(ptr);
+ printf("%d\n", *ptr); // Use after free
 }
 
 int main() {
-    memoryLeakExample();
-    return 0;
+ memoryLeakExample();
+ return 0;
 }
 ```
 
-## 📖 GDB Tips and Tricks
+## GDB Tips and Tricks
 
 ### Useful Settings
 
@@ -378,28 +378,28 @@ Create `.gdbinit` file:
 ```gdb
 # Auto-display useful info
 define hook-stop
-    info registers
-    x/16xw $rsp
+ info registers
+ x/16xw $rsp
 end
 
 # Custom print command
 define parray
-    set $i = 0
-    while $i < $arg1
-        print $arg0[$i]
-        set $i = $i + 1
-    end
+ set $i = 0
+ while $i < $arg1
+ print $arg0[$i]
+ set $i = $i + 1
+ end
 end
 ```
 
-## 📖 Code Examples
+## Code Examples
 
 1. [debug_example.c](./debug_example.c) - Program with common bugs
 2. [memory_errors.c](./memory_errors.c) - Memory-related issues
 3. [segfault_demo.c](./segfault_demo.c) - Segmentation fault debugging
 4. [gdb_tutorial.sh](./gdb_tutorial.sh) - Step-by-step GDB tutorial script
 
-## ✏️ Exercises
+## Exercises
 
 1. Debug a program with null pointer dereference
 2. Find and fix a memory leak
@@ -410,7 +410,7 @@ end
 7. Debug optimized code (-O2)
 8. Create custom GDB commands
 
-## 🎯 Key Takeaways
+## Key Takeaways
 
 - Always compile with `-g` flag for debugging
 - Use breakpoints strategically
@@ -421,7 +421,7 @@ end
 - GDB can attach to running processes
 - Learn keyboard shortcuts for efficiency
 
-## 🔜 Next Module
+## Next Module
 
 Ready to create GUIs? Head to [Module 14: GTK4 GUI Programming](../14-gtk4-gui/README.md)
 

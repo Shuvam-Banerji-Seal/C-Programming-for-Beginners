@@ -1,8 +1,8 @@
-# Module 09: File I/O 📁
+# Module 09: File I/O
 
 Master file operations in C!
 
-## 📚 What You'll Learn
+## What You'll Learn
 
 1. File handling basics
 2. Reading and writing text files
@@ -10,39 +10,39 @@ Master file operations in C!
 4. File positioning
 5. Error handling
 
-## 📝 Text File Operations
+## Text File Operations
 
 ```c
 #include <stdio.h>
 
 int main() {
-    // Writing
-    FILE *fp = fopen("output.txt", "w");
-    if (fp != NULL) {
-        fprintf(fp, "Hello, File!\n");
-        fclose(fp);
-    }
-    
-    // Reading
-    fp = fopen("output.txt", "r");
-    if (fp != NULL) {
-        char buffer[100];
-        while (fgets(buffer, 100, fp) != NULL) {
-            printf("%s", buffer);
-        }
-        fclose(fp);
-    }
-    
-    return 0;
+ // Writing
+ FILE *fp = fopen("output.txt", "w");
+ if (fp != NULL) {
+ fprintf(fp, "Hello, File!\n");
+ fclose(fp);
+ }
+
+ // Reading
+ fp = fopen("output.txt", "r");
+ if (fp != NULL) {
+ char buffer[100];
+ while (fgets(buffer, 100, fp) != NULL) {
+ printf("%s", buffer);
+ }
+ fclose(fp);
+ }
+
+ return 0;
 }
 ```
 
-## 💾 Binary Files
+## Binary Files
 
 ```c
 struct Data {
-    int id;
-    float value;
+ int id;
+ float value;
 };
 
 // Write binary
@@ -57,6 +57,6 @@ fread(&d, sizeof(struct Data), 1, fp);
 fclose(fp);
 ```
 
-## 🔜 Next Module
+## Next Module
 
 [Module 10: Preprocessor and Macros](../10-preprocessor/README.md)

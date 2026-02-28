@@ -1,0 +1,109 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage[margin=1in]{geometry}
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{Module 10: Preprocessor and Macros}
+\fancyhead[R]{C Programming Course}
+\fancyfoot[C]{\thepage}
+
+\lstset{
+  language=C,
+  basicstyle=\ttfamily\small,
+  keywordstyle=\bfseries,
+  commentstyle=\itshape,
+  numbers=left,
+  numberstyle=\tiny,
+  frame=single,
+  breaklines=true,
+  tabsize=4
+}
+
+\title{Module 10: Preprocessor and Macros}
+\author{C Programming Course}
+\date{}
+
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+
+\section{Preprocessor Directives}
+The C preprocessor runs before compilation. Key directives:
+\begin{itemize}
+  \item \texttt{\#include} -- includes a header file.
+  \item \texttt{\#define} -- defines a macro.
+  \item \texttt{\#undef} -- undefines a macro.
+  \item \texttt{\#pragma} -- compiler-specific instructions.
+\end{itemize}
+
+\section{Macros and Macro Functions}
+\begin{lstlisting}
+#include <stdio.h>
+
+#define PI 3.14159
+#define MAX(a, b) ((a) > (b) ? (a) : (b))
+#define SQUARE(x) ((x) * (x))
+
+int main(void) {
+    printf("PI = %f\n", PI);
+    printf("MAX(3, 7) = %d\n", MAX(3, 7));
+    printf("SQUARE(4) = %d\n", SQUARE(4));
+    return 0;
+}
+\end{lstlisting}
+
+Always parenthesize macro parameters to avoid operator precedence issues.
+
+\section{Conditional Compilation}
+\begin{lstlisting}
+#include <stdio.h>
+
+#define DEBUG 1
+
+int main(void) {
+#if DEBUG
+    printf("Debug mode is ON\n");
+#else
+    printf("Debug mode is OFF\n");
+#endif
+
+#ifdef __linux__
+    printf("Running on Linux\n");
+#endif
+    return 0;
+}
+\end{lstlisting}
+
+\section{Header Guards}
+Prevent multiple inclusion of the same header file.
+
+\begin{lstlisting}
+#ifndef MYHEADER_H
+#define MYHEADER_H
+
+void my_function(void);
+
+#endif /* MYHEADER_H */
+\end{lstlisting}
+
+\section{Common Preprocessor Tricks}
+\begin{lstlisting}
+/* Stringification */
+#define STR(x) #x
+
+/* Token pasting */
+#define CONCAT(a, b) a##b
+
+/* Variadic macros */
+#define LOG(fmt, ...) \
+    fprintf(stderr, fmt, __VA_ARGS__)
+\end{lstlisting}
+
+Useful predefined macros: \texttt{\_\_FILE\_\_}, \texttt{\_\_LINE\_\_},
+\texttt{\_\_DATE\_\_}, \texttt{\_\_TIME\_\_}.
+
+\end{document}

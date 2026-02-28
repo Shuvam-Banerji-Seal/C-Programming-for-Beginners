@@ -97,7 +97,7 @@ int main() {
         printf("%.0f AND %.0f = %d (expected %d) %s\n", 
                training_inputs[i][0], training_inputs[i][1], 
                result, expected_outputs[i],
-               result == expected_outputs[i] ? "✓" : "✗");
+               result == expected_outputs[i] ? "PASS" : "FAIL");
     }
     
     // Show learned weights

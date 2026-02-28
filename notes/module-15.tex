@@ -1,0 +1,117 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage[margin=1in]{geometry}
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{Module 15: Game Development Projects}
+\fancyhead[R]{C Programming Course}
+\fancyfoot[C]{\thepage}
+
+\lstset{
+  language=C,
+  basicstyle=\ttfamily\small,
+  keywordstyle=\bfseries,
+  commentstyle=\itshape,
+  numbers=left,
+  numberstyle=\tiny,
+  frame=single,
+  breaklines=true,
+  tabsize=4
+}
+
+\title{Module 15: Game Development Projects}
+\author{C Programming Course}
+\date{}
+
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+
+\section{Console-Based Tic-Tac-Toe}
+\begin{lstlisting}
+#include <stdio.h>
+
+static char board[3][3];
+
+void init_board(void) {
+    int cell = '1';
+    for (int i = 0; i < 3; i++)
+        for (int j = 0; j < 3; j++)
+            board[i][j] = cell++;
+}
+
+void print_board(void) {
+    for (int i = 0; i < 3; i++) {
+        printf(" %c | %c | %c \n",
+               board[i][0], board[i][1],
+               board[i][2]);
+        if (i < 2) printf("---+---+---\n");
+    }
+}
+\end{lstlisting}
+
+\section{Snake Game}
+Key concepts for a console snake game:
+\begin{itemize}
+  \item Represent the snake as a linked list of coordinates.
+  \item Use a 2D array for the game board.
+  \item Poll for keyboard input to change direction.
+  \item Detect collisions with walls and the snake body.
+\end{itemize}
+
+\section{Sudoku Solver}
+A backtracking algorithm tries each digit 1--9 in empty cells and backtracks on
+conflict.
+
+\begin{lstlisting}
+int is_safe(int grid[9][9], int row, int col,
+            int num) {
+    for (int i = 0; i < 9; i++) {
+        if (grid[row][i] == num) return 0;
+        if (grid[i][col] == num) return 0;
+    }
+    int sr = row - row % 3, sc = col - col % 3;
+    for (int i = 0; i < 3; i++)
+        for (int j = 0; j < 3; j++)
+            if (grid[sr + i][sc + j] == num)
+                return 0;
+    return 1;
+}
+\end{lstlisting}
+
+\section{Game Loop and State Management}
+\begin{lstlisting}
+#include <stdio.h>
+
+typedef enum { MENU, PLAYING, GAME_OVER } State;
+
+int main(void) {
+    State state = MENU;
+    int running = 1;
+    while (running) {
+        switch (state) {
+            case MENU:
+                printf("Press 1 to play\n");
+                state = PLAYING;
+                break;
+            case PLAYING:
+                printf("Game running...\n");
+                state = GAME_OVER;
+                break;
+            case GAME_OVER:
+                printf("Game Over!\n");
+                running = 0;
+                break;
+        }
+    }
+    return 0;
+}
+\end{lstlisting}
+
+A game loop typically consists of: process input, update state, render output.
+
+\end{document}

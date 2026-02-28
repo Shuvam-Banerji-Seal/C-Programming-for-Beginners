@@ -1,0 +1,109 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage[margin=1in]{geometry}
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{Module 13: Debugging with GDB}
+\fancyhead[R]{C Programming Course}
+\fancyfoot[C]{\thepage}
+
+\lstset{
+  language=C,
+  basicstyle=\ttfamily\small,
+  keywordstyle=\bfseries,
+  commentstyle=\itshape,
+  numbers=left,
+  numberstyle=\tiny,
+  frame=single,
+  breaklines=true,
+  tabsize=4
+}
+
+\title{Module 13: Debugging with GDB}
+\author{C Programming Course}
+\date{}
+
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+
+\section{Introduction to GDB}
+GDB (GNU Debugger) allows you to step through code, inspect variables, and find
+bugs at runtime. Compile with \texttt{-g} to include debug symbols:
+\begin{verbatim}
+gcc -g -o program program.c
+gdb ./program
+\end{verbatim}
+
+\section{Setting Breakpoints}
+\begin{verbatim}
+(gdb) break main
+(gdb) break myfile.c:42
+(gdb) break my_function
+(gdb) info breakpoints
+(gdb) delete 1
+\end{verbatim}
+
+Conditional breakpoints:
+\begin{verbatim}
+(gdb) break myfile.c:30 if i == 5
+\end{verbatim}
+
+\section{Stepping Through Code}
+\begin{itemize}
+  \item \texttt{run} -- start the program.
+  \item \texttt{next} (n) -- execute the next line, stepping over function calls.
+  \item \texttt{step} (s) -- step into function calls.
+  \item \texttt{continue} (c) -- resume until the next breakpoint.
+  \item \texttt{finish} -- run until the current function returns.
+\end{itemize}
+
+\section{Examining Variables and Memory}
+\begin{verbatim}
+(gdb) print x
+(gdb) print *array@10
+(gdb) x/4xw &variable
+(gdb) display x
+(gdb) info locals
+\end{verbatim}
+
+\section{Advanced GDB Techniques}
+\subsection{Watchpoints}
+Break when a variable changes:
+\begin{verbatim}
+(gdb) watch my_var
+\end{verbatim}
+
+\subsection{Backtrace}
+Show the call stack after a crash:
+\begin{verbatim}
+(gdb) backtrace
+\end{verbatim}
+
+\section{Debugging Memory Issues}
+Example: detecting an out-of-bounds access.
+
+\begin{lstlisting}
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(void) {
+    int *arr = malloc(5 * sizeof(int));
+    if (arr == NULL) return 1;
+    for (int i = 0; i < 5; i++) {
+        arr[i] = i;
+    }
+    /* Use GDB to inspect arr contents */
+    printf("arr[2] = %d\n", arr[2]);
+    free(arr);
+    return 0;
+}
+\end{lstlisting}
+
+Compile with \texttt{-g -fsanitize=address} to catch memory errors automatically.
+
+\end{document}

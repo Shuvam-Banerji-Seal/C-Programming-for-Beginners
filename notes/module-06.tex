@@ -1,0 +1,113 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage[margin=1in]{geometry}
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{Module 06: Pointers}
+\fancyhead[R]{C Programming Course}
+\fancyfoot[C]{\thepage}
+
+\lstset{
+  language=C,
+  basicstyle=\ttfamily\small,
+  keywordstyle=\bfseries,
+  commentstyle=\itshape,
+  numbers=left,
+  numberstyle=\tiny,
+  frame=single,
+  breaklines=true,
+  tabsize=4
+}
+
+\title{Module 06: Pointers}
+\author{C Programming Course}
+\date{}
+
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+
+\section{Introduction to Pointers}
+A pointer stores the memory address of another variable.
+
+\begin{lstlisting}
+#include <stdio.h>
+
+int main(void) {
+    int x = 42;
+    int *p = &x;
+    printf("Value: %d, Address: %p\n", *p, (void *)p);
+    return 0;
+}
+\end{lstlisting}
+
+\begin{itemize}
+  \item \texttt{\&x} -- address-of operator, yields the address of \texttt{x}.
+  \item \texttt{*p} -- dereference operator, accesses the value at the address.
+\end{itemize}
+
+\section{Pointer Arithmetic}
+Pointer arithmetic advances by the size of the pointed-to type.
+
+\begin{lstlisting}
+int arr[4] = {10, 20, 30, 40};
+int *p = arr;
+printf("%d\n", *(p + 2)); /* prints 30 */
+\end{lstlisting}
+
+\section{Pointers and Arrays}
+An array name decays to a pointer to its first element when passed to a function.
+
+\begin{lstlisting}
+#include <stdio.h>
+
+void print_array(const int *arr, int n) {
+    for (int i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+}
+
+int main(void) {
+    int data[] = {1, 2, 3, 4, 5};
+    print_array(data, 5);
+    return 0;
+}
+\end{lstlisting}
+
+\section{Pointer to Pointer}
+\begin{lstlisting}
+#include <stdio.h>
+
+int main(void) {
+    int val = 100;
+    int *p = &val;
+    int **pp = &p;
+    printf("val = %d\n", **pp);
+    return 0;
+}
+\end{lstlisting}
+
+\section{Pointers and Functions}
+Pass pointers to allow a function to modify the caller's data.
+
+\begin{lstlisting}
+#include <stdio.h>
+
+void increment(int *n) {
+    (*n)++;
+}
+
+int main(void) {
+    int x = 5;
+    increment(&x);
+    printf("x = %d\n", x); /* prints 6 */
+    return 0;
+}
+\end{lstlisting}
+
+\end{document}

@@ -1,0 +1,45 @@
+# Doxyfile - Doxygen configuration for C Programming for Beginners
+# Generate with: doxygen Doxyfile
+
+PROJECT_NAME           = "C Programming for Beginners"
+PROJECT_BRIEF          = "A comprehensive C programming course from basics to advanced topics"
+
+OUTPUT_DIRECTORY       = docs
+
+# Input sources
+INPUT                  = 01-basics \
+                         02-variables-and-types \
+                         03-control-flow \
+                         04-functions \
+                         05-arrays-and-strings \
+                         06-pointers \
+                         07-memory-management \
+                         08-structures-unions \
+                         09-file-io \
+                         10-preprocessor \
+                         11-data-structures \
+                         12-advanced-data-structures \
+                         13-debugging-gdb \
+                         14-gtk4-gui \
+                         15-game-projects \
+                         16-network-programming \
+                         17-machine-learning \
+                         18-digit-recognition \
+                         19-scientific-computing \
+                         20-professional-dev \
+                         fundamentals
+RECURSIVE              = YES
+FILE_PATTERNS          = *.c *.h
+
+# Build options
+EXTRACT_ALL            = YES
+EXTRACT_STATIC         = YES
+OPTIMIZE_OUTPUT_FOR_C  = YES
+
+# Source browsing
+SOURCE_BROWSER         = YES
+INLINE_SOURCES         = YES
+
+# HTML output
+GENERATE_HTML          = YES
+GENERATE_LATEX         = NO

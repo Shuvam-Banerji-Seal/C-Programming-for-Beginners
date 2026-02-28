@@ -1,0 +1,115 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage[margin=1in]{geometry}
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{Module 02: Variables and Data Types}
+\fancyhead[R]{C Programming Course}
+\fancyfoot[C]{\thepage}
+
+\lstset{
+  language=C,
+  basicstyle=\ttfamily\small,
+  keywordstyle=\bfseries,
+  commentstyle=\itshape,
+  numbers=left,
+  numberstyle=\tiny,
+  frame=single,
+  breaklines=true,
+  tabsize=4
+}
+
+\title{Module 02: Variables and Data Types}
+\author{C Programming Course}
+\date{}
+
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+
+\section{Variables and Constants}
+A variable is a named memory location. Constants are declared with \texttt{const}
+or \texttt{\#define}.
+
+\begin{lstlisting}
+#include <stdio.h>
+
+int main(void) {
+    int count = 10;
+    const double PI = 3.14159;
+    printf("count = %d, PI = %.5f\n", count, PI);
+    return 0;
+}
+\end{lstlisting}
+
+\section{Primitive Data Types}
+\begin{center}
+\begin{tabular}{lll}
+\hline
+\textbf{Type} & \textbf{Size (typical)} & \textbf{Format} \\
+\hline
+\texttt{char}   & 1 byte  & \texttt{\%c} \\
+\texttt{int}    & 4 bytes & \texttt{\%d} \\
+\texttt{float}  & 4 bytes & \texttt{\%f} \\
+\texttt{double} & 8 bytes & \texttt{\%lf} \\
+\hline
+\end{tabular}
+\end{center}
+
+\section{Type Conversion and Casting}
+\subsection{Implicit Conversion}
+The compiler automatically converts smaller types to larger types in expressions.
+
+\subsection{Explicit Casting}
+\begin{lstlisting}
+#include <stdio.h>
+
+int main(void) {
+    int a = 7, b = 2;
+    double result = (double)a / b;
+    printf("7 / 2 = %.2f\n", result);
+    return 0;
+}
+\end{lstlisting}
+
+\section{Operators}
+\subsection{Arithmetic Operators}
+\texttt{+}, \texttt{-}, \texttt{*}, \texttt{/}, \texttt{\%} (modulo).
+
+\subsection{Relational Operators}
+\texttt{==}, \texttt{!=}, \texttt{<}, \texttt{>}, \texttt{<=}, \texttt{>=}.
+
+\subsection{Logical Operators}
+\texttt{\&\&} (AND), \texttt{||} (OR), \texttt{!} (NOT).
+
+\subsection{Bitwise Operators}
+\texttt{\&}, \texttt{|}, \texttt{\^}, \texttt{\~}, \texttt{<<}, \texttt{>>}.
+
+\begin{lstlisting}
+#include <stdio.h>
+
+int main(void) {
+    unsigned int flags = 0x0F;
+    flags = flags & 0x03;  /* mask lower 2 bits */
+    printf("flags = 0x%02X\n", flags);
+    return 0;
+}
+\end{lstlisting}
+
+\section{Pre/Post Increment and Decrement}
+\begin{lstlisting}
+#include <stdio.h>
+
+int main(void) {
+    int x = 5;
+    printf("%d\n", x++); /* prints 5, then x becomes 6 */
+    printf("%d\n", ++x); /* x becomes 7, then prints 7 */
+    return 0;
+}
+\end{lstlisting}
+
+\end{document}

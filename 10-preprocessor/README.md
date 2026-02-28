@@ -1,8 +1,8 @@
-# Module 10: Preprocessor and Macros 🔧
+# Module 10: Preprocessor and Macros
 
 Master the C preprocessor!
 
-## 📚 What You'll Learn
+## What You'll Learn
 
 1. Preprocessor directives
 2. Macros and macro functions
@@ -10,7 +10,7 @@ Master the C preprocessor!
 4. Header guards
 5. Common preprocessor tricks
 
-## 🔧 Preprocessor Directives
+## Preprocessor Directives
 
 ```c
 #include <stdio.h>
@@ -20,14 +20,14 @@ Master the C preprocessor!
 #define SQUARE(x) ((x) * (x))
 
 int main() {
-    printf("PI = %f\n", PI);
-    printf("MAX(5, 10) = %d\n", MAX(5, 10));
-    printf("SQUARE(4) = %d\n", SQUARE(4));
-    return 0;
+ printf("PI = %f\n", PI);
+ printf("MAX(5, 10) = %d\n", MAX(5, 10));
+ printf("SQUARE(4) = %d\n", SQUARE(4));
+ return 0;
 }
 ```
 
-## 🛡️ Header Guards
+## Header Guards
 
 ```c
 #ifndef MY_HEADER_H
@@ -38,24 +38,24 @@ int main() {
 #endif
 ```
 
-## ⚙️ Conditional Compilation
+## Conditional Compilation
 
 ```c
 #define DEBUG
 
 #ifdef DEBUG
-    printf("Debug mode enabled\n");
+ printf("Debug mode enabled\n");
 #endif
 
 #if defined(WINDOWS)
-    // Windows code
+ // Windows code
 #elif defined(LINUX)
-    // Linux code
+ // Linux code
 #else
-    // Other OS code
+ // Other OS code
 #endif
 ```
 
-## 🔜 Next Module
+## Next Module
 
 [Module 11: Data Structures Fundamentals](../11-data-structures/README.md)

@@ -1,8 +1,8 @@
-# Module 01: Getting Started with C 🎯
+# Module 01: Getting Started with C
 
 Welcome to your first module in C programming! In this module, you'll learn the absolute basics of C and write your first programs.
 
-## 📚 What You'll Learn
+## What You'll Learn
 
 1. What is C and why learn it?
 2. Setting up your development environment
@@ -10,7 +10,7 @@ Welcome to your first module in C programming! In this module, you'll learn the 
 4. Writing your first C program
 5. Basic input and output operations
 
-## 🎓 Introduction to C Programming
+## Introduction to C Programming
 
 ### What is C?
 
@@ -33,7 +33,7 @@ C is a general-purpose, procedural programming language developed by Dennis Ritc
 - Scientific Computing
 - Network Programming
 
-## 🔧 Setting Up Your Development Environment
+## Setting Up Your Development Environment
 
 ### Installing a C Compiler
 
@@ -63,20 +63,20 @@ gcc --version
 - **Sublime Text**
 - **Atom**
 
-## 📝 The Compilation Process
+## The Compilation Process
 
 Understanding how C code becomes an executable is crucial:
 
 ```mermaid
 graph LR
-    A[Source Code<br/>.c file] --> B[Preprocessor]
-    B --> C[Preprocessed Code<br/>.i file]
-    C --> D[Compiler]
-    D --> E[Assembly Code<br/>.s file]
-    E --> F[Assembler]
-    F --> G[Object Code<br/>.o file]
-    G --> H[Linker]
-    H --> I[Executable<br/>a.out or .exe]
+ A[Source Code<br/>.c file] --> B[Preprocessor]
+ B --> C[Preprocessed Code<br/>.i file]
+ C --> D[Compiler]
+ D --> E[Assembly Code<br/>.s file]
+ E --> F[Assembler]
+ F --> G[Object Code<br/>.o file]
+ G --> H[Linker]
+ H --> I[Executable<br/>a.out or .exe]
 ```
 
 ### Stages Explained:
@@ -93,13 +93,13 @@ graph LR
 gcc hello.c -o hello
 
 # Step by step
-gcc -E hello.c -o hello.i  # Preprocessing only
-gcc -S hello.c -o hello.s  # Compilation to assembly
-gcc -c hello.c -o hello.o  # Assembly to object file
-gcc hello.o -o hello       # Linking
+gcc -E hello.c -o hello.i # Preprocessing only
+gcc -S hello.c -o hello.s # Compilation to assembly
+gcc -c hello.c -o hello.o # Assembly to object file
+gcc hello.o -o hello # Linking
 ```
 
-## 🚀 Your First C Program
+## Your First C Program
 
 ### Hello World
 
@@ -109,8 +109,8 @@ Let's write the most famous program in programming:
 #include <stdio.h>
 
 int main() {
-    printf("Hello, World!\n");
-    return 0;
+ printf("Hello, World!\n");
+ return 0;
 }
 ```
 
@@ -134,7 +134,7 @@ Output:
 Hello, World!
 ```
 
-## 📥 Basic Input and Output
+## Basic Input and Output
 
 ### Output with printf()
 
@@ -142,10 +142,10 @@ Hello, World!
 #include <stdio.h>
 
 int main() {
-    printf("Hello, World!\n");
-    printf("My name is Alice\n");
-    printf("I am learning C programming\n");
-    return 0;
+ printf("Hello, World!\n");
+ printf("My name is Alice\n");
+ printf("I am learning C programming\n");
+ return 0;
 }
 ```
 
@@ -155,13 +155,13 @@ int main() {
 #include <stdio.h>
 
 int main() {
-    int age;
-    
-    printf("Enter your age: ");
-    scanf("%d", &age);
-    printf("You are %d years old.\n", age);
-    
-    return 0;
+ int age;
+
+ printf("Enter your age: ");
+ scanf("%d", &age);
+ printf("You are %d years old.\n", age);
+
+ return 0;
 }
 ```
 
@@ -173,7 +173,7 @@ int main() {
 - `%s` - String
 - `%lf` - Double
 
-## 📖 Code Examples
+## Code Examples
 
 Check out these examples in this module:
 
@@ -182,7 +182,7 @@ Check out these examples in this module:
 3. [basic_io.c](./basic_io.c) - Various input/output examples
 4. [compilation_demo.c](./compilation_demo.c) - Demonstrating compilation stages
 
-## ✏️ Exercises
+## Exercises
 
 1. Write a program that prints your name, age, and favorite hobby
 2. Write a program that asks for two numbers and prints their sum
@@ -190,7 +190,7 @@ Check out these examples in this module:
 4. Modify the hello world program to print "Hello" 5 times
 5. Write a program that takes a user's name and age, then prints a personalized greeting
 
-## 🎯 Key Takeaways
+## Key Takeaways
 
 - C programs start execution from the `main()` function
 - Every statement in C ends with a semicolon (`;`)
@@ -199,7 +199,7 @@ Check out these examples in this module:
 - Always return 0 from main to indicate success
 - Comments can be single-line (`//`) or multi-line (`/* */`)
 
-## 🔜 Next Module
+## Next Module
 
 Ready to continue? Head to [Module 02: Variables and Data Types](../02-variables-and-types/README.md)
 

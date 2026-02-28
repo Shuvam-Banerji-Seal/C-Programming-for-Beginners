@@ -1,0 +1,101 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage[margin=1in]{geometry}
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{Module 14: GTK4 GUI Programming}
+\fancyhead[R]{C Programming Course}
+\fancyfoot[C]{\thepage}
+
+\lstset{
+  language=C,
+  basicstyle=\ttfamily\small,
+  keywordstyle=\bfseries,
+  commentstyle=\itshape,
+  numbers=left,
+  numberstyle=\tiny,
+  frame=single,
+  breaklines=true,
+  tabsize=4
+}
+
+\title{Module 14: GTK4 GUI Programming}
+\author{C Programming Course}
+\date{}
+
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+
+\section{Introduction to GTK4}
+GTK4 is a cross-platform toolkit for creating graphical user interfaces. It
+provides widgets, layout containers, and an event-driven programming model.
+
+\section{Setting Up GTK4 Development}
+On Debian/Ubuntu:
+\begin{verbatim}
+sudo apt-get install libgtk-4-dev
+\end{verbatim}
+
+Compile GTK4 programs with \texttt{pkg-config}:
+\begin{verbatim}
+gcc `pkg-config --cflags gtk4` -o app app.c \
+    `pkg-config --libs gtk4`
+\end{verbatim}
+
+\section{Creating Windows and Widgets}
+\begin{lstlisting}
+#include <gtk/gtk.h>
+
+static void activate(GtkApplication *app,
+                     gpointer user_data) {
+    GtkWidget *window = gtk_application_window_new(app);
+    gtk_window_set_title(GTK_WINDOW(window), "Hello");
+    gtk_window_set_default_size(
+        GTK_WINDOW(window), 400, 300);
+
+    GtkWidget *label = gtk_label_new("Hello, GTK4!");
+    gtk_window_set_child(GTK_WINDOW(window), label);
+    gtk_window_present(GTK_WINDOW(window));
+}
+
+int main(int argc, char **argv) {
+    GtkApplication *app = gtk_application_new(
+        "org.example.hello",
+        G_APPLICATION_DEFAULT_FLAGS);
+    g_signal_connect(app, "activate",
+                     G_CALLBACK(activate), NULL);
+    int status = g_application_run(
+        G_APPLICATION(app), argc, argv);
+    g_object_unref(app);
+    return status;
+}
+\end{lstlisting}
+
+\section{Event Handling}
+GTK4 uses signals and callbacks. Connect a signal to a handler with
+\texttt{g\_signal\_connect}:
+
+\begin{lstlisting}
+static void on_button_clicked(GtkButton *btn,
+                              gpointer data) {
+    g_print("Button clicked!\n");
+}
+/* In activate: */
+/* g_signal_connect(button, "clicked",
+       G_CALLBACK(on_button_clicked), NULL); */
+\end{lstlisting}
+
+\section{GTK4 Best Practices}
+\begin{itemize}
+  \item Use \texttt{GtkBox} or \texttt{GtkGrid} for layouts.
+  \item Keep UI logic in the activate callback.
+  \item Unreference objects when no longer needed.
+  \item Use GLib main loop for asynchronous operations.
+\end{itemize}
+
+\end{document}

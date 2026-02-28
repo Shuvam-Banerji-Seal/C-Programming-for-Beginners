@@ -1,5 +1,28 @@
+# ============================================================================
 # Makefile for Module 03: Control Flow
 # Demonstrates compilation with gcc and clang with detailed flag explanations
+# ============================================================================
+#
+# QUICK REFERENCE - WHAT IS THIS FILE?
+# -------------------------------------
+# A Makefile automates the compilation process. Instead of typing:
+#   gcc -std=c11 -Wall -Wextra -Wpedantic -O2 -g -o loops loops.c
+# for every file, you just type:
+#   make          (builds everything)
+#   make clean    (removes compiled files)
+#   make run      (builds and runs all programs)
+#
+# HOW MAKE WORKS (in a nutshell):
+# - A "target" (left of the colon) is something to build or an action name.
+# - "Prerequisites" (right of the colon) are files or targets it depends on.
+# - "Recipes" (indented lines below) are the shell commands to run.
+# - Make only rebuilds a target if its prerequisites are newer than it.
+#
+# Example:
+#   loops: loops.c          <-- target: prerequisite
+#       gcc -o loops loops.c  <-- recipe (MUST be indented with a TAB)
+#
+# ============================================================================
 
 # ============================================================================
 # COMPILER CONFIGURATION

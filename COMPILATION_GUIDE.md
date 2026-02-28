@@ -68,12 +68,12 @@ gcc program.o -o program
 
 ```bash
 # C Standards
--std=c89     # ANSI C (1989)
--std=c90     # ISO C90 (same as c89)
--std=c99     # ISO C99
--std=c11     # ISO C11 (recommended)
--std=c17     # ISO C17
--std=c2x     # Upcoming C2x standard
+-std=c89 # ANSI C (1989)
+-std=c90 # ISO C90 (same as c89)
+-std=c99 # ISO C99
+-std=c11 # ISO C11 (recommended)
+-std=c17 # ISO C17
+-std=c2x # Upcoming C2x standard
 
 # Example
 gcc -std=c11 program.c -o program
@@ -124,7 +124,7 @@ gcc -std=c11 -Wall -Wextra -Wpedantic -Werror program.c -o program
 
 # Very strict compilation
 gcc -std=c11 -Wall -Wextra -Wpedantic -Wshadow -Wconversion \
-    -Wstrict-prototypes -Werror program.c -o program
+ -Wstrict-prototypes -Werror program.c -o program
 ```
 
 ---
@@ -134,13 +134,13 @@ gcc -std=c11 -Wall -Wextra -Wpedantic -Wshadow -Wconversion \
 ### Optimization Levels
 
 ```bash
--O0    # No optimization (default, fastest compilation)
--O1    # Basic optimization
--O2    # Recommended optimization (good balance)
--O3    # Aggressive optimization
--Os    # Optimize for size
+-O0 # No optimization (default, fastest compilation)
+-O1 # Basic optimization
+-O2 # Recommended optimization (good balance)
+-O3 # Aggressive optimization
+-Os # Optimize for size
 -Ofast # Aggressive optimization (may break standards)
--Og    # Optimize for debugging experience
+-Og # Optimize for debugging experience
 ```
 
 ### Optimization Details
@@ -173,11 +173,11 @@ gcc -O3 -march=native program.c -o program
 ### Debug Information
 
 ```bash
--g     # Include debug info (default level)
--g0    # No debug info
--g1    # Minimal debug info
--g2    # Default debug info
--g3    # Maximum debug info (includes macros)
+-g # Include debug info (default level)
+-g0 # No debug info
+-g1 # Minimal debug info
+-g2 # Default debug info
+-g3 # Maximum debug info (includes macros)
 
 # Example for debugging
 gcc -g3 -O0 program.c -o program
@@ -242,9 +242,9 @@ clang -fsanitize=memory -fno-omit-frame-pointer program.c -o program
 
 ```bash
 # Stack smashing protection
--fstack-protector          # Basic protection
--fstack-protector-strong   # Better protection (recommended)
--fstack-protector-all      # All functions protected
+-fstack-protector # Basic protection
+-fstack-protector-strong # Better protection (recommended)
+-fstack-protector-all # All functions protected
 ```
 
 ### Security Example
@@ -252,10 +252,10 @@ clang -fsanitize=memory -fno-omit-frame-pointer program.c -o program
 ```bash
 # Secure compilation with all sanitizers
 gcc -std=c11 -Wall -Wextra -O2 -g \
-    -fsanitize=address,undefined \
-    -fstack-protector-strong \
-    -D_FORTIFY_SOURCE=2 \
-    program.c -o program
+ -fsanitize=address,undefined \
+ -fstack-protector-strong \
+ -D_FORTIFY_SOURCE=2 \
+ program.c -o program
 ```
 
 ---
@@ -284,7 +284,7 @@ gcc -std=c11 -pedantic-errors -Werror program.c
 ```bash
 # Easy debugging, warnings enabled
 gcc -std=c11 -Wall -Wextra -Wpedantic -g3 -O0 -DDEBUG \
-    program.c -o program_dev
+ program.c -o program_dev
 ```
 
 ### Production Build
@@ -292,7 +292,7 @@ gcc -std=c11 -Wall -Wextra -Wpedantic -g3 -O0 -DDEBUG \
 ```bash
 # Optimized, no debug info
 gcc -std=c11 -Wall -Wextra -O2 -DNDEBUG \
-    program.c -o program_release
+ program.c -o program_release
 ```
 
 ### Testing Build (with sanitizers)
@@ -300,9 +300,9 @@ gcc -std=c11 -Wall -Wextra -O2 -DNDEBUG \
 ```bash
 # Memory error detection
 gcc -std=c11 -Wall -Wextra -g -O1 \
-    -fsanitize=address,undefined \
-    -fno-omit-frame-pointer \
-    program.c -o program_test
+ -fsanitize=address,undefined \
+ -fno-omit-frame-pointer \
+ program.c -o program_test
 ```
 
 ### Multiple Files
@@ -310,8 +310,8 @@ gcc -std=c11 -Wall -Wextra -g -O1 \
 ```bash
 # Compile multiple source files
 gcc -std=c11 -Wall -Wextra -O2 \
-    main.c utils.c helper.c \
-    -o program
+ main.c utils.c helper.c \
+ -o program
 
 # Using object files
 gcc -c utils.c -o utils.o
@@ -430,7 +430,7 @@ gcc -std=c11 -Wall -Wextra -g -fsanitize=address,undefined program.c -o program
 
 # Maximum warnings
 gcc -std=c11 -Wall -Wextra -Wpedantic -Wshadow -Wconversion \
-    -Wstrict-prototypes -Werror program.c -o program
+ -Wstrict-prototypes -Werror program.c -o program
 ```
 
 ---
@@ -444,4 +444,4 @@ gcc -std=c11 -Wall -Wextra -Wpedantic -Wshadow -Wconversion \
 
 ---
 
-**Happy Compiling!** 🚀
+**Happy Compiling!**

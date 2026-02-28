@@ -52,6 +52,8 @@ fundamentals/simple_int_printing
 fundamentals/takinh_user_inputs
 fundamentals/using_strings_in_c
 fundamentals/variables
+fundamentals/error_handling/error_handling
+fundamentals/error_handling/defensive_programming
 
 # Module 01: Basics
 01-basics/hello_world
@@ -173,3 +175,13 @@ dkms.conf
 # debug information files
 *.dwo
 11-data-structures/hash_table_debug
+
+# LaTeX build artifacts (notes/)
+notes/*.pdf
+notes/*.aux
+notes/*.log
+notes/*.out
+notes/*.toc
+
+# Doxygen output
+docs/
