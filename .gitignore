@@ -173,3 +173,13 @@ dkms.conf
 # debug information files
 *.dwo
 11-data-structures/hash_table_debug
+
+# LaTeX build artifacts (notes/)
+notes/*.pdf
+notes/*.aux
+notes/*.log
+notes/*.out
+notes/*.toc
+
+# Doxygen output
+docs/
