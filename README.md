@@ -265,19 +265,37 @@ make valgrind # Run with Valgrind (if installed)
 - **Memory Safety**: Examples include sanitizers for detecting memory errors
 - **Exercises**: Reinforce learning with practical problems
 
-## Additional Resources
+## Supplementary Materials
+
+### Fundamentals
+
+The [fundamentals](./fundamentals/) directory contains additional beginner-friendly examples,
+including an [error handling and defensive programming](./fundamentals/error_handling/) module
+covering errno, return codes, input validation, and safe coding patterns.
+
+### Reference Notes (LaTeX)
+
+The [notes](./notes/) directory provides LaTeX reference notes for each module.
+Build them to PDF with `make` inside the `notes/` directory, or compile individually
+with `pdflatex module-XX.tex`. See [notes/README.md](./notes/README.md) for details.
+
+### Developer Documentation
 
 - **[Compilation Guide](./COMPILATION_GUIDE.md)**: Complete guide to GCC and Clang compiler flags
+- **[Contributing Guide](./CONTRIBUTING.md)**: Code style, module structure, and contribution guidelines
+- **[Doxyfile](./Doxyfile)**: Generate API documentation with `doxygen Doxyfile`
+
+## Additional Resources
+
 - **Makefiles**: Each module has a Makefile with detailed comments
 - **Buggy Code**: Learn from common mistakes with `*_buggy.c` files
 - **Cheat Sheets**: Quick reference guides in each module
 - **Common Pitfalls**: Learn from common mistakes
-- **FAQs**: Answers to frequently asked questions
-- **External Resources**: Curated links to additional learning materials
 
 ## Contributing
 
-This is an educational resource. If you find errors or want to suggest improvements, please feel free to contribute!
+This is an educational resource. If you find errors or want to suggest improvements,
+please see the [Contributing Guide](./CONTRIBUTING.md) for instructions.
 
 ## License
 
