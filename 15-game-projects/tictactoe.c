@@ -208,19 +208,19 @@ void playGame(int mode) {
         winner = checkWinner();
         if (winner != ' ') {
             if (winner == 'O') {
-                printf("🎉 Player O wins! 🎉\n");
+                printf("Player O wins!\n");
             } else {
                 if (mode == 2) {
-                    printf("💻 Computer wins! Better luck next time!\n");
+                    printf("Computer wins! Better luck next time!\n");
                 } else {
-                    printf("🎉 Player X wins! 🎉\n");
+                    printf("Player X wins!\n");
                 }
             }
             break;
         }
         
         if (isBoardFull()) {
-            printf("🤝 It's a draw! 🤝\n");
+            printf("It's a draw!\n");
             break;
         }
         
