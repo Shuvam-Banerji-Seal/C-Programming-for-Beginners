@@ -1,0 +1,115 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage[margin=1in]{geometry}
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{Module 04: Functions}
+\fancyhead[R]{C Programming Course}
+\fancyfoot[C]{\thepage}
+
+\lstset{
+  language=C,
+  basicstyle=\ttfamily\small,
+  keywordstyle=\bfseries,
+  commentstyle=\itshape,
+  numbers=left,
+  numberstyle=\tiny,
+  frame=single,
+  breaklines=true,
+  tabsize=4
+}
+
+\title{Module 04: Functions}
+\author{C Programming Course}
+\date{}
+
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+
+\section{Function Declaration and Definition}
+A function declaration (prototype) tells the compiler about the function signature.
+The definition provides the body.
+
+\begin{lstlisting}
+#include <stdio.h>
+
+/* Declaration */
+int add(int a, int b);
+
+int main(void) {
+    printf("3 + 4 = %d\n", add(3, 4));
+    return 0;
+}
+
+/* Definition */
+int add(int a, int b) {
+    return a + b;
+}
+\end{lstlisting}
+
+\section{Function Parameters and Return Types}
+C passes arguments by value. To modify the caller's variable, pass a pointer.
+
+\begin{lstlisting}
+void swap(int *a, int *b) {
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+\end{lstlisting}
+
+\section{Scope and Lifetime}
+\begin{itemize}
+  \item \textbf{Local variables} -- visible only within their enclosing block.
+  \item \textbf{Global variables} -- visible across the entire file.
+  \item \textbf{Static local variables} -- retain their value between calls.
+\end{itemize}
+
+\begin{lstlisting}
+#include <stdio.h>
+
+void counter(void) {
+    static int count = 0;
+    count++;
+    printf("Called %d times\n", count);
+}
+
+int main(void) {
+    counter();
+    counter();
+    counter();
+    return 0;
+}
+\end{lstlisting}
+
+\section{Recursion}
+A function that calls itself. Every recursive function needs a base case.
+
+\begin{lstlisting}
+int factorial(int n) {
+    if (n <= 1) return 1;
+    return n * factorial(n - 1);
+}
+\end{lstlisting}
+
+\section{Function Pointers}
+A pointer that stores the address of a function.
+
+\begin{lstlisting}
+#include <stdio.h>
+
+int square(int x) { return x * x; }
+
+int main(void) {
+    int (*fp)(int) = square;
+    printf("5 squared = %d\n", fp(5));
+    return 0;
+}
+\end{lstlisting}
+
+\end{document}

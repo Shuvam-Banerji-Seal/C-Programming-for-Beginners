@@ -1,0 +1,109 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage[margin=1in]{geometry}
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{Module 19: Scientific Computing}
+\fancyhead[R]{C Programming Course}
+\fancyfoot[C]{\thepage}
+
+\lstset{
+  language=C,
+  basicstyle=\ttfamily\small,
+  keywordstyle=\bfseries,
+  commentstyle=\itshape,
+  numbers=left,
+  numberstyle=\tiny,
+  frame=single,
+  breaklines=true,
+  tabsize=4
+}
+
+\title{Module 19: Scientific Computing}
+\author{C Programming Course}
+\date{}
+
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+
+\section{Numerical Methods}
+\subsection{Newton's Method for Root Finding}
+Find $x$ such that $f(x) = 0$ using the iteration:
+\[
+x_{n+1} = x_n - \frac{f(x_n)}{f'(x_n)}
+\]
+
+\begin{lstlisting}
+#include <stdio.h>
+#include <math.h>
+
+double f(double x)  { return x * x - 2.0; }
+double fp(double x) { return 2.0 * x; }
+
+int main(void) {
+    double x = 1.0;
+    for (int i = 0; i < 10; i++) {
+        x = x - f(x) / fp(x);
+    }
+    printf("sqrt(2) ~ %.10f\n", x);
+    return 0;
+}
+\end{lstlisting}
+
+\section{Matrix Operations}
+\begin{lstlisting}
+#include <stdio.h>
+
+#define N 3
+
+void mat_mul(double A[N][N], double B[N][N],
+             double C[N][N]) {
+    for (int i = 0; i < N; i++)
+        for (int j = 0; j < N; j++) {
+            C[i][j] = 0.0;
+            for (int k = 0; k < N; k++)
+                C[i][j] += A[i][k] * B[k][j];
+        }
+}
+\end{lstlisting}
+
+\section{Molecular Dynamics Simulations}
+Simulate particle interactions using Newton's equations of motion. The Verlet
+integration scheme updates positions and velocities:
+\[
+x(t + \Delta t) = 2x(t) - x(t - \Delta t) + a(t)\,\Delta t^2
+\]
+
+\section{Physics Simulations}
+Euler's method for a simple projectile:
+\begin{lstlisting}
+#include <stdio.h>
+
+int main(void) {
+    double x = 0, y = 0;
+    double vx = 10.0, vy = 20.0;
+    double g = 9.81, dt = 0.01;
+    while (y >= 0.0) {
+        x += vx * dt;
+        y += vy * dt;
+        vy -= g * dt;
+    }
+    printf("Range: %.2f m\n", x);
+    return 0;
+}
+\end{lstlisting}
+
+\section{Performance Optimization}
+\begin{itemize}
+  \item Use cache-friendly memory access patterns (row-major traversal).
+  \item Minimize branch mispredictions in inner loops.
+  \item Compile with \texttt{-O2} or \texttt{-O3} for optimizations.
+  \item Profile with \texttt{gprof} or \texttt{perf} before optimizing.
+\end{itemize}
+
+\end{document}

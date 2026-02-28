@@ -1,0 +1,100 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage[margin=1in]{geometry}
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{Module 18: Handwriting Recognition}
+\fancyhead[R]{C Programming Course}
+\fancyfoot[C]{\thepage}
+
+\lstset{
+  language=C,
+  basicstyle=\ttfamily\small,
+  keywordstyle=\bfseries,
+  commentstyle=\itshape,
+  numbers=left,
+  numberstyle=\tiny,
+  frame=single,
+  breaklines=true,
+  tabsize=4
+}
+
+\title{Module 18: Handwriting Recognition}
+\author{C Programming Course}
+\date{}
+
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+
+\section{Understanding the MNIST Dataset}
+MNIST contains 70,000 grayscale images of handwritten digits (0--9), each
+$28 \times 28$ pixels. The dataset is split into 60,000 training and 10,000
+test images. Pixel values range from 0 (white) to 255 (black).
+
+\section{Image Processing in C}
+Each image is a flat array of 784 bytes. Normalize pixel values to $[0, 1]$:
+
+\begin{lstlisting}
+#include <stdio.h>
+#include <stdint.h>
+
+#define IMG_SIZE 784
+
+void normalize(const uint8_t *raw, double *out) {
+    for (int i = 0; i < IMG_SIZE; i++) {
+        out[i] = raw[i] / 255.0;
+    }
+}
+\end{lstlisting}
+
+\section{Building a Digit Recognizer}
+A simple fully connected network with one hidden layer:
+\begin{itemize}
+  \item Input layer: 784 neurons.
+  \item Hidden layer: 128 neurons with ReLU activation.
+  \item Output layer: 10 neurons with softmax.
+\end{itemize}
+
+\begin{lstlisting}
+#include <math.h>
+
+void softmax(double *z, int n) {
+    double max_val = z[0];
+    for (int i = 1; i < n; i++)
+        if (z[i] > max_val) max_val = z[i];
+    double sum = 0.0;
+    for (int i = 0; i < n; i++) {
+        z[i] = exp(z[i] - max_val);
+        sum += z[i];
+    }
+    for (int i = 0; i < n; i++)
+        z[i] /= sum;
+}
+\end{lstlisting}
+
+\section{Training and Testing}
+\begin{enumerate}
+  \item Load and normalize the MNIST data.
+  \item Initialize weights with small random values.
+  \item Train using mini-batch gradient descent.
+  \item Evaluate accuracy on the test set.
+\end{enumerate}
+
+Cross-entropy loss for classification:
+\[
+L = -\sum_{i=0}^{9} y_i \log(\hat{y}_i)
+\]
+
+\section{Optimization Techniques}
+\begin{itemize}
+  \item \textbf{Learning rate decay}: reduce $\eta$ over time.
+  \item \textbf{Mini-batch training}: update weights every $k$ samples.
+  \item \textbf{Weight initialization}: use He or Xavier initialization.
+\end{itemize}
+
+\end{document}

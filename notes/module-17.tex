@@ -1,0 +1,102 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage[margin=1in]{geometry}
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{Module 17: Machine Learning in C}
+\fancyhead[R]{C Programming Course}
+\fancyfoot[C]{\thepage}
+
+\lstset{
+  language=C,
+  basicstyle=\ttfamily\small,
+  keywordstyle=\bfseries,
+  commentstyle=\itshape,
+  numbers=left,
+  numberstyle=\tiny,
+  frame=single,
+  breaklines=true,
+  tabsize=4
+}
+
+\title{Module 17: Machine Learning in C}
+\author{C Programming Course}
+\date{}
+
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+
+\section{Introduction to ML Concepts}
+Machine learning finds patterns in data. Key paradigms: supervised learning
+(labeled data), unsupervised learning (no labels), and reinforcement learning
+(reward signals).
+
+\section{Perceptron Implementation}
+A perceptron is the simplest neural network: a single neuron with weighted inputs.
+
+\begin{lstlisting}
+#include <stdio.h>
+
+double dot(const double *w, const double *x,
+           int n) {
+    double sum = 0.0;
+    for (int i = 0; i < n; i++)
+        sum += w[i] * x[i];
+    return sum;
+}
+
+int predict(const double *w, const double *x,
+            int n, double bias) {
+    return (dot(w, x, n) + bias) > 0.0 ? 1 : 0;
+}
+\end{lstlisting}
+
+\section{Activation Functions}
+Common activation functions:
+\begin{itemize}
+  \item \textbf{Sigmoid}: $\sigma(x) = \frac{1}{1 + e^{-x}}$
+  \item \textbf{ReLU}: $f(x) = \max(0, x)$
+  \item \textbf{Tanh}: $\tanh(x) = \frac{e^x - e^{-x}}{e^x + e^{-x}}$
+\end{itemize}
+
+\begin{lstlisting}
+#include <math.h>
+
+double sigmoid(double x) {
+    return 1.0 / (1.0 + exp(-x));
+}
+
+double relu(double x) {
+    return x > 0.0 ? x : 0.0;
+}
+\end{lstlisting}
+
+\section{Forward and Backward Propagation}
+\textbf{Forward pass}: compute outputs layer by layer.
+\textbf{Backward pass} (backpropagation): compute gradients of the loss with
+respect to each weight using the chain rule:
+\[
+\frac{\partial L}{\partial w} =
+\frac{\partial L}{\partial a} \cdot
+\frac{\partial a}{\partial z} \cdot
+\frac{\partial z}{\partial w}
+\]
+
+\section{Training Neural Networks}
+The training loop:
+\begin{enumerate}
+  \item Forward pass to compute predictions.
+  \item Compute the loss (e.g., mean squared error).
+  \item Backward pass to compute gradients.
+  \item Update weights: $w \leftarrow w - \eta \cdot \nabla L$.
+\end{enumerate}
+
+Learning rate $\eta$ controls the step size. Too large causes divergence;
+too small causes slow convergence.
+
+\end{document}

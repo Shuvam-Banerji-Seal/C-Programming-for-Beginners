@@ -1,0 +1,94 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage[margin=1in]{geometry}
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{Module 01: Getting Started with C}
+\fancyhead[R]{C Programming Course}
+\fancyfoot[C]{\thepage}
+
+\lstset{
+  language=C,
+  basicstyle=\ttfamily\small,
+  keywordstyle=\bfseries,
+  commentstyle=\itshape,
+  numbers=left,
+  numberstyle=\tiny,
+  frame=single,
+  breaklines=true,
+  tabsize=4
+}
+
+\title{Module 01: Getting Started with C}
+\author{C Programming Course}
+\date{}
+
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+
+\section{Introduction to C Programming}
+C is a general-purpose, procedural programming language developed by Dennis Ritchie
+at Bell Labs in 1972. It provides low-level access to memory and maps efficiently to
+machine instructions, making it ideal for systems programming.
+
+\section{Setting Up Your Development Environment}
+You need a C compiler (GCC or Clang) and a text editor. On Linux:
+\begin{verbatim}
+sudo apt-get install gcc
+\end{verbatim}
+Verify the installation with \texttt{gcc --version}.
+
+\section{Your First C Program}
+\begin{lstlisting}
+#include <stdio.h>
+
+int main(void) {
+    printf("Hello, World!\n");
+    return 0;
+}
+\end{lstlisting}
+
+\subsection{Key Elements}
+\begin{itemize}
+  \item \texttt{\#include <stdio.h>} -- includes the standard I/O header.
+  \item \texttt{int main(void)} -- the program entry point.
+  \item \texttt{printf} -- prints formatted output to the console.
+  \item \texttt{return 0} -- indicates successful execution.
+\end{itemize}
+
+\section{Understanding the Compilation Process}
+The compilation pipeline consists of four stages:
+\begin{enumerate}
+  \item \textbf{Preprocessing} -- expands macros and includes headers (\texttt{gcc -E}).
+  \item \textbf{Compilation} -- translates C to assembly (\texttt{gcc -S}).
+  \item \textbf{Assembly} -- converts assembly to object code (\texttt{gcc -c}).
+  \item \textbf{Linking} -- combines object files into an executable.
+\end{enumerate}
+
+\begin{lstlisting}
+/* Compile and run in one step */
+// gcc hello.c -o hello && ./hello
+\end{lstlisting}
+
+\section{Basic Input/Output}
+\begin{lstlisting}
+#include <stdio.h>
+
+int main(void) {
+    int age;
+    printf("Enter your age: ");
+    scanf("%d", &age);
+    printf("You are %d years old.\n", age);
+    return 0;
+}
+\end{lstlisting}
+
+Common format specifiers: \texttt{\%d} (int), \texttt{\%f} (float),
+\texttt{\%c} (char), \texttt{\%s} (string).
+
+\end{document}

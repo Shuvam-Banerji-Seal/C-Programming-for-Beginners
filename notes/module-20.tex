@@ -1,0 +1,114 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage[margin=1in]{geometry}
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{Module 20: Professional Development}
+\fancyhead[R]{C Programming Course}
+\fancyfoot[C]{\thepage}
+
+\lstset{
+  language=C,
+  basicstyle=\ttfamily\small,
+  keywordstyle=\bfseries,
+  commentstyle=\itshape,
+  numbers=left,
+  numberstyle=\tiny,
+  frame=single,
+  breaklines=true,
+  tabsize=4
+}
+
+\title{Module 20: Professional Development}
+\author{C Programming Course}
+\date{}
+
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+
+\section{Build Systems}
+\subsection{Make}
+A Makefile defines targets, dependencies, and recipes:
+\begin{lstlisting}
+CC = gcc
+CFLAGS = -Wall -Wextra -std=c11
+
+all: program
+
+program: main.o utils.o
+	$(CC) $(CFLAGS) -o $@ $^
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c $<
+
+clean:
+	rm -f *.o program
+\end{lstlisting}
+
+\subsection{CMake}
+CMake generates platform-specific build files:
+\begin{verbatim}
+cmake_minimum_required(VERSION 3.10)
+project(MyProject C)
+add_executable(program main.c utils.c)
+\end{verbatim}
+
+\section{Unit Testing in C}
+A minimal test framework pattern:
+\begin{lstlisting}
+#include <stdio.h>
+#include <assert.h>
+
+int add(int a, int b) { return a + b; }
+
+void test_add(void) {
+    assert(add(2, 3) == 5);
+    assert(add(-1, 1) == 0);
+    assert(add(0, 0) == 0);
+    printf("test_add: PASSED\n");
+}
+
+int main(void) {
+    test_add();
+    printf("All tests passed.\n");
+    return 0;
+}
+\end{lstlisting}
+
+\section{Code Style and Standards}
+\begin{itemize}
+  \item Follow a consistent naming convention (e.g., \texttt{snake\_case}).
+  \item Use \texttt{-Wall -Wextra -Wpedantic} compiler flags.
+  \item Keep functions short and focused (under 40 lines).
+  \item Document public APIs with comments.
+\end{itemize}
+
+\section{Version Control Best Practices}
+\begin{itemize}
+  \item Write clear, descriptive commit messages.
+  \item Commit small, logical changes.
+  \item Use branches for features and bug fixes.
+  \item Review code before merging.
+\end{itemize}
+
+\section{Profiling and Optimization}
+\begin{itemize}
+  \item \texttt{gprof}: compile with \texttt{-pg}, run, then \texttt{gprof ./program}.
+  \item \texttt{perf}: \texttt{perf stat ./program} for hardware counters.
+  \item Optimize hot paths identified by profiling, not by guessing.
+\end{itemize}
+
+\section{Writing Maintainable Code}
+\begin{itemize}
+  \item Prefer clarity over cleverness.
+  \item Use \texttt{const} where possible.
+  \item Handle all error paths explicitly.
+  \item Write self-documenting code with meaningful names.
+\end{itemize}
+
+\end{document}

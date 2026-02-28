@@ -1,0 +1,112 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage[margin=1in]{geometry}
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{Module 11: Data Structures Fundamentals}
+\fancyhead[R]{C Programming Course}
+\fancyfoot[C]{\thepage}
+
+\lstset{
+  language=C,
+  basicstyle=\ttfamily\small,
+  keywordstyle=\bfseries,
+  commentstyle=\itshape,
+  numbers=left,
+  numberstyle=\tiny,
+  frame=single,
+  breaklines=true,
+  tabsize=4
+}
+
+\title{Module 11: Data Structures Fundamentals}
+\author{C Programming Course}
+\date{}
+
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+
+\section{Linked Lists}
+\subsection{Singly Linked List}
+\begin{lstlisting}
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct Node {
+    int data;
+    struct Node *next;
+} Node;
+
+Node *create_node(int data) {
+    Node *n = malloc(sizeof(Node));
+    if (n == NULL) return NULL;
+    n->data = data;
+    n->next = NULL;
+    return n;
+}
+
+void print_list(const Node *head) {
+    while (head != NULL) {
+        printf("%d -> ", head->data);
+        head = head->next;
+    }
+    printf("NULL\n");
+}
+
+void free_list(Node *head) {
+    while (head != NULL) {
+        Node *tmp = head;
+        head = head->next;
+        free(tmp);
+    }
+}
+\end{lstlisting}
+
+\subsection{Doubly and Circular Lists}
+A doubly linked list adds a \texttt{prev} pointer. A circular list connects the
+last node back to the first.
+
+\section{Stacks and Queues}
+\begin{itemize}
+  \item \textbf{Stack} -- LIFO: push and pop from the top.
+  \item \textbf{Queue} -- FIFO: enqueue at the back, dequeue from the front.
+\end{itemize}
+
+Both can be implemented with arrays or linked lists.
+
+\section{Hash Tables}
+A hash table maps keys to values using a hash function. Collisions are resolved
+with chaining (linked lists) or open addressing.
+
+\begin{lstlisting}
+#define TABLE_SIZE 64
+
+unsigned int hash(const char *key) {
+    unsigned int h = 0;
+    while (*key) {
+        h = h * 31 + (unsigned char)(*key);
+        key++;
+    }
+    return h % TABLE_SIZE;
+}
+\end{lstlisting}
+
+\section{Complexity Analysis}
+\begin{center}
+\begin{tabular}{lcc}
+\hline
+\textbf{Operation} & \textbf{Array} & \textbf{Linked List} \\
+\hline
+Access by index & $O(1)$ & $O(n)$ \\
+Insert at head  & $O(n)$ & $O(1)$ \\
+Search          & $O(n)$ & $O(n)$ \\
+\hline
+\end{tabular}
+\end{center}
+
+\end{document}

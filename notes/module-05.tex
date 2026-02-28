@@ -1,0 +1,112 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage[margin=1in]{geometry}
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{Module 05: Arrays and Strings}
+\fancyhead[R]{C Programming Course}
+\fancyfoot[C]{\thepage}
+
+\lstset{
+  language=C,
+  basicstyle=\ttfamily\small,
+  keywordstyle=\bfseries,
+  commentstyle=\itshape,
+  numbers=left,
+  numberstyle=\tiny,
+  frame=single,
+  breaklines=true,
+  tabsize=4
+}
+
+\title{Module 05: Arrays and Strings}
+\author{C Programming Course}
+\date{}
+
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+
+\section{One-Dimensional Arrays}
+\begin{lstlisting}
+#include <stdio.h>
+
+int main(void) {
+    int nums[5] = {10, 20, 30, 40, 50};
+    for (int i = 0; i < 5; i++) {
+        printf("nums[%d] = %d\n", i, nums[i]);
+    }
+    return 0;
+}
+\end{lstlisting}
+
+Arrays are zero-indexed. The size is fixed at compile time for stack-allocated arrays.
+
+\section{Multi-Dimensional Arrays}
+\begin{lstlisting}
+#include <stdio.h>
+
+int main(void) {
+    int matrix[2][3] = {
+        {1, 2, 3},
+        {4, 5, 6}
+    };
+    for (int i = 0; i < 2; i++) {
+        for (int j = 0; j < 3; j++) {
+            printf("%d ", matrix[i][j]);
+        }
+        printf("\n");
+    }
+    return 0;
+}
+\end{lstlisting}
+
+\section{Character Arrays and Strings}
+In C, a string is a null-terminated character array.
+
+\begin{lstlisting}
+#include <stdio.h>
+
+int main(void) {
+    char greeting[] = "Hello";
+    printf("%s has %d visible chars\n",
+           greeting, 5);
+    /* greeting[5] == '\0' */
+    return 0;
+}
+\end{lstlisting}
+
+\section{String Manipulation Without string.h}
+\begin{lstlisting}
+#include <stdio.h>
+
+int my_strlen(const char *s) {
+    int len = 0;
+    while (s[len] != '\0') {
+        len++;
+    }
+    return len;
+}
+
+int main(void) {
+    char msg[] = "C Programming";
+    printf("Length: %d\n", my_strlen(msg));
+    return 0;
+}
+\end{lstlisting}
+
+\section{Common String Operations}
+\begin{itemize}
+  \item \texttt{strlen} -- returns the length of a string.
+  \item \texttt{strcpy} -- copies one string to another.
+  \item \texttt{strcat} -- concatenates two strings.
+  \item \texttt{strcmp} -- compares two strings lexicographically.
+\end{itemize}
+
+Always ensure destination buffers are large enough to prevent buffer overflows.
+
+\end{document}

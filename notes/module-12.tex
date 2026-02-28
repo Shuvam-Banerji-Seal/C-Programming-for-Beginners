@@ -1,0 +1,106 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage[margin=1in]{geometry}
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{Module 12: Advanced Data Structures}
+\fancyhead[R]{C Programming Course}
+\fancyfoot[C]{\thepage}
+
+\lstset{
+  language=C,
+  basicstyle=\ttfamily\small,
+  keywordstyle=\bfseries,
+  commentstyle=\itshape,
+  numbers=left,
+  numberstyle=\tiny,
+  frame=single,
+  breaklines=true,
+  tabsize=4
+}
+
+\title{Module 12: Advanced Data Structures}
+\author{C Programming Course}
+\date{}
+
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+
+\section{Binary Trees and BSTs}
+\begin{lstlisting}
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct TreeNode {
+    int key;
+    struct TreeNode *left;
+    struct TreeNode *right;
+} TreeNode;
+
+TreeNode *insert(TreeNode *root, int key) {
+    if (root == NULL) {
+        TreeNode *n = malloc(sizeof(TreeNode));
+        if (n == NULL) return NULL;
+        n->key = key;
+        n->left = n->right = NULL;
+        return n;
+    }
+    if (key < root->key)
+        root->left = insert(root->left, key);
+    else if (key > root->key)
+        root->right = insert(root->right, key);
+    return root;
+}
+
+void inorder(const TreeNode *root) {
+    if (root == NULL) return;
+    inorder(root->left);
+    printf("%d ", root->key);
+    inorder(root->right);
+}
+\end{lstlisting}
+
+\section{AVL Trees and Red-Black Trees}
+\begin{itemize}
+  \item \textbf{AVL Tree} -- self-balancing BST; heights of left and right
+    subtrees differ by at most 1. Uses rotations to rebalance.
+  \item \textbf{Red-Black Tree} -- each node is colored red or black.
+    Guarantees $O(\log n)$ operations with fewer rotations than AVL.
+\end{itemize}
+
+\section{Heaps and Priority Queues}
+A min-heap ensures the parent is smaller than its children.
+Implemented efficiently with an array:
+\begin{itemize}
+  \item Parent of node $i$: $(i - 1) / 2$
+  \item Left child: $2i + 1$, Right child: $2i + 2$
+\end{itemize}
+
+\section{Graphs}
+Represented as adjacency matrices or adjacency lists.
+\begin{lstlisting}
+#define MAX_V 100
+
+typedef struct {
+    int adj[MAX_V][MAX_V];
+    int num_vertices;
+} Graph;
+
+void add_edge(Graph *g, int u, int v) {
+    g->adj[u][v] = 1;
+    g->adj[v][u] = 1;
+}
+\end{lstlisting}
+
+Traversal algorithms: BFS (breadth-first) and DFS (depth-first).
+
+\section{Tries}
+A trie stores strings character by character. Each node has up to 26 children
+(for lowercase English). Useful for prefix matching and autocomplete.
+
+\end{document}

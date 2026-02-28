@@ -1,0 +1,121 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage[margin=1in]{geometry}
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{Module 03: Control Flow}
+\fancyhead[R]{C Programming Course}
+\fancyfoot[C]{\thepage}
+
+\lstset{
+  language=C,
+  basicstyle=\ttfamily\small,
+  keywordstyle=\bfseries,
+  commentstyle=\itshape,
+  numbers=left,
+  numberstyle=\tiny,
+  frame=single,
+  breaklines=true,
+  tabsize=4
+}
+
+\title{Module 03: Control Flow}
+\author{C Programming Course}
+\date{}
+
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+
+\section{Conditional Statements}
+\subsection{if, else, else-if}
+\begin{lstlisting}
+#include <stdio.h>
+
+int main(void) {
+    int score = 75;
+    if (score >= 90) {
+        printf("Grade: A\n");
+    } else if (score >= 80) {
+        printf("Grade: B\n");
+    } else if (score >= 70) {
+        printf("Grade: C\n");
+    } else {
+        printf("Grade: F\n");
+    }
+    return 0;
+}
+\end{lstlisting}
+
+\subsection{Switch Statement}
+\begin{lstlisting}
+#include <stdio.h>
+
+int main(void) {
+    int day = 3;
+    switch (day) {
+        case 1: printf("Monday\n");    break;
+        case 2: printf("Tuesday\n");   break;
+        case 3: printf("Wednesday\n"); break;
+        default: printf("Other\n");    break;
+    }
+    return 0;
+}
+\end{lstlisting}
+
+\section{Loops}
+\subsection{for Loop}
+\begin{lstlisting}
+for (int i = 0; i < 10; i++) {
+    printf("%d ", i);
+}
+\end{lstlisting}
+
+\subsection{while Loop}
+\begin{lstlisting}
+int n = 5;
+while (n > 0) {
+    printf("%d ", n);
+    n--;
+}
+\end{lstlisting}
+
+\subsection{do-while Loop}
+Executes the body at least once before checking the condition.
+\begin{lstlisting}
+int x = 0;
+do {
+    printf("%d ", x);
+    x++;
+} while (x < 3);
+\end{lstlisting}
+
+\section{Break and Continue}
+\begin{itemize}
+  \item \texttt{break} -- exits the innermost loop or switch immediately.
+  \item \texttt{continue} -- skips the rest of the current iteration.
+\end{itemize}
+
+\section{Nested Loops and Loop Performance}
+\begin{lstlisting}
+#include <stdio.h>
+
+int main(void) {
+    for (int i = 1; i <= 3; i++) {
+        for (int j = 1; j <= 3; j++) {
+            printf("(%d,%d) ", i, j);
+        }
+        printf("\n");
+    }
+    return 0;
+}
+\end{lstlisting}
+
+Nested loops multiply iteration counts: an $O(n)$ loop inside another $O(n)$
+loop yields $O(n^2)$ total iterations.
+
+\end{document}

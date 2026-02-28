@@ -1,0 +1,110 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage[margin=1in]{geometry}
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{Module 16: Network Programming}
+\fancyhead[R]{C Programming Course}
+\fancyfoot[C]{\thepage}
+
+\lstset{
+  language=C,
+  basicstyle=\ttfamily\small,
+  keywordstyle=\bfseries,
+  commentstyle=\itshape,
+  numbers=left,
+  numberstyle=\tiny,
+  frame=single,
+  breaklines=true,
+  tabsize=4
+}
+
+\title{Module 16: Network Programming}
+\author{C Programming Course}
+\date{}
+
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+
+\section{Socket Programming Basics}
+A socket is an endpoint for network communication. The typical server flow:
+\texttt{socket} $\to$ \texttt{bind} $\to$ \texttt{listen} $\to$ \texttt{accept}.
+
+\section{TCP/IP Communication}
+\begin{lstlisting}
+#include <stdio.h>
+#include <string.h>
+#include <unistd.h>
+#include <arpa/inet.h>
+
+int main(void) {
+    int sockfd = socket(AF_INET, SOCK_STREAM, 0);
+    if (sockfd < 0) { perror("socket"); return 1; }
+
+    struct sockaddr_in addr;
+    memset(&addr, 0, sizeof(addr));
+    addr.sin_family = AF_INET;
+    addr.sin_port = htons(8080);
+    addr.sin_addr.s_addr = INADDR_ANY;
+
+    if (bind(sockfd, (struct sockaddr *)&addr,
+             sizeof(addr)) < 0) {
+        perror("bind"); close(sockfd); return 1;
+    }
+    listen(sockfd, 5);
+    printf("Server listening on port 8080\n");
+
+    int client = accept(sockfd, NULL, NULL);
+    if (client >= 0) {
+        const char *msg = "Hello from server\n";
+        write(client, msg, strlen(msg));
+        close(client);
+    }
+    close(sockfd);
+    return 0;
+}
+\end{lstlisting}
+
+\section{UDP Programming}
+UDP is connectionless. Use \texttt{SOCK\_DGRAM} instead of \texttt{SOCK\_STREAM},
+and \texttt{sendto}/\texttt{recvfrom} instead of \texttt{read}/\texttt{write}.
+
+\section{HTTP Client/Server}
+An HTTP request is a text-based protocol over TCP. A minimal response:
+\begin{lstlisting}
+const char *response =
+    "HTTP/1.1 200 OK\r\n"
+    "Content-Type: text/plain\r\n"
+    "Content-Length: 13\r\n"
+    "\r\n"
+    "Hello, World!";
+write(client_fd, response, strlen(response));
+\end{lstlisting}
+
+\section{Multi-threaded Servers}
+Use \texttt{pthread\_create} to handle each client in a separate thread.
+
+\begin{lstlisting}
+#include <pthread.h>
+
+void *handle_client(void *arg) {
+    int fd = *(int *)arg;
+    /* read/write with client */
+    close(fd);
+    return NULL;
+}
+\end{lstlisting}
+
+\section{Key Concepts}
+\begin{itemize}
+  \item Byte order: use \texttt{htons}/\texttt{ntohs} for port numbers.
+  \item Always check return values of socket operations.
+  \item Use \texttt{SO\_REUSEADDR} to avoid ``address already in use'' errors.
+\end{itemize}
+
+\end{document}
