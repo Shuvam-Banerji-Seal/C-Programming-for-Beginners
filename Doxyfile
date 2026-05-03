@@ -4,7 +4,7 @@
 PROJECT_NAME           = "C Programming for Beginners"
 PROJECT_BRIEF          = "A comprehensive C programming course from basics to advanced topics"
 
-OUTPUT_DIRECTORY       = docs
+OUTPUT_DIRECTORY       = doxygen-output
 
 # Input sources
 INPUT                  = 01-basics \

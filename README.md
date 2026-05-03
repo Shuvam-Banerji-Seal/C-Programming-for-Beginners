@@ -1,6 +1,48 @@
-# Complete C Programming Course
+<div align="center">
+  <h1>
+    <code style="color:#00ff88;font-size:1.5em">&lt;C/&gt;</code>
+    <br>
+    Complete C Programming Course
+  </h1>
+  <p>
+    <strong>From Absolute Beginner to Advanced C Programmer</strong>
+  </p>
+  <p>
+    <a href="https://Shuvam-Banerji-Seal.github.io/C-Programming-for-Beginners/" target="_blank">
+      <img src="https://img.shields.io/badge/🌐_Website-Visit_Site-00ff88?style=for-the-badge&labelColor=1a1a2e" alt="Website">
+    </a>
+    <a href="https://github.com/Shuvam-Banerji-Seal/C-Programming-for-Beginners/stargazers">
+      <img src="https://img.shields.io/github/stars/Shuvam-Banerji-Seal/C-Programming-for-Beginners?style=for-the-badge&color=ff8c42&labelColor=1a1a2e" alt="Stars">
+    </a>
+    <a href="https://github.com/Shuvam-Banerji-Seal/C-Programming-for-Beginners/blob/main/LICENSE">
+      <img src="https://img.shields.io/github/license/Shuvam-Banerji-Seal/C-Programming-for-Beginners?style=for-the-badge&color=42a5ff&labelColor=1a1a2e" alt="License">
+    </a>
+    <a href="https://github.com/Shuvam-Banerji-Seal/C-Programming-for-Beginners/issues">
+      <img src="https://img.shields.io/github/issues/Shuvam-Banerji-Seal/C-Programming-for-Beginners?style=for-the-badge&color=b388ff&labelColor=1a1a2e" alt="Issues">
+    </a>
+  </p>
+  <p>
+    <a href="https://Shuvam-Banerji-Seal.github.io/C-Programming-for-Beginners/">
+      <strong>🌐 Interactive Website →</strong>
+    </a>
+    &nbsp;|&nbsp;
+    <a href="#course-structure">
+      <strong>📚 Course Structure</strong>
+    </a>
+    &nbsp;|&nbsp;
+    <a href="https://Shuvam-Banerji-Seal.github.io/C-Programming-for-Beginners/?page=playground">
+      <strong>⚡ Online Code Editor</strong>
+    </a>
+  </p>
+</div>
 
-Welcome to the **Complete C Programming Course** - a comprehensive journey from absolute beginner to advanced C programmer! This course covers everything from basic syntax to advanced topics like machine learning, network programming, and scientific simulations.
+<br>
+
+> **🚀 New!** Check out the [interactive website](https://Shuvam-Banerji-Seal.github.io/C-Programming-for-Beginners/) with a built-in C compiler playground — write, compile, and run C code directly in your browser!
+
+---
+
+**Welcome to the Complete C Programming Course** — a comprehensive, open-source journey from absolute beginner to advanced C programmer. This course covers everything from basic syntax to advanced topics like machine learning, network programming, and scientific simulations, all with a [built-in browser code editor](https://Shuvam-Banerji-Seal.github.io/C-Programming-for-Beginners/?page=playground).
 
 ## Course Overview
 
@@ -307,6 +349,28 @@ Ready to begin? Head over to [Module 01: Getting Started with C](./01-basics/REA
 
 ---
 
-**Happy Coding!**
+## Topics & Tags
+
+<div align="center">
+
+`C Programming` `Learn C` `C Tutorial` `Programming Course` `C Language` `Pointers` `Memory Management` `Data Structures` `Algorithms` `Embedded Systems` `Systems Programming` `GCC` `Clang` `Makefile` `GDB` `Debugging` `GTK4` `Network Programming` `Machine Learning` `Scientific Computing` `Open Source` `MIT License` `C for Beginners` `Advanced C` `Computer Science`
+
+</div>
+
+---
+
+**Happy Coding!** 🚀
+
+<div align="center">
+  <a href="https://Shuvam-Banerji-Seal.github.io/C-Programming-for-Beginners/" target="_blank">
+    <strong>🌐 Interactive Website →</strong>
+  </a>
+  &nbsp;|&nbsp;
+  <a href="#readme">
+    <strong>⬆ Back to Top</strong>
+  </a>
+</div>
+
+<br>
 
 Remember: The best way to learn programming is by doing. Don't just read the code—type it out, modify it, break it, and fix it. That's how you truly learn!

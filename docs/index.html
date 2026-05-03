@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>C Programming Course - Complete Beginner to Advanced | Learn C Online</title>
+<meta name="description" content="A comprehensive C programming course covering everything from basics to advanced topics including pointers, memory management, data structures, networking, and machine learning. Learn C programming with interactive examples, buggy code analysis, and a built-in C compiler.">
+<meta name="keywords" content="C programming, learn C, C course, C tutorial, programming basics, pointers in C, data structures, C compiler, embedded systems programming, C for beginners, advanced C, C programming language, GCC, Clang">
+<meta name="author" content="C Programming Course">
+<meta name="robots" content="index, follow">
+<meta name="revisit-after" content="7 days">
+<link rel="canonical" href="https://Shuvam-Banerji-Seal.github.io/C-Programming-for-Beginners/">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://Shuvam-Banerji-Seal.github.io/C-Programming-for-Beginners/">
+<meta property="og:title" content="Complete C Programming Course - From Beginner to Advanced">
+<meta property="og:description" content="Master C programming with 20 comprehensive modules covering everything from Hello World to machine learning, network programming, and scientific computing. Includes interactive code editor.">
+<meta property="og:image" content="https://Shuvam-Banerji-Seal.github.io/C-Programming-for-Beginners/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:type" content="image/png">
+<meta property="og:locale" content="en_US">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Complete C Programming Course - From Beginner to Advanced">
+<meta name="twitter:description" content="Master C programming with 20 comprehensive modules covering everything from Hello World to machine learning. Includes interactive code editor.">
+<meta name="twitter:image" content="https://Shuvam-Banerji-Seal.github.io/C-Programming-for-Beginners/assets/og-image.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Course",
+  "name": "Complete C Programming Course",
+  "description": "A comprehensive C programming course from absolute beginner to advanced. Covers 20 modules including basics, pointers, memory management, data structures, networking, machine learning, and scientific computing.",
+  "provider": {
+    "@type": "Organization",
+    "name": "C Programming Course",
+    "sameAs": "https://github.com/Shuvam-Banerji-Seal/C-Programming-for-Beginners"
+  },
+  "educationalLevel": ["Beginner", "Intermediate", "Advanced"],
+  "teaches": [
+    "C Programming Fundamentals",
+    "Pointers and Memory Management",
+    "Data Structures and Algorithms",
+    "Network Programming",
+    "Machine Learning in C",
+    "Scientific Computing",
+    "Debugging with GDB",
+    "GTK4 GUI Programming",
+    "Game Development in C"
+  ],
+  "totalModules": 20,
+  "timeRequired": "PT200H",
+  "keywords": "C programming, learn C, programming course, C tutorial, pointers, data structures, embedded C"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "C Programming Course",
+  "url": "https://Shuvam-Banerji-Seal.github.io/C-Programming-for-Beginners/",
+  "description": "Learn C programming from beginner to advanced with interactive examples and a built-in code editor.",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://Shuvam-Banerji-Seal.github.io/C-Programming-for-Beginners/?search={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='15' fill='%23222'/%3E%3Ctext x='50' y='68' font-family='monospace' font-size='55' font-weight='bold' fill='%2300ff00' text-anchor='middle'%3EC%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/dracula.min.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<nav class="navbar" role="navigation" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="/C-Programming-for-Beginners/" class="nav-logo" aria-label="Home">
+      <span class="logo-bracket">&lt;</span>
+      <span class="logo-text">C/&gt;</span>
+      <span class="logo-bracket">&gt;</span>
+    </a>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links">
+      <a href="/C-Programming-for-Beginners/" class="nav-link active" data-nav="home">Home</a>
+      <a href="/C-Programming-for-Beginners/?page=modules" class="nav-link" data-nav="modules">Modules</a>
+      <a href="/C-Programming-for-Beginners/?page=playground" class="nav-link" data-nav="playground">Playground</a>
+      <a href="/C-Programming-for-Beginners/?page=about" class="nav-link" data-nav="about">About</a>
+      <button class="theme-toggle" aria-label="Toggle theme">
+        <svg class="sun-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        <svg class="moon-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<main id="app" role="main">
+  <section id="page-home" class="page active">
+    <div class="hero">
+      <div class="hero-content">
+        <div class="terminal-badge">
+          <span class="badge-dot"></span>
+          <span class="badge-text">Shuvam-Banerji-Seal/C-Programming-for-Beginners</span>
+        </div>
+        <h1 class="hero-title">
+          Master <span class="gradient-text">C Programming</span>
+        </h1>
+        <p class="hero-subtitle">
+          A comprehensive journey from <strong>absolute beginner</strong> to <strong>advanced C programmer</strong>.
+          20 modules covering everything from syntax to machine learning.
+        </p>
+        <div class="hero-stats">
+          <div class="stat">
+            <span class="stat-number">20</span>
+            <span class="stat-label">Modules</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number">40+</span>
+            <span class="stat-label">C Programs</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number">50+</span>
+            <span class="stat-label">Bug Examples</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number">18</span>
+            <span class="stat-label">Makefiles</span>
+          </div>
+        </div>
+        <div class="hero-actions">
+          <a href="/C-Programming-for-Beginners/?page=modules" class="btn btn-primary">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c6 3 10 0 12-2v-5"/></svg>
+            Start Learning
+          </a>
+          <a href="/C-Programming-for-Beginners/?page=playground" class="btn btn-secondary">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            Try Code Editor
+          </a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="code-window">
+          <div class="window-header">
+            <span class="dot close"></span>
+            <span class="dot minimize"></span>
+            <span class="dot maximize"></span>
+            <span class="window-title">hello.c - C/&gt; Editor</span>
+          </div>
+          <pre class="window-body"><code><span class="kw">#include</span> <span class="str">&lt;stdio.h&gt;</span>
+
+<span class="kw">int</span> <span class="fn">main</span>() {
+    <span class="fn">printf</span>(<span class="str">"Hello, C!\n"</span>);
+    <span class="k">return</span> <span class="num">0</span>;
+}</code></pre>
+          <div class="window-footer">
+            <span class="output-label">$ ./hello</span>
+            <span class="output-text typing-anim">Hello, C!</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section modules-preview">
+      <h2 class="section-title">Course Modules</h2>
+      <p class="section-desc">Structured learning across 4 levels — each module builds on the previous</p>
+      <div class="level-grid" id="module-grid">
+      </div>
+    </div>
+
+    <div class="section features-section">
+      <h2 class="section-title">Why This Course?</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">&#9881;</div>
+          <h3>Interactive Editor</h3>
+          <p>Write, compile, and run C code directly in your browser with our built-in playground.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">&#128220;</div>
+          <h3>Buggy Examples</h3>
+          <p>Learn from 50+ deliberately buggy programs — understand what NOT to do.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">&#128200;</div>
+          <h3>Progressive Learning</h3>
+          <p>20 modules from absolute basics to ML, networking, and scientific computing.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">&#128187;</div>
+          <h3>Dual Compiler Support</h3>
+          <p>All examples compile with both GCC and Clang, with comprehensive Makefiles.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">&#128270;</div>
+          <h3>Memory Safety</h3>
+          <p>Learn sanitizers, Valgrind, and GDB debugging techniques for production code.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">&#128218;</div>
+          <h3>Open Source</h3>
+          <p>MIT licensed — free to learn, share, and contribute on GitHub.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="page-modules" class="page">
+    <div class="section modules-page">
+      <h2 class="section-title">All Modules</h2>
+      <p class="section-desc">Browse all 20 modules with descriptions and code examples</p>
+      <div class="module-filters">
+        <button class="filter-btn active" data-level="all">All</button>
+        <button class="filter-btn" data-level="beginner">Beginner</button>
+        <button class="filter-btn" data-level="intermediate">Intermediate</button>
+        <button class="filter-btn" data-level="advanced">Advanced</button>
+        <button class="filter-btn" data-level="expert">Expert</button>
+      </div>
+      <div class="module-list" id="module-list"></div>
+    </div>
+  </section>
+
+  <section id="page-module-detail" class="page">
+    <div class="section module-detail-page">
+      <button class="btn-back" id="back-to-modules">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        Back to Modules
+      </button>
+      <div id="module-content" class="module-content">
+        <div class="loading-container">
+          <div class="loader"></div>
+          <p>Loading module content from GitHub...</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="page-playground" class="page">
+    <div class="section playground-page">
+      <h2 class="section-title">C Code Playground</h2>
+      <p class="section-desc">Write, compile, and run C code in your browser. Code is saved locally.</p>
+      <div class="playground-container">
+        <div class="editor-panel">
+          <div class="editor-toolbar">
+            <span class="editor-title">main.c</span>
+            <div class="editor-actions">
+              <button class="btn btn-small" id="load-example" title="Load example code">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+                Load Example
+              </button>
+              <button class="btn btn-small" id="reset-code" title="Reset code">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+                Reset
+              </button>
+            </div>
+          </div>
+          <textarea id="code-editor" aria-label="C code editor"></textarea>
+          <div class="editor-footer">
+            <div class="compiler-options">
+              <label for="compiler-select">Compiler:</label>
+              <select id="compiler-select">
+                <option value="gcc">GCC 13.2</option>
+                <option value="clang">Clang 17</option>
+              </select>
+              <label for="optimization-select">Opt:</label>
+              <select id="optimization-select">
+                <option value="-O0">-O0 (Debug)</option>
+                <option value="-O1">-O1</option>
+                <option value="-O2">-O2</option>
+                <option value="-O3">-O3</option>
+              </select>
+            </div>
+            <button class="btn btn-primary btn-compile" id="compile-btn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              Compile & Run
+            </button>
+          </div>
+        </div>
+        <div class="output-panel">
+          <div class="output-header">
+            <span class="output-title">Output</span>
+            <button class="btn btn-small" id="clear-output">Clear</button>
+          </div>
+          <div id="output-content" class="output-content">
+            <div class="output-placeholder">
+              <span class="prompt-symbol">$</span>
+              <span class="prompt-text">Write some C code and hit Compile</span>
+            </div>
+          </div>
+          <div class="output-status" id="output-status">
+            <span class="status-indicator idle"></span>
+            <span class="status-text">Ready</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="page-about" class="page">
+    <div class="section about-page">
+      <h2 class="section-title">About This Course</h2>
+      <div class="about-grid">
+        <div class="about-content">
+          <p>This <strong>Complete C Programming Course</strong> is a comprehensive, open-source curriculum designed to take you from an absolute beginner to an advanced C programmer. With <strong>20 modules</strong>, <strong>40+ example programs</strong>, and <strong>50+ deliberately buggy examples</strong>, this course provides a hands-on approach to learning C.</p>
+          <h3>Course Structure</h3>
+          <ul>
+            <li><strong>Beginner Level</strong> (Modules 1-5): Basics, variables, control flow, functions, arrays</li>
+            <li><strong>Intermediate Level</strong> (Modules 6-10): Pointers, memory management, structures, file I/O, preprocessor</li>
+            <li><strong>Advanced Level</strong> (Modules 11-15): Data structures, GDB debugging, GTK4 GUI, game development</li>
+            <li><strong>Expert Level</strong> (Modules 16-20): Networking, machine learning, digit recognition, scientific computing</li>
+          </ul>
+          <h3>Features</h3>
+          <ul>
+            <li>Dual compiler support (GCC & Clang) with comprehensive Makefiles</li>
+            <li>Memory sanitizer integration (ASan, UBSan, MSan)</li>
+            <li>Professional debugging with GDB</li>
+            <li>Interactive browser-based code editor</li>
+            <li>MIT Licensed — free for everyone</li>
+          </ul>
+          <a href="https://github.com/Shuvam-Banerji-Seal/C-Programming-for-Beginners" class="btn btn-primary" target="_blank" rel="noopener">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+            View on GitHub
+          </a>
+        </div>
+        <div class="about-stats-card">
+          <h3>Repository Stats</h3>
+          <div class="repo-stats" id="repo-stats">
+            <div class="repo-stat"><span class="repo-stat-label">Stars</span><span class="repo-stat-value" id="repo-stars">-</span></div>
+            <div class="repo-stat"><span class="repo-stat-label">Forks</span><span class="repo-stat-value" id="repo-forks">-</span></div>
+            <div class="repo-stat"><span class="repo-stat-label">License</span><span class="repo-stat-value">MIT</span></div>
+            <div class="repo-stat"><span class="repo-stat-label">Language</span><span class="repo-stat-value">C 100%</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-links">
+      <a href="https://github.com/Shuvam-Banerji-Seal/C-Programming-for-Beginners" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://github.com/Shuvam-Banerji-Seal/C-Programming-for-Beginners/blob/main/LICENSE" target="_blank" rel="noopener">License</a>
+      <a href="https://github.com/Shuvam-Banerji-Seal/C-Programming-for-Beginners/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener">Contribute</a>
+    </div>
+    <p class="footer-text">MIT Licensed &mdash; Built with &#9829; for the C programming community</p>
+  </div>
+</footer>
+
+<div class="toast-container" id="toast-container" aria-live="polite"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/clike/clike.min.js">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/closebrackets.min.js">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/matchbrackets.min.js">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/selection/active-line.min.js">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/hint/show-hint.min.js">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/hint/anyword-hint.min.js">
+</script>
+<script src="js/theme.js"></script>
+<script src="js/router.js"></script>
+<script src="js/content-loader.js"></script>
+<script src="js/editor.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

@@ -184,4 +184,4 @@ notes/*.out
 notes/*.toc
 
 # Doxygen output
-docs/
+doxygen-output/
