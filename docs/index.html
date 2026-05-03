@@ -161,7 +161,10 @@
 }</code></pre>
           <div class="window-footer">
             <span class="output-label">$ ./hello</span>
-            <span class="output-text typing-anim">Hello, C!</span>
+            <span class="typing-line">
+              <span class="typing-text">Hello, C!</span>
+              <span class="typing-cursor"></span>
+            </span>
           </div>
         </div>
       </div>
@@ -248,11 +251,11 @@
       <div class="playground-container">
         <div class="editor-panel">
           <div class="editor-toolbar">
-            <span class="editor-title">main.c</span>
+            <span class="editor-title">Editor</span>
             <div class="editor-actions">
               <button class="btn btn-small" id="load-example" title="Load example code">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
-                Load Example
+                Example
               </button>
               <button class="btn btn-small" id="reset-code" title="Reset code">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
@@ -260,10 +263,13 @@
               </button>
             </div>
           </div>
+          <div class="editor-tabs" id="file-tabs">
+            <span class="tab-placeholder">main.c</span>
+          </div>
           <textarea id="code-editor" aria-label="C code editor"></textarea>
           <div class="editor-footer">
             <div class="compiler-options">
-              <label for="compiler-select">Compiler:</label>
+              <label for="compiler-select">CC:</label>
               <select id="compiler-select">
                 <option value="gcc">GCC 13.2</option>
                 <option value="clang">Clang 17</option>
@@ -285,12 +291,17 @@
         <div class="output-panel">
           <div class="output-header">
             <span class="output-title">Output</span>
-            <button class="btn btn-small" id="clear-output">Clear</button>
+            <div class="output-header-actions">
+              <button class="btn btn-small" id="copy-output" title="Copy output">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              </button>
+              <button class="btn btn-small" id="clear-output">Clear</button>
+            </div>
           </div>
           <div id="output-content" class="output-content">
             <div class="output-placeholder">
               <span class="prompt-symbol">$</span>
-              <span class="prompt-text">Write some C code and hit Compile</span>
+              <span class="prompt-text">Write C code and hit Compile</span>
             </div>
           </div>
           <div class="output-status" id="output-status">

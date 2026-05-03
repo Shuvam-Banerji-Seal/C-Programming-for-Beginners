@@ -1,15 +1,10 @@
 const EDITOR_KEY = 'c-course-editor-code';
+const FILES_KEY = 'c-course-editor-files';
 
 const DEFAULT_CODE = `#include <stdio.h>
 
 int main() {
     printf("Hello, C Programming!\\n");
-    printf("Welcome to the interactive playground\\n");
-
-    int a = 10, b = 20;
-    int sum = a + b;
-    printf("Sum of %d and %d is: %d\\n", a, b, sum);
-
     return 0;
 }`;
 
@@ -30,9 +25,8 @@ int fibonacci(int n) {
 int main() {
     int n = 10;
     printf("First %d Fibonacci numbers:\\n", n);
-    for (int i = 0; i < n; i++) {
+    for (int i = 0; i < n; i++)
         printf("%d ", fibonacci(i));
-    }
     printf("\\n");
     return 0;
 }`,
@@ -61,7 +55,6 @@ int main() {
 
     *ptr = 100;
     printf("After *ptr = 100, x = %d\\n", x);
-
     return 0;
 }`,
   'Array & Loop': `#include <stdio.h>
@@ -78,11 +71,9 @@ int main() {
         if (arr[i] > max) max = arr[i];
         if (arr[i] < min) min = arr[i];
     }
-
     printf("\\nSum: %d\\n", sum);
-    printf("Average: %.2f\\n", (float)sum / n);
+    printf("Avg: %.2f\\n", (float)sum / n);
     printf("Max: %d, Min: %d\\n", max, min);
-
     return 0;
 }`
 };
@@ -96,6 +87,15 @@ const API_URL = 'https://godbolt.org/api/compiler';
 
 let editor = null;
 let compileRunning = false;
+let currentFilePath = null;
+let fileTabs = {};
+
+function flattenCE(arr) {
+  if (!arr) return '';
+  if (typeof arr === 'string') return arr;
+  if (Array.isArray(arr)) return arr.map(x => x.text || x || '').join('');
+  return String(arr);
+}
 
 async function compileCode(source, compilerId, options) {
   const body = {
@@ -103,7 +103,6 @@ async function compileCode(source, compilerId, options) {
     compiler: compilerId,
     options: {
       userArguments: options || '-std=c11 -Wall -Wextra',
-      compilerOptions: { executorRequest: true },
       filters: {
         binary: false,
         commentOnly: true,
@@ -123,57 +122,11 @@ async function compileCode(source, compilerId, options) {
 
   const resp = await fetch(`${API_URL}/${compilerId}/compile`, {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json'
-    },
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
     body: JSON.stringify(body)
   });
-
   if (!resp.ok) throw new Error(`Compiler API error: ${resp.status}`);
   return resp.json();
-}
-
-function formatOutput(result) {
-  let output = '';
-  let hasError = false;
-
-  if (result.code === 0 && result.execResult && result.execResult.stdout) {
-    output += result.execResult.stdout;
-  }
-
-  if (result.buildResult && result.buildResult.stderr) {
-    const lines = result.buildResult.stderr.split('\n').filter(l => l.trim());
-    for (const line of lines) {
-      if (line.toLowerCase().includes('error')) {
-        output += `Error: ${line}\n`;
-        hasError = true;
-      } else if (line.toLowerCase().includes('warning')) {
-        output += `Warning: ${line}\n`;
-      } else {
-        output += `${line}\n`;
-      }
-    }
-  }
-
-  if (result.execResult && result.execResult.stderr) {
-    output += `\n--- Runtime Error ---\n${result.execResult.stderr}`;
-    hasError = true;
-  }
-
-  if (result.execResult && result.execResult.buildResult && result.execResult.buildResult.stderr) {
-    output += `\n${result.execResult.buildResult.stderr}`;
-  }
-
-  if (result.execResult && result.execResult.code && result.execResult.code !== 0) {
-    output += `\n[Process exited with code ${result.execResult.code}]`;
-  }
-
-  if (!output.trim()) {
-    output = 'Compilation successful. (No output)';
-  }
-
-  return { output, hasError };
 }
 
 function initEditor() {
@@ -181,6 +134,8 @@ function initEditor() {
   if (!textarea) return;
 
   const savedCode = localStorage.getItem(EDITOR_KEY) || DEFAULT_CODE;
+  const savedFiles = JSON.parse(localStorage.getItem(FILES_KEY) || '{}');
+  fileTabs = savedFiles;
 
   editor = CodeMirror.fromTextArea(textarea, {
     value: savedCode,
@@ -194,39 +149,28 @@ function initEditor() {
     tabSize: 4,
     indentWithTabs: false,
     lineWrapping: false,
+    gutters: ['CodeMirror-linenumbers', 'CodeMirror-foldgutter'],
+    foldGutter: true,
     extraKeys: {
       'Ctrl-S': () => saveCode(),
       'Cmd-S': () => saveCode(),
       'Tab': 'indentMore',
-      'Shift-Tab': 'indentLess'
+      'Shift-Tab': 'indentLess',
+      'Ctrl-/': 'toggleComment'
     }
   });
 
   editor.setValue(savedCode);
   saveCode();
+  renderFileTabs();
 
-  const compileBtn = document.getElementById('compile-btn');
-  const clearBtn = document.getElementById('clear-output');
-  const resetBtn = document.getElementById('reset-code');
-  const loadExampleBtn = document.getElementById('load-example');
-  const compilerSelect = document.getElementById('compiler-select');
-  const optimizationSelect = document.getElementById('optimization-select');
-
-  compileBtn.addEventListener('click', doCompile);
-  clearBtn.addEventListener('click', clearOutput);
-  resetBtn.addEventListener('click', resetCode);
-
-  loadExampleBtn.addEventListener('click', () => {
-    const names = Object.keys(EXAMPLE_CODES);
-    const name = names[Math.floor(Math.random() * names.length)];
-    editor.setValue(EXAMPLE_CODES[name]);
-    saveCode();
-    clearOutput();
-    appendOutput(`Loaded example: "${name}"\n`, 'system');
-  });
-
-  compilerSelect.addEventListener('change', saveConfig);
-  optimizationSelect.addEventListener('change', saveConfig);
+  document.getElementById('compile-btn').addEventListener('click', doCompile);
+  document.getElementById('clear-output').addEventListener('click', clearOutput);
+  document.getElementById('reset-code').addEventListener('click', resetCode);
+  document.getElementById('load-example').addEventListener('click', loadRandomExample);
+  document.getElementById('compiler-select').addEventListener('change', saveConfig);
+  document.getElementById('optimization-select').addEventListener('change', saveConfig);
+  document.getElementById('copy-output').addEventListener('click', copyOutput);
 
   loadConfig();
 
@@ -236,9 +180,10 @@ function initEditor() {
     try {
       const content = await loadFileContent(path);
       if (content !== null) {
-        editor.setValue(content);
-        saveCode();
+        addFileTab(name, path, content);
+        switchToFile(name);
         appendOutput(`Loaded: ${name}\n`, 'system');
+        showToast(`Loaded ${name}`, 'success');
       } else {
         appendOutput(`Failed to load ${name}\n`, 'error-line');
       }
@@ -251,7 +196,73 @@ function initEditor() {
   editor.on('change', () => {
     clearTimeout(saveTimeout);
     saveTimeout = setTimeout(saveCode, 500);
+    const name = getActiveTabName();
+    if (name && fileTabs[name]) {
+      fileTabs[name].code = editor.getValue();
+      saveFileTabs();
+    }
   });
+}
+
+function addFileTab(name, path, code) {
+  if (fileTabs[name]) return;
+  fileTabs[name] = { path, code, dirty: false };
+  saveFileTabs();
+  renderFileTabs();
+}
+
+function switchToFile(name) {
+  if (!fileTabs[name]) return;
+  currentFilePath = fileTabs[name].path;
+  editor.setValue(fileTabs[name].code);
+  saveCode();
+  document.querySelectorAll('.file-tab').forEach(t => t.classList.toggle('active', t.dataset.name === name));
+}
+
+function getActiveTabName() {
+  const active = document.querySelector('.file-tab.active');
+  return active ? active.dataset.name : null;
+}
+
+function closeFileTab(name, e) {
+  e.stopPropagation();
+  delete fileTabs[name];
+  saveFileTabs();
+  renderFileTabs();
+  const remaining = Object.keys(fileTabs);
+  if (remaining.length > 0) {
+    switchToFile(remaining[0]);
+  }
+}
+
+function renderFileTabs() {
+  const container = document.getElementById('file-tabs');
+  if (!container) return;
+  const names = Object.keys(fileTabs);
+  if (names.length === 0) {
+    container.innerHTML = '<span class="tab-placeholder">main.c</span>';
+    return;
+  }
+  container.innerHTML = names.map(name => `
+    <span class="file-tab${name === getActiveTabName() || (!getActiveTabName() && names.indexOf(name) === 0) ? ' active' : ''}" data-name="${name}" onclick="switchToFile('${name}')">
+      ${name}
+      <span class="tab-close" onclick="closeFileTab('${name}', event)">&times;</span>
+    </span>
+  `).join('');
+  if (!getActiveTabName() && names.length > 0) switchToFile(names[0]);
+}
+
+function saveFileTabs() {
+  localStorage.setItem(FILES_KEY, JSON.stringify(fileTabs));
+}
+
+function loadRandomExample() {
+  const names = Object.keys(EXAMPLE_CODES);
+  const name = names[Math.floor(Math.random() * names.length)];
+  editor.setValue(EXAMPLE_CODES[name]);
+  saveCode();
+  clearOutput();
+  appendOutput(`Loaded example: "${name}"\n`, 'system');
 }
 
 function saveCode() {
@@ -260,151 +271,168 @@ function saveCode() {
 }
 
 function saveConfig() {
-  const compiler = document.getElementById('compiler-select').value;
-  const opt = document.getElementById('optimization-select').value;
-  localStorage.setItem('c-course-compiler', compiler);
-  localStorage.setItem('c-course-optimization', opt);
+  localStorage.setItem('c-course-compiler', document.getElementById('compiler-select').value);
+  localStorage.setItem('c-course-optimization', document.getElementById('optimization-select').value);
 }
 
 function loadConfig() {
-  const compiler = localStorage.getItem('c-course-compiler');
-  const opt = localStorage.getItem('c-course-optimization');
-  if (compiler) document.getElementById('compiler-select').value = compiler;
-  if (opt) document.getElementById('optimization-select').value = opt;
+  const c = localStorage.getItem('c-course-compiler');
+  const o = localStorage.getItem('c-course-optimization');
+  if (c) document.getElementById('compiler-select').value = c;
+  if (o) document.getElementById('optimization-select').value = o;
 }
 
 function clearOutput() {
   const output = document.getElementById('output-content');
   if (!output) return;
-  output.innerHTML = `<div class="output-placeholder">
-    <span class="prompt-symbol">$</span>
-    <span class="prompt-text">Write some C code and hit Compile</span>
-  </div>`;
+  output.innerHTML = '<div class="output-placeholder"><span class="prompt-symbol">$</span><span class="prompt-text">Write C code and hit Compile</span></div>';
   setStatus('idle', 'Ready');
 }
 
 function appendOutput(text, className = '') {
   const output = document.getElementById('output-content');
   if (!output) return;
-
-  const placeholder = output.querySelector('.output-placeholder');
-  if (placeholder) placeholder.remove();
-
-  const lines = text.split('\n');
-  lines.forEach((line, i) => {
-    if (i === lines.length - 1 && line === '') return;
+  const ph = output.querySelector('.output-placeholder');
+  if (ph) ph.remove();
+  text.split('\n').forEach((line, i, arr) => {
+    if (i === arr.length - 1 && line === '') return;
     const div = document.createElement('div');
     div.className = `output-line ${className}`;
     div.textContent = line;
     output.appendChild(div);
   });
-
   output.scrollTop = output.scrollHeight;
 }
 
 function setStatus(state, text) {
-  const indicator = document.querySelector('.status-indicator');
-  const statusText = document.getElementById('output-status')?.querySelector('.status-text');
-  if (indicator) {
-    indicator.className = `status-indicator ${state}`;
-  }
-  if (statusText) statusText.textContent = text;
+  const ind = document.querySelector('.status-indicator');
+  const st = document.getElementById('output-status')?.querySelector('.status-text');
+  if (ind) ind.className = `status-indicator ${state}`;
+  if (st) st.textContent = text;
 }
 
 async function doCompile() {
   if (!editor || compileRunning) return;
-
   const source = editor.getValue().trim();
-  if (!source) {
-    appendOutput('Error: No code to compile.\n', 'error-line');
-    return;
-  }
+  if (!source) { appendOutput('Error: No code to compile.\n', 'error-line'); return; }
 
-  const compilerChoice = document.getElementById('compiler-select').value;
-  const optChoice = document.getElementById('optimization-select').value;
-  const compilerInfo = COMPILERS[compilerChoice] || COMPILERS.gcc;
-  const compilerId = compilerInfo.id;
+  const cc = document.getElementById('compiler-select').value;
+  const oc = document.getElementById('optimization-select').value;
+  const ci = COMPILERS[cc] || COMPILERS.gcc;
 
   compileRunning = true;
-  const compileBtn = document.getElementById('compile-btn');
-  compileBtn.disabled = true;
-  compileBtn.innerHTML = '<div class="loader" style="width:16px;height:16px;border-width:2px"></div> Compiling...';
+  const btn = document.getElementById('compile-btn');
+  btn.disabled = true;
+  btn.textContent = ' Compiling...';
 
   clearOutput();
-  appendOutput(`Compiling with ${compilerInfo.name} ${optChoice}...\n`, 'system');
+  appendOutput(`[${ci.name} ${oc}] Compiling...\n`, 'system');
   setStatus('running', 'Compiling...');
 
   try {
-    const args = `-std=c11 -Wall -Wextra ${optChoice}`;
-    const result = await compileCode(source, compilerId, args);
+    const args = `-std=c11 -Wall -Wextra ${oc}`;
+    const result = await compileCode(source, ci.id, args);
 
-    appendOutput(`\n--- Output ---\n`, 'system');
+    let hasErrors = false;
 
-    if (result.execResult && result.execResult.stdout) {
-      appendOutput(result.execResult.stdout, 'stdout');
-    }
+    appendOutput(`\n--- Build Output ---\n`, 'system');
 
-    if (result.buildResult && result.buildResult.stderr) {
-      const lines = result.buildResult.stderr.split('\n').filter(l => l.trim());
-      for (const line of lines) {
+    const buildOut = flattenCE(result.buildResult?.stdout);
+    if (buildOut) appendOutput(buildOut, 'stdout');
+
+    const buildErr = flattenCE(result.buildResult?.stderr);
+    if (buildErr) {
+      buildErr.split('\n').filter(l => l.trim()).forEach(line => {
         if (line.toLowerCase().includes('error')) {
           appendOutput(line + '\n', 'error-line');
+          hasErrors = true;
         } else if (line.toLowerCase().includes('warning')) {
           appendOutput(line + '\n', 'warning-line');
+        } else {
+          appendOutput(line + '\n', 'stderr');
+        }
+      });
+    }
+
+    if (result.execResult) {
+      appendOutput(`\n--- Program Output ---\n`, 'system');
+      const execOut = flattenCE(result.execResult.stdout);
+      if (execOut) appendOutput(execOut, 'stdout');
+
+      const execErr = flattenCE(result.execResult.stderr);
+      if (execErr) {
+        appendOutput(`\n--- Runtime Diagnostic ---\n`, 'system');
+        appendOutput(execErr + '\n', 'stderr');
+        hasErrors = true;
+      }
+
+      if (result.execResult.code !== undefined) {
+        const ec = result.execResult.code;
+        appendOutput(`\n[Exit code: ${ec}]\n`, 'system');
+        if (ec === 0 && !hasErrors) {
+          setStatus('success', 'Compilation succeeded');
+          showToast('Compilation successful!', 'success');
+        } else {
+          setStatus('error', `Exited with code ${ec}`);
         }
       }
     }
 
-    if (result.execResult && result.execResult.stderr) {
-      appendOutput(`\n--- Runtime Diagnostic ---\n`, 'system');
-      appendOutput(result.execResult.stderr + '\n', 'stderr');
-    }
-
-    if (result.execResult && result.execResult.code !== undefined) {
-      const exitCode = result.execResult.code;
-      appendOutput(`\n[Process exited with code ${exitCode}]\n`, 'system');
-      if (exitCode === 0) {
+    if (!hasErrors && (!result.execResult || result.execResult.code === 0)) {
+      if (!result.execResult) {
         setStatus('success', 'Compilation succeeded');
         showToast('Compilation successful!', 'success');
-      } else {
-        setStatus('error', `Exited with code ${exitCode}`);
       }
-    } else {
+    } else if (!hasErrors) {
       setStatus('success', 'Compilation succeeded');
-      showToast('Compilation successful!', 'success');
     }
+
   } catch (err) {
-    appendOutput(`\n--- Compilation Error ---\n`, 'system');
+    appendOutput(`\n--- Error ---\n`, 'system');
     appendOutput(`${err.message}\n`, 'error-line');
-    appendOutput('\nHint: Make sure your code has a main() function and valid C syntax.\n', 'warning-line');
+    appendOutput('\nThe online compiler may be unreachable. Your code compiles fine locally with GCC/Clang.\n', 'warning-line');
     setStatus('error', 'Compilation failed');
-    showToast('Compilation failed: ' + err.message, 'error');
+    showToast('Online compiler error: ' + err.message, 'error');
   }
 
   compileRunning = false;
-  compileBtn.disabled = false;
-  compileBtn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg> Compile & Run';
+  btn.disabled = false;
+  btn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg> Compile & Run';
 }
 
 function resetCode() {
-  if (editor) {
-    editor.setValue(DEFAULT_CODE);
-    saveCode();
-    clearOutput();
-    appendOutput('Code reset to default example.\n', 'system');
-    showToast('Code reset', 'info');
+  if (!editor) return;
+  const name = getActiveTabName();
+  if (name && fileTabs[name]) {
+    delete fileTabs[name];
+    saveFileTabs();
+    renderFileTabs();
   }
+  editor.setValue(DEFAULT_CODE);
+  saveCode();
+  clearOutput();
+  appendOutput('Reset to default.\n', 'system');
+  showToast('Code reset', 'info');
+}
+
+function copyOutput() {
+  const output = document.getElementById('output-content');
+  if (!output) return;
+  const text = output.textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    showToast('Output copied to clipboard', 'success');
+  }).catch(() => {
+    showToast('Failed to copy', 'error');
+  });
 }
 
 function showToast(message, type = 'info') {
   const container = document.getElementById('toast-container');
   if (!container) return;
-
   const toast = document.createElement('div');
   toast.className = `toast ${type}`;
   toast.textContent = message;
   container.appendChild(toast);
-
   setTimeout(() => {
     toast.style.opacity = '0';
     toast.style.transform = 'translateX(100%)';
