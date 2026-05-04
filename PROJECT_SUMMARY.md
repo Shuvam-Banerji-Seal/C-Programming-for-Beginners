@@ -257,3 +257,18 @@ The C Programming course is now fully populated with:
 - Professional build system knowledge
 
 **The course is production-ready and suitable for beginners through advanced learners!**
+
+---
+
+## 📖 Interactive Website
+
+The course now has a **[fully interactive website](https://Shuvam-Banerji-Seal.github.io/C-Programming-for-Beginners/)** that dynamically loads all content from this repository:
+
+- **20 modules** with descriptions and source file listings
+- **79 `.md` companion files** — each `.c`/`.h` file has a detailed explanation with function docs, compilation instructions, and usage notes
+- **Online code editor** — write, compile, and run C code in your browser via Compiler Explorer integration
+- **Multi-file tabs** — load files from any module directly into the editor
+- **Dark/light theme** with coffee-toned design
+- **Auto-deployed** via GitHub Actions on every push
+
+The website is built with vanilla HTML/CSS/JS and requires no build tools or backend — it fetches content directly from GitHub's raw content API.

@@ -1,44 +1,86 @@
-# pointer_to_pointer.c
+# `pointer_to_pointer.c`
 
 > pointer_to_pointer.c
 Demonstrates pointer to pointer (double pointers)
 Topics: Double pointers, triple pointers, use cases
 
+---
+
 ## Overview
 
-- **File:** `06-pointers/pointer_to_pointer.c`
-- **Language:** C source
-- **Module:** `06-pointers`
-- **Lines:** 151
-- **Libraries:** `stdio.h`, `stdlib.h`, `string.h`
+| Property | Value |
+|----------|-------|
+| **File** | `06-pointers/pointer_to_pointer.c` |
+| **Type** | C source |
+| **Module** | `06-pointers` |
+| **Lines** | 151 total (99 code, 23 comments) |
+| **Libraries** | `stdio.h`, `stdlib.h`, `string.h` |
+| **Topics** | Double Pointer |
 
-## Concepts
+## What It Does
 
-- Standard I/O: `printf`, `scanf` for console input/output
-- Standard library: memory allocation (`malloc`/`free`), conversions (`atoi`), exit codes
-- String manipulation: `strlen`, `strcpy`, `strcmp`, `strcat`
-- Pointer operations: declaration, dereferencing (`*`), address-of (`&`), arithmetic
-- Heap memory allocation: `malloc`/`calloc`/`realloc` and `free`
-- Memory layout analysis using `sizeof` operator
+This program demonstrates key concepts from the **06-pointers** module. Compile and run it to see the concepts in action. Study the source code and experiment by making modifications.
+
+## Program Flow
+
+1. Program execution begins in the `main()` function
+2. Uses `printf()` (48 calls) to display output to the console
+4. Allocates memory dynamically on the heap
+5. Makes decisions using conditional statements (2 branches)
+7. Returns 0 to indicate successful completion
+
+## Key Code Patterns
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main(void) {
+    // ... program logic ...
+    return 0;
+}
+```
+
+## Libraries Used
+
+- **`<stdio.h>`** — Standard I/O: `printf()`, `scanf()`, `fgets()`, `FILE` operations
+- **`<stdlib.h>`** — Standard library: `malloc()`, `free()`, `atoi()`, `rand()`, `exit()`
+- **`<string.h>`** — String manipulation: `strlen()`, `strcpy()`, `strcmp()`, `strcat()`
 
 ## Functions
 
-### `allocate_memory()`
-
-```c
-void allocate_memory(int **ptr, int value);
-```
-
-### `swap_pointers()`
-
-```c
-void swap_pointers(int **p1, int **p2);
-```
+| Function | Returns | Parameters | Purpose |
+|----------|---------|------------|---------|
+| `allocate_memory()` | `void` | `int **ptr, int value` | See implementation for details |
+| `swap_pointers()` | `void` | `int **p1, int **p2` | See implementation for details |
 
 ## Compilation
 
 ```bash
 cd 06-pointers
-gcc pointer_to_pointer.c -o pointer_to_pointer -std=c11 -Wall -Wextra
+
+# Compile with GCC (debug build)
+gcc pointer_to_pointer.c -o pointer_to_pointer -std=c11 -Wall -Wextra -g
+
+# Run
 ./pointer_to_pointer
+
+# Compile with Clang
+clang pointer_to_pointer.c -o pointer_to_pointer -std=c11 -Wall -Wextra -g
+
+# Compile with address sanitizer (detect memory errors)
+gcc pointer_to_pointer.c -o pointer_to_pointer -std=c11 -Wall -Wextra -fsanitize=address -g
 ```
+
+## Related Files
+
+- **Module README:** [`../README.md`](../README.md)
+- **Module Makefile:** [`../Makefile`](../Makefile)
+- **Library header:** `<stdio.h>`
+- **Library header:** `<stdlib.h>`
+- **Library header:** `<string.h>`
+
+---
+
+*Part of the [C Programming Course](https://github.com/Shuvam-Banerji-Seal/C-Programming-for-Beginners).*

@@ -1,51 +1,84 @@
-# linked_list.c
+# `linked_list.c`
 
 > linked_list.c
 Implements a singly linked list
 Topics: Nodes, insertion, deletion, traversal
 
+---
+
 ## Overview
 
-- **File:** `11-data-structures/linked_list.c`
-- **Language:** C source
-- **Module:** `11-data-structures`
-- **Lines:** 76
-- **Libraries:** `stdio.h`, `stdlib.h`
+| Property | Value |
+|----------|-------|
+| **File** | `11-data-structures/linked_list.c` |
+| **Type** | C source |
+| **Module** | `11-data-structures` |
+| **Lines** | 76 total (50 code, 11 comments) |
+| **Libraries** | `stdio.h`, `stdlib.h` |
+| **Topics** | Linked List, Typedef |
 
-## Concepts
+## What It Does
 
-- Standard I/O: `printf`, `scanf` for console input/output
-- Standard library: memory allocation (`malloc`/`free`), conversions (`atoi`), exit codes
-- Pointer operations: declaration, dereferencing (`*`), address-of (`&`), arithmetic
-- Structures: defining structs, member access (`.`/`->`), nested structs
-- Heap memory allocation: `malloc`/`calloc`/`realloc` and `free`
-- Type aliasing with `typedef` for cleaner type definitions
-- Memory layout analysis using `sizeof` operator
+Implements a singly linked list with insertion, deletion, traversal, and search operations. Covers dynamic node allocation, pointer manipulation, and the `->` operator for struct-pointer access.
+
+## Program Flow
+
+1. Program execution begins in the `main()` function
+2. Uses `printf()` (9 calls) to display output to the console
+4. Allocates memory dynamically on the heap
+5. Makes decisions using conditional statements (2 branches)
+7. Returns 0 to indicate successful completion
+
+## Key Code Patterns
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(void) {
+    // ... program logic ...
+    return 0;
+}
+```
+
+## Libraries Used
+
+- **`<stdio.h>`** — Standard I/O: `printf()`, `scanf()`, `fgets()`, `FILE` operations
+- **`<stdlib.h>`** — Standard library: `malloc()`, `free()`, `atoi()`, `rand()`, `exit()`
 
 ## Functions
 
-### `insert_front()`
-
-```c
-void insert_front(Node **head, int data);
-```
-
-### `print_list()`
-
-```c
-void print_list(Node *head);
-```
-
-### `free_list()`
-
-```c
-void free_list(Node *head);
-```
+| Function | Returns | Parameters | Purpose |
+|----------|---------|------------|---------|
+| `insert_front()` | `void` | `Node **head, int data` | See implementation for details |
+| `print_list()` | `void` | `Node *head` | See implementation for details |
+| `free_list()` | `void` | `Node *head` | See implementation for details |
 
 ## Compilation
 
 ```bash
 cd 11-data-structures
-gcc linked_list.c -o linked_list -std=c11 -Wall -Wextra
+
+# Compile with GCC (debug build)
+gcc linked_list.c -o linked_list -std=c11 -Wall -Wextra -g
+
+# Run
 ./linked_list
+
+# Compile with Clang
+clang linked_list.c -o linked_list -std=c11 -Wall -Wextra -g
+
+# Compile with address sanitizer (detect memory errors)
+gcc linked_list.c -o linked_list -std=c11 -Wall -Wextra -fsanitize=address -g
 ```
+
+## Related Files
+
+- **Module README:** [`../README.md`](../README.md)
+- **Module Makefile:** [`../Makefile`](../Makefile)
+- **Library header:** `<stdio.h>`
+- **Library header:** `<stdlib.h>`
+
+---
+
+*Part of the [C Programming Course](https://github.com/Shuvam-Banerji-Seal/C-Programming-for-Beginners).*

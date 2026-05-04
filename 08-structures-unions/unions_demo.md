@@ -1,30 +1,74 @@
-# unions_demo.c
+# `unions_demo.c`
 
 > unions_demo.c
 Demonstrates unions in C
 Topics: union definition, memory sharing, use cases
 
+---
+
 ## Overview
 
-- **File:** `08-structures-unions/unions_demo.c`
-- **Language:** C source
-- **Module:** `08-structures-unions`
-- **Lines:** 51
-- **Libraries:** `stdio.h`, `string.h`
+| Property | Value |
+|----------|-------|
+| **File** | `08-structures-unions/unions_demo.c` |
+| **Type** | C source |
+| **Module** | `08-structures-unions` |
+| **Lines** | 51 total (28 code, 10 comments) |
+| **Libraries** | `stdio.h`, `string.h` |
+| **Topics** | Unions, Typedef |
 
-## Concepts
+## What It Does
 
-- Standard I/O: `printf`, `scanf` for console input/output
-- String manipulation: `strlen`, `strcpy`, `strcmp`, `strcat`
-- Pointer operations: declaration, dereferencing (`*`), address-of (`&`), arithmetic
-- Unions: shared memory layout, type punning between members
-- Type aliasing with `typedef` for cleaner type definitions
-- Memory layout analysis using `sizeof` operator
+Bit fields allow packing multiple variables into a single integer type, saving memory. Unions let different data types share the same memory location. Essential for embedded systems, protocol parsing, and low-level programming.
+
+## Program Flow
+
+1. Program execution begins in the `main()` function
+2. Uses `printf()` (11 calls) to display output to the console
+7. Returns 0 to indicate successful completion
+
+## Key Code Patterns
+
+```c
+#include <stdio.h>
+#include <string.h>
+
+int main(void) {
+    // ... program logic ...
+    return 0;
+}
+```
+
+## Libraries Used
+
+- **`<stdio.h>`** — Standard I/O: `printf()`, `scanf()`, `fgets()`, `FILE` operations
+- **`<string.h>`** — String manipulation: `strlen()`, `strcpy()`, `strcmp()`, `strcat()`
 
 ## Compilation
 
 ```bash
 cd 08-structures-unions
-gcc unions_demo.c -o unions_demo -std=c11 -Wall -Wextra
+
+# Compile with GCC (debug build)
+gcc unions_demo.c -o unions_demo -std=c11 -Wall -Wextra -g
+
+# Run
 ./unions_demo
+
+# Compile with Clang
+clang unions_demo.c -o unions_demo -std=c11 -Wall -Wextra -g
+
+# Compile with address sanitizer (detect memory errors)
+gcc unions_demo.c -o unions_demo -std=c11 -Wall -Wextra -fsanitize=address -g
 ```
+
+## Related Files
+
+- **Module README:** [`../README.md`](../README.md)
+- **Module Makefile:** [`../Makefile`](../Makefile)
+- **Library header:** `<stdio.h>`
+- **Library header:** `<string.h>`
+
+---
+
+*Part of the [C Programming Course](https://github.com/Shuvam-Banerji-Seal/C-Programming-for-Beginners).*

@@ -376,3 +376,23 @@ Ready to learn about control flow? Head to [Module 03: Control Flow](../03-contr
 ---
 
 **Remember**: Understanding data types and operators is crucial for writing efficient C programs!
+
+
+## Files in this Module
+
+Each source file has a companion markdown file with detailed explanations:
+
+| File | Description |
+|------|------------|
+| [`data_types.c`](data_types.md) 📄 | 64-bit system: int (4 bytes), float (4 bytes), char (1 byte) |
+| [`increment_decrement.c`](increment_decrement.md) 📄 | Increment Decrement demonstration |
+| [`operators.c`](operators.md) 📄 | Operators demonstration |
+| [`simple_int_printing.c`](simple_int_printing.md) 📄 | Simple Int Printing demonstration |
+| [`sizeof_demo.c`](sizeof_demo.md) 📄 | Sizeof Demo demonstration |
+| [`type_conversion.c`](type_conversion.md) 📄 | Type Conversion demonstration |
+
+### Legend
+
+- 📄 = Detailed explanation available
+- 🐛 = Contains deliberate bugs for learning
+

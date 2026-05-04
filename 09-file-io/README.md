@@ -60,3 +60,20 @@ fclose(fp);
 ## Next Module
 
 [Module 10: Preprocessor and Macros](../10-preprocessor/README.md)
+
+
+## Files in this Module
+
+Each source file has a companion markdown file with detailed explanations:
+
+| File | Description |
+|------|------------|
+| [`advanced_file_io.c`](advanced_file_io.md) 📄 | Advanced File Io demonstration |
+| [`file_operations.c`](file_operations.md) 📄 | File Operations demonstration |
+| [`file_processing.c`](file_processing.md) 📄 | File Processing demonstration |
+
+### Legend
+
+- 📄 = Detailed explanation available
+- 🐛 = Contains deliberate bugs for learning
+

@@ -1,101 +1,110 @@
-# error_handling.c
+# `error_handling.c`
 
 > error_handling.c
 Demonstrates error handling strategies in C
 Topics: errno, perror, strerror, return codes, error propagation,
 file I/O errors, memory allocation errors
 
+---
+
 ## Overview
 
-- **File:** `fundamentals/error_handling/error_handling.c`
-- **Language:** C source
-- **Module:** `error_handling`
-- **Lines:** 459
-- **Libraries:** `stdio.h`, `stdlib.h`, `string.h`, `errno.h`, `limits.h`
+| Property | Value |
+|----------|-------|
+| **File** | `fundamentals/error_handling/error_handling.c` |
+| **Type** | C source |
+| **Module** | `error_handling` |
+| **Lines** | 459 total (272 code, 112 comments) |
+| **Libraries** | `stdio.h`, `stdlib.h`, `string.h`, `errno.h`, `limits.h` |
+| **Topics** | Functions |
 
-## Concepts
+## What It Does
 
-- Standard I/O: `printf`, `scanf` for console input/output
-- Standard library: memory allocation (`malloc`/`free`), conversions (`atoi`), exit codes
-- String manipulation: `strlen`, `strcpy`, `strcmp`, `strcat`
-- Error handling via `errno` and `perror`
-- File I/O: open, read, write, close files in text and binary modes
-- Pointer operations: declaration, dereferencing (`*`), address-of (`&`), arithmetic
-- Heap memory allocation: `malloc`/`calloc`/`realloc` and `free`
-- Memory layout analysis using `sizeof` operator
+Error handling patterns in C: `errno`, `perror()`, `strerror()`, return codes vs exceptions, and cleanup with `goto` for resource management. C has no exceptions — mastering error handling is critical.
+
+## Program Flow
+
+1. Program execution begins in the `main()` function
+2. Uses `printf()` (54 calls) to display output to the console
+4. Allocates memory dynamically on the heap
+5. Makes decisions using conditional statements (35 branches)
+7. Returns 0 to indicate successful completion
+
+## Key Code Patterns
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <errno.h>
+
+int main(void) {
+    // ... program logic ...
+    return 0;
+}
+```
+
+## Libraries Used
+
+- **`<stdio.h>`** — Standard I/O: `printf()`, `scanf()`, `fgets()`, `FILE` operations
+- **`<stdlib.h>`** — Standard library: `malloc()`, `free()`, `atoi()`, `rand()`, `exit()`
+- **`<string.h>`** — String manipulation: `strlen()`, `strcpy()`, `strcmp()`, `strcat()`
+- **`<errno.h>`** — Error codes: `errno` variable, error number constants
+- **`<limits.h>`** — Integer limits: `INT_MAX`, `LONG_MIN`, `CHAR_BIT`
 
 ## Functions
 
-### `safe_divide()`
+| Function | Returns | Parameters | Purpose |
+|----------|---------|------------|---------|
+| `safe_divide()` | `int` | `int numerator, int denominator, int *result` | See implementation for details |
+| `demonstrate_return_codes()` | `void` | `void` | See implementation for details |
+| `demonstrate_errno_and_perror()` | `void` | `void` | See implementation for details |
+| `read_file_contents()` | `char *` | `const char *filename` | See implementation for details |
+| `demonstrate_file_error_handling()` | `void` | `void` | See implementation for details |
+| `create_int_array()` | `int *` | `size_t count` | See implementation for details |
+| `resize_int_array()` | `int *` | `int *arr, size_t old_count, size_t new_count` | See implementation for details |
+| `demonstrate_memory_error_handling()` | `void` | `void` | See implementation for details |
+| `read_sensor_value()` | `int` | `int sensor_id, double *value` | See implementation for details |
+| `compute_average_reading()` | `int` | `int sensor_id, int num_readings, double *average` | See implementation for details |
+| `demonstrate_error_propagation()` | `void` | `void` | See implementation for details |
 
-```c
-int safe_divide(int numerator, int denominator, int *result);
-```
+## Constants & Macros
 
-### `demonstrate_return_codes()`
-
-```c
-void demonstrate_return_codes(void);
-```
-
-### `demonstrate_errno_and_perror()`
-
-```c
-void demonstrate_errno_and_perror(void);
-```
-
-### `read_file_contents()`
-
-```c
-char * read_file_contents(const char *filename);
-```
-
-### `demonstrate_file_error_handling()`
-
-```c
-void demonstrate_file_error_handling(void);
-```
-
-### `create_int_array()`
-
-```c
-int * create_int_array(size_t count);
-```
-
-### `resize_int_array()`
-
-```c
-int * resize_int_array(int *arr, size_t old_count, size_t new_count);
-```
-
-### `demonstrate_memory_error_handling()`
-
-```c
-void demonstrate_memory_error_handling(void);
-```
-
-### `read_sensor_value()`
-
-```c
-int read_sensor_value(int sensor_id, double *value);
-```
-
-### `compute_average_reading()`
-
-```c
-int compute_average_reading(int sensor_id, int num_readings, double *average);
-```
-
-### `demonstrate_error_propagation()`
-
-```c
-void demonstrate_error_propagation(void);
-```
+| Name | Value |
+|------|-------|
+| `SUCCESS` | Defined in source |
+| `ERR_NULL_PTR` | Defined in source |
+| `ERR_OUT_OF_RANGE` | Defined in source |
+| `ERR_OVERFLOW` | Defined in source |
 
 ## Compilation
 
 ```bash
 cd fundamentals/error_handling
-gcc error_handling.c -o error_handling -std=c11 -Wall -Wextra
+
+# Compile with GCC (debug build)
+gcc error_handling.c -o error_handling -std=c11 -Wall -Wextra -g
+
+# Run
 ./error_handling
+
+# Compile with Clang
+clang error_handling.c -o error_handling -std=c11 -Wall -Wextra -g
+
+# Compile with address sanitizer (detect memory errors)
+gcc error_handling.c -o error_handling -std=c11 -Wall -Wextra -fsanitize=address -g
 ```
+
+## Related Files
+
+- **Module README:** [`../README.md`](../README.md)
+- **Module Makefile:** [`../Makefile`](../Makefile)
+- **Library header:** `<stdio.h>`
+- **Library header:** `<stdlib.h>`
+- **Library header:** `<string.h>`
+- **Library header:** `<errno.h>`
+- **Library header:** `<limits.h>`
+
+---
+
+*Part of the [C Programming Course](https://github.com/Shuvam-Banerji-Seal/C-Programming-for-Beginners).*

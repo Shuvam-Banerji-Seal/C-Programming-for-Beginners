@@ -438,3 +438,22 @@ Ready to dive into arrays and strings? Head to [Module 05: Arrays and Strings](.
 ---
 
 **Pro Tip**: Master recursion by drawing the call stack on paper. It helps visualize how the function calls itself and returns values!
+
+
+## Files in this Module
+
+Each source file has a companion markdown file with detailed explanations:
+
+| File | Description |
+|------|------------|
+| [`basic_functions.c`](basic_functions.md) 📄 | Function declarations |
+| [`function_pointers.c`](function_pointers.md) 📄 | Arithmetic operations |
+| [`pass_by_value_reference.c`](pass_by_value_reference.md) 📄 | Pass by value |
+| [`recursion_examples.c`](recursion_examples.md) 📄 | Factorial |
+| [`scope_lifetime.c`](scope_lifetime.md) 📄 | Global variable |
+
+### Legend
+
+- 📄 = Detailed explanation available
+- 🐛 = Contains deliberate bugs for learning
+

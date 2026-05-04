@@ -206,3 +206,21 @@ Ready to continue? Head to [Module 02: Variables and Data Types](../02-variables
 ---
 
 **Pro Tip**: Don't just read the code—type it out yourself! This helps build muscle memory and deeper understanding.
+
+
+## Files in this Module
+
+Each source file has a companion markdown file with detailed explanations:
+
+| File | Description |
+|------|------------|
+| [`basic_io.c`](basic_io.md) 📄 | Basic Io demonstration |
+| [`compilation_demo.c`](compilation_demo.md) 📄 | Compilation Demo demonstration |
+| [`hello_user.c`](hello_user.md) 📄 | Hello User demonstration |
+| [`hello_world.c`](hello_world.md) 📄 | Hello World demonstration |
+
+### Legend
+
+- 📄 = Detailed explanation available
+- 🐛 = Contains deliberate bugs for learning
+

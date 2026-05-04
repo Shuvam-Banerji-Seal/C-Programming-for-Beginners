@@ -148,3 +148,21 @@ void insert(HashTable *ht, int key, int value) {
 ## Next Module
 
 [Module 12: Advanced Data Structures](../12-advanced-data-structures/README.md)
+
+
+## Files in this Module
+
+Each source file has a companion markdown file with detailed explanations:
+
+| File | Description |
+|------|------------|
+| [`doubly_linked_list.c`](doubly_linked_list.md) 📄 | Doubly Linked List demonstration |
+| [`hash_table.c`](hash_table.md) 📄 | Hash Table demonstration |
+| [`linked_list.c`](linked_list.md) 📄 | Linked List demonstration |
+| [`stack.c`](stack.md) 📄 | Stack demonstration |
+
+### Legend
+
+- 📄 = Detailed explanation available
+- 🐛 = Contains deliberate bugs for learning
+

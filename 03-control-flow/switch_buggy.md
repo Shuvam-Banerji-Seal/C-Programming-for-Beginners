@@ -1,28 +1,85 @@
-# switch_buggy.c
+# `switch_buggy.c`
 
 > switch_buggy.c
 DELIBERATELY BUGGY CODE - For learning purposes
 This file contains common mistakes with switch statements.
 Each bug is explained with comments.
 
+---
+
 ## Overview
 
-- **File:** `03-control-flow/switch_buggy.c`
-- **Language:** C source
-- **Module:** `03-control-flow`
-- **Lines:** 120
-- **Libraries:** `stdio.h`
+| Property | Value |
+|----------|-------|
+| **File** | `03-control-flow/switch_buggy.c` |
+| **Type** | C source |
+| **Module** | `03-control-flow` |
+| **Lines** | 120 total (58 code, 49 comments) |
+| **Libraries** | `stdio.h` |
+| **Topics** | Switch Case, Buggy Example, Enum |
 
-## Concepts
+## What It Does
 
-- Standard I/O: `printf`, `scanf` for console input/output
-- Pointer operations: declaration, dereferencing (`*`), address-of (`&`), arithmetic
-- Enumerations (`enum`) for named integer constants
+This file contains **deliberately introduced bugs** for educational purposes. Study the code, identify the errors, compile to see what warnings/errors GCC and Clang produce, then fix them. This is an essential learning technique — understanding what *not* to do.
+
+## Program Flow
+
+1. Program execution begins in the `main()` function
+2. Uses `printf()` (31 calls) to display output to the console
+7. Returns 0 to indicate successful completion
+
+## Key Code Patterns
+
+```c
+#include <stdio.h>
+
+int main(void) {
+    // ... program logic ...
+    return 0;
+}
+```
+
+## Libraries Used
+
+- **`<stdio.h>`** — Standard I/O: `printf()`, `scanf()`, `fgets()`, `FILE` operations
+
+## Known Bugs
+
+This file contains deliberate errors. Common categories:
+- **Memory bugs**: leaks, double-free, use-after-free
+- **Pointer bugs**: null dereference, dangling pointers
+- **Logic bugs**: off-by-one, incorrect conditions
+- **IO bugs**: unformatted input, buffer overflow
+
+Compile with full warnings and address sanitizer to detect them:
+```bash
+gcc switch_buggy.c -o switch_buggy -std=c11 -Wall -Wextra -Werror -fsanitize=address
+```
 
 ## Compilation
 
 ```bash
 cd 03-control-flow
-gcc switch_buggy.c -o switch_buggy -std=c11 -Wall -Wextra
+
+# Compile with GCC (debug build)
+gcc switch_buggy.c -o switch_buggy -std=c11 -Wall -Wextra -g
+
+# Run
 ./switch_buggy
+
+# Compile with Clang
+clang switch_buggy.c -o switch_buggy -std=c11 -Wall -Wextra -g
+
+# Compile with address sanitizer (detect memory errors)
+gcc switch_buggy.c -o switch_buggy -std=c11 -Wall -Wextra -fsanitize=address -g
 ```
+
+## Related Files
+
+- **Module README:** [`../README.md`](../README.md)
+- **Module Makefile:** [`../Makefile`](../Makefile)
+- **Library header:** `<stdio.h>`
+
+---
+
+*Part of the [C Programming Course](https://github.com/Shuvam-Banerji-Seal/C-Programming-for-Beginners).*

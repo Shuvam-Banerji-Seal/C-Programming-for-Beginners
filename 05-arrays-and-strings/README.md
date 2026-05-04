@@ -246,3 +246,21 @@ Ready to master pointers? Head to [Module 06: Pointers](../06-pointers/README.md
 ---
 
 **Remember**: Strings in C are just character arrays with a null terminator!
+
+
+## Files in this Module
+
+Each source file has a companion markdown file with detailed explanations:
+
+| File | Description |
+|------|------------|
+| [`advanced_strings.c`](advanced_strings.md) 📄 | Advanced Strings demonstration |
+| [`array_algorithms.c`](array_algorithms.md) 📄 | Linear search |
+| [`multidimensional_arrays.c`](multidimensional_arrays.md) 📄 | Multidimensional Arrays demonstration |
+| [`string_operations.c`](string_operations.md) 📄 | Custom string length |
+
+### Legend
+
+- 📄 = Detailed explanation available
+- 🐛 = Contains deliberate bugs for learning
+

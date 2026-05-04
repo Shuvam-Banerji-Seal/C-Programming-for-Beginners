@@ -44,6 +44,40 @@
 
 **Welcome to the Complete C Programming Course** — a comprehensive, open-source journey from absolute beginner to advanced C programmer. This course covers everything from basic syntax to advanced topics like machine learning, network programming, and scientific simulations, all with a [built-in browser code editor](https://Shuvam-Banerji-Seal.github.io/C-Programming-for-Beginners/?page=playground).
 
+## 🌐 Interactive Website
+
+The course features a full-featured [interactive website](https://Shuvam-Banerji-Seal.github.io/C-Programming-for-Beginners/) that dynamically loads all content from this repository:
+
+| Feature | Description | Link |
+|---------|-------------|------|
+| **📚 Course Browser** | Browse all 20 modules with descriptions and code examples | [Modules page](https://Shuvam-Banerji-Seal.github.io/C-Programming-for-Beginners/?page=modules) |
+| **⚡ Code Playground** | Write, compile, and run C code in your browser | [Playground](https://Shuvam-Banerji-Seal.github.io/C-Programming-for-Beginners/?page=playground) |
+| **📖 File Documentation** | Every `.c` file has a companion `.md` with detailed explanations | In each module detail page |
+| **🔍 Code Viewer** | View any source file with syntax highlighting, expand to see full code | Click any file card |
+| **🎨 Dark/Light Theme** | Coffee-toned dark theme with warm green accents | Click the theme toggle |
+| **🚀 Instant Deploy** | GitHub Actions auto-deploys on every push | View [workflow](.github/workflows/deploy.yml) |
+
+### How Content Loading Works
+
+The website fetches content directly from this GitHub repository using:
+- **README files** → Rendered as module descriptions with full markdown support
+- **`.md` companion files** → Each `.c`/`.h` file has a `.md` file with detailed explanations, function documentation, compilation instructions, and usage notes
+- **Source code** → Displayed with syntax highlighting and a one-click "Edit & Run" button that loads the code into the playground editor
+- **GitHub API** → Repository stats (stars, forks) displayed on the About page
+
+### Online C Compiler
+
+The [Code Playground](https://Shuvam-Banerji-Seal.github.io/C-Programming-for-Beginners/?page=playground) features:
+- **CodeMirror editor** with C syntax highlighting, auto-closing brackets, line numbers, and foldable code
+- **Multi-file tabs** — load multiple source files and switch between them
+- **Compiler Explorer backend** — compiles and executes your C code using GCC 13.2 or Clang 17
+- **Compiler flags** — choose optimization levels (`-O0` through `-O3`)
+- **localStorage persistence** — your code and open tabs are saved automatically
+- **Output panel** — shows stdout, stderr, compilation warnings/errors, and exit codes
+- **Copy output** button for sharing results
+
+> **Note:** The online compiler is powered by [Compiler Explorer](https://godbolt.org/). For full control, compile locally with GCC or Clang using the provided Makefiles.
+
 ## Course Overview
 
 This course is structured into 20 modules, each building upon the previous one. Whether you're a complete beginner or looking to master advanced C programming, this course has something for you.

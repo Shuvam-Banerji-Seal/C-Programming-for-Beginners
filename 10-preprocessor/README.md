@@ -59,3 +59,20 @@ int main() {
 ## Next Module
 
 [Module 11: Data Structures Fundamentals](../11-data-structures/README.md)
+
+
+## Files in this Module
+
+Each source file has a companion markdown file with detailed explanations:
+
+| File | Description |
+|------|------------|
+| [`advanced_preprocessor.c`](advanced_preprocessor.md) 📄 | Advanced Preprocessor demonstration |
+| [`conditional_compilation.c`](conditional_compilation.md) 📄 | Conditional Compilation demonstration |
+| [`preprocessor_demo.c`](preprocessor_demo.md) 📄 | Preprocessor Demo demonstration |
+
+### Legend
+
+- 📄 = Detailed explanation available
+- 🐛 = Contains deliberate bugs for learning
+

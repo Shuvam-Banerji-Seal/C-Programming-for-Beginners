@@ -63,3 +63,21 @@ int main() {
 ## Next Module
 
 [Module 08: Structures and Unions](../08-structures-unions/README.md)
+
+
+## Files in this Module
+
+Each source file has a companion markdown file with detailed explanations:
+
+| File | Description |
+|------|------------|
+| [`dynamic_memory.c`](dynamic_memory.md) 📄 | Dynamic Memory demonstration |
+| [`memory_buggy.c`](memory_buggy.md) 📄 | Memory Buggy demonstration |
+| [`stack_vs_heap.c`](stack_vs_heap.md) 📄 | Stack Vs Heap demonstration |
+
+### Legend
+
+- 📄 = Detailed explanation available
+- 🐛 = Contains deliberate bugs for learning
+
+> **🐛 `memory_buggy.c`** has deliberate bugs. Study, compile, fix, and learn.

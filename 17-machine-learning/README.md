@@ -409,3 +409,18 @@ Ready for real applications? Head to [Module 18: Handwriting Recognition](../18-
 ---
 
 **Pro Tip**: Start simple and gradually add complexity. Debugging neural networks is challenging!
+
+
+## Files in this Module
+
+Each source file has a companion markdown file with detailed explanations:
+
+| File | Description |
+|------|------------|
+| [`perceptron.c`](perceptron.md) 📄 | Create perceptron |
+
+### Legend
+
+- 📄 = Detailed explanation available
+- 🐛 = Contains deliberate bugs for learning
+

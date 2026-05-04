@@ -279,3 +279,18 @@ Ready to network? Head to [Module 16: Network Programming](../16-network-program
 ---
 
 **Pro Tip**: Start with simple games and gradually add features. Test each feature thoroughly!
+
+
+## Files in this Module
+
+Each source file has a companion markdown file with detailed explanations:
+
+| File | Description |
+|------|------------|
+| [`tictactoe.c`](tictactoe.md) 📄 | Global board |
+
+### Legend
+
+- 📄 = Detailed explanation available
+- 🐛 = Contains deliberate bugs for learning
+

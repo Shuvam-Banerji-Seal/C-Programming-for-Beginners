@@ -392,3 +392,19 @@ Ready for AI? Head to [Module 17: Machine Learning in C](../17-machine-learning/
 ---
 
 **Pro Tip**: Test network programs with `telnet` or `nc` (netcat) before writing the client!
+
+
+## Files in this Module
+
+Each source file has a companion markdown file with detailed explanations:
+
+| File | Description |
+|------|------------|
+| [`tcp_client.c`](tcp_client.md) 📄 | Create socket |
+| [`tcp_server.c`](tcp_server.md) 📄 | Create socket |
+
+### Legend
+
+- 📄 = Detailed explanation available
+- 🐛 = Contains deliberate bugs for learning
+

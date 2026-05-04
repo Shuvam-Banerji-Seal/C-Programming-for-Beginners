@@ -65,3 +65,21 @@ printf("%.2f\n", data.f);
 ## Next Module
 
 [Module 09: File I/O](../09-file-io/README.md)
+
+
+## Files in this Module
+
+Each source file has a companion markdown file with detailed explanations:
+
+| File | Description |
+|------|------------|
+| [`advanced_structures.c`](advanced_structures.md) 📄 | Advanced Structures demonstration |
+| [`bitfields_and_unions.c`](bitfields_and_unions.md) 📄 | Bitfields And Unions demonstration |
+| [`structures_demo.c`](structures_demo.md) 📄 | Structures Demo demonstration |
+| [`unions_demo.c`](unions_demo.md) 📄 | Unions Demo demonstration |
+
+### Legend
+
+- 📄 = Detailed explanation available
+- 🐛 = Contains deliberate bugs for learning
+

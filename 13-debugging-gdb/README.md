@@ -428,3 +428,20 @@ Ready to create GUIs? Head to [Module 14: GTK4 GUI Programming](../14-gtk4-gui/R
 ---
 
 **Pro Tip**: Create a `.gdbinit` file in your home directory with your favorite settings and commands!
+
+
+## Files in this Module
+
+Each source file has a companion markdown file with detailed explanations:
+
+| File | Description |
+|------|------------|
+| [`debug_example.c`](debug_example.md) 📄 | Debug Example demonstration |
+| [`segfault_example.c`](segfault_example.md) 📄 | Segfault Example demonstration |
+| [`watchpoint_example.c`](watchpoint_example.md) 📄 | Watchpoint Example demonstration |
+
+### Legend
+
+- 📄 = Detailed explanation available
+- 🐛 = Contains deliberate bugs for learning
+

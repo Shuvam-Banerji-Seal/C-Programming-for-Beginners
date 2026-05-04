@@ -461,3 +461,20 @@ Ready to debug like a pro? Head to [Module 13: Debugging with GDB](../13-debuggi
 ---
 
 **Pro Tip**: Draw the data structure on paper before implementing. It helps catch edge cases!
+
+
+## Files in this Module
+
+Each source file has a companion markdown file with detailed explanations:
+
+| File | Description |
+|------|------------|
+| [`bst.c`](bst.md) 📄 | Create new node |
+| [`graph_algorithms.c`](graph_algorithms.md) 📄 | Graph Algorithms demonstration |
+| [`heap_priority_queue.c`](heap_priority_queue.md) 📄 | Heap Priority Queue demonstration |
+
+### Legend
+
+- 📄 = Detailed explanation available
+- 🐛 = Contains deliberate bugs for learning
+

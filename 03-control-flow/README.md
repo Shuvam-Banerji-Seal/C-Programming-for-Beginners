@@ -445,3 +445,26 @@ Ready to learn about functions? Head to [Module 04: Functions](../04-functions/R
 ---
 
 **Practice makes perfect!** Try solving all the exercises to master control flow.
+
+
+## Files in this Module
+
+Each source file has a companion markdown file with detailed explanations:
+
+| File | Description |
+|------|------------|
+| [`conditionals.c`](conditionals.md) 📄 | Conditionals demonstration |
+| [`conditionals_buggy.c`](conditionals_buggy.md) 📄 | Conditionals Buggy demonstration |
+| [`loop_control.c`](loop_control.md) 📄 | Loop Control demonstration |
+| [`loops.c`](loops.md) 📄 | Loops demonstration |
+| [`loops_buggy.c`](loops_buggy.md) 📄 | Loops Buggy demonstration |
+| [`nested_loops.c`](nested_loops.md) 📄 | Nested Loops demonstration |
+| [`switch_buggy.c`](switch_buggy.md) 📄 | Switch Buggy demonstration |
+| [`switch_demo.c`](switch_demo.md) 📄 | Switch Demo demonstration |
+
+### Legend
+
+- 📄 = Detailed explanation available
+- 🐛 = Contains deliberate bugs for learning
+
+> **🐛 `conditionals_buggy.c`** has deliberate bugs. Study, compile, fix, and learn.

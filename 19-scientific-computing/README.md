@@ -430,3 +430,18 @@ Ready to polish your skills? Head to [Module 20: Professional Development](../20
 ---
 
 **Pro Tip**: Validate your simulation by checking energy conservation and comparing with known results!
+
+
+## Files in this Module
+
+Each source file has a companion markdown file with detailed explanations:
+
+| File | Description |
+|------|------------|
+| [`molecular_dynamics.c`](molecular_dynamics.md) 📄 | Initialize particles |
+
+### Legend
+
+- 📄 = Detailed explanation available
+- 🐛 = Contains deliberate bugs for learning
+

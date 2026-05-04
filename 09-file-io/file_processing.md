@@ -1,65 +1,92 @@
-# file_processing.c
+# `file_processing.c`
 
 > file_processing.c
 File processing and text manipulation
 Topics: Line-by-line processing, word counting, search and replace
 
+---
+
 ## Overview
 
-- **File:** `09-file-io/file_processing.c`
-- **Language:** C source
-- **Module:** `09-file-io`
-- **Lines:** 269
-- **Libraries:** `stdio.h`, `stdlib.h`, `string.h`, `ctype.h`
+| Property | Value |
+|----------|-------|
+| **File** | `09-file-io/file_processing.c` |
+| **Type** | C source |
+| **Module** | `09-file-io` |
+| **Lines** | 269 total (193 code, 28 comments) |
+| **Libraries** | `stdio.h`, `stdlib.h`, `string.h`, `ctype.h` |
+| **Topics** | Typedef |
 
-## Concepts
+## What It Does
 
-- Standard I/O: `printf`, `scanf` for console input/output
-- Standard library: memory allocation (`malloc`/`free`), conversions (`atoi`), exit codes
-- String manipulation: `strlen`, `strcpy`, `strcmp`, `strcat`
-- File I/O: open, read, write, close files in text and binary modes
-- Pointer operations: declaration, dereferencing (`*`), address-of (`&`), arithmetic
-- Structures: defining structs, member access (`.`/`->`), nested structs
-- Heap memory allocation: `malloc`/`calloc`/`realloc` and `free`
-- Type aliasing with `typedef` for cleaner type definitions
-- Memory layout analysis using `sizeof` operator
+File processing patterns: reading structured data (CSV, config files), line-by-line processing, buffered I/O, and large file handling strategies.
+
+## Program Flow
+
+1. Program execution begins in the `main()` function
+2. Uses `printf()` (30 calls) to display output to the console
+4. Allocates memory dynamically on the heap
+5. Makes decisions using conditional statements (12 branches)
+7. Returns 0 to indicate successful completion
+
+## Key Code Patterns
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+
+int main(void) {
+    // ... program logic ...
+    return 0;
+}
+```
+
+## Libraries Used
+
+- **`<stdio.h>`** — Standard I/O: `printf()`, `scanf()`, `fgets()`, `FILE` operations
+- **`<stdlib.h>`** — Standard library: `malloc()`, `free()`, `atoi()`, `rand()`, `exit()`
+- **`<string.h>`** — String manipulation: `strlen()`, `strcpy()`, `strcmp()`, `strcat()`
+- **`<ctype.h>`** — Character handling: `isalpha()`, `isdigit()`, `toupper()`
 
 ## Functions
 
-### `analyzeFile()`
-
-```c
-FileStats analyzeFile(const char *filename);
-```
-
-### `searchInFile()`
-
-```c
-int searchInFile(const char *filename, const char *word);
-```
-
-### `replaceInFile()`
-
-```c
-void replaceInFile(const char *filename, const char *old_word, const char *new_word);
-```
-
-### `reverseFile()`
-
-```c
-void reverseFile(const char *filename, const char *output);
-```
-
-### `mergeFiles()`
-
-```c
-void mergeFiles(const char *file1, const char *file2, const char *output);
-```
+| Function | Returns | Parameters | Purpose |
+|----------|---------|------------|---------|
+| `analyzeFile()` | `FileStats` | `const char *filename` | See implementation for details |
+| `searchInFile()` | `int` | `const char *filename, const char *word` | See implementation for details |
+| `replaceInFile()` | `void` | `const char *filename, const char *old_word, const ...` | See implementation for details |
+| `reverseFile()` | `void` | `const char *filename, const char *output` | See implementation for details |
+| `mergeFiles()` | `void` | `const char *file1, const char *file2, const char *...` | See implementation for details |
 
 ## Compilation
 
 ```bash
 cd 09-file-io
-gcc file_processing.c -o file_processing -std=c11 -Wall -Wextra
+
+# Compile with GCC (debug build)
+gcc file_processing.c -o file_processing -std=c11 -Wall -Wextra -g
+
+# Run
 ./file_processing
+
+# Compile with Clang
+clang file_processing.c -o file_processing -std=c11 -Wall -Wextra -g
+
+# Compile with address sanitizer (detect memory errors)
+gcc file_processing.c -o file_processing -std=c11 -Wall -Wextra -fsanitize=address -g
 ```
+
+## Related Files
+
+- **Module README:** [`../README.md`](../README.md)
+- **Module Makefile:** [`../Makefile`](../Makefile)
+- **Library header:** `<stdio.h>`
+- **Library header:** `<stdlib.h>`
+- **Library header:** `<string.h>`
+- **Library header:** `<ctype.h>`
+
+---
+
+*Part of the [C Programming Course](https://github.com/Shuvam-Banerji-Seal/C-Programming-for-Beginners).*
