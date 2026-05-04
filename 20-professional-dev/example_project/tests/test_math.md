@@ -1,38 +1,42 @@
 # test_math.c
 
-This c file is part of the C Programming Course.
-
 ## Overview
 
 - **File:** `20-professional-dev/example_project/tests/test_math.c`
-- **Language:** C
+- **Language:** C source
 - **Module:** `tests`
+- **Lines:** 34
+- **Libraries:** `stdio.h`, `assert.h`, `math_utils.h`
 
-## Key Concepts
+## Concepts
 
-This file demonstrates essential C programming concepts including:
-- Standard input/output operations using `printf` and `scanf`
-- Runtime assertions for debugging
+- Standard I/O: `printf`, `scanf` for console input/output
+- Runtime assertions for debugging program invariants
 
 ## Functions
 
-- `test_add()`
-- `test_multiply()`
-- `test_factorial()`
+### `test_add()`
+
+```c
+void test_add();
+```
+
+### `test_multiply()`
+
+```c
+void test_multiply();
+```
+
+### `test_factorial()`
+
+```c
+void test_factorial();
+```
 
 ## Compilation
 
 ```bash
-# Navigate to the module directory
 cd 20-professional-dev/example_project/tests
-
-# Compile
 gcc test_math.c -o test_math -std=c11 -Wall -Wextra
-
-# Run
 ./test_math
 ```
-
-## Usage
-
-Run the compiled program to see the demonstrated concepts in action.

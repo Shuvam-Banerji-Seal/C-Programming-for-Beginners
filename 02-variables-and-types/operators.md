@@ -1,36 +1,26 @@
 # operators.c
 
-operators.c
+> operators.c
 Comprehensive demonstration of all operators in C
 
 ## Overview
 
 - **File:** `02-variables-and-types/operators.c`
-- **Language:** C
+- **Language:** C source
 - **Module:** `02-variables-and-types`
+- **Lines:** 79
+- **Libraries:** `stdio.h`
 
-## Key Concepts
+## Concepts
 
-This file demonstrates essential C programming concepts including:
-- Standard input/output operations using `printf` and `scanf`
-
-## Functions
-
-- `printf()`
+- Standard I/O: `printf`, `scanf` for console input/output
+- Pointer operations: declaration, dereferencing (`*`), address-of (`&`), arithmetic
+- Memory layout analysis using `sizeof` operator
 
 ## Compilation
 
 ```bash
-# Navigate to the module directory
 cd 02-variables-and-types
-
-# Compile
 gcc operators.c -o operators -std=c11 -Wall -Wextra
-
-# Run
 ./operators
 ```
-
-## Usage
-
-Run the compiled program to see the demonstrated concepts in action.

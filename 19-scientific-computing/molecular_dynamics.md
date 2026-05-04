@@ -1,41 +1,55 @@
 # molecular_dynamics.c
 
-Initialize particles
+> Initialize particles
 
 ## Overview
 
 - **File:** `19-scientific-computing/molecular_dynamics.c`
-- **Language:** C
+- **Language:** C source
 - **Module:** `19-scientific-computing`
+- **Lines:** 156
+- **Libraries:** `stdio.h`, `stdlib.h`, `math.h`, `time.h`
 
-## Key Concepts
+## Concepts
 
-This file demonstrates essential C programming concepts including:
-- Standard input/output operations using `printf` and `scanf`
-- Standard library functions (`malloc`, `free`, `atoi`, etc.)
-- Mathematical operations
+- Standard I/O: `printf`, `scanf` for console input/output
+- Standard library: memory allocation (`malloc`/`free`), conversions (`atoi`), exit codes
+- Mathematical operations: `sqrt`, `pow`, `sin`, `cos`
+- Time/date functions: `time`, `clock`, `srand`/`rand` for randomization
+- Pointer operations: declaration, dereferencing (`*`), address-of (`&`), arithmetic
+- Structures: defining structs, member access (`.`/`->`), nested structs
+- Type aliasing with `typedef` for cleaner type definitions
 
 ## Functions
 
-- `initParticles()`
-- `calculateForces()`
-- `velocityVerlet()`
-- `velocities()`
-- `calculateKineticEnergy()`
+### `initParticles()`
+
+```c
+void initParticles(Particle particles[], int n);
+```
+
+### `calculateForces()`
+
+```c
+void calculateForces(Particle particles[], int n);
+```
+
+### `velocityVerlet()`
+
+```c
+void velocityVerlet(Particle particles[], int n, double dt);
+```
+
+### `calculateKineticEnergy()`
+
+```c
+double calculateKineticEnergy(Particle particles[], int n);
+```
 
 ## Compilation
 
 ```bash
-# Navigate to the module directory
 cd 19-scientific-computing
-
-# Compile
 gcc molecular_dynamics.c -o molecular_dynamics -std=c11 -Wall -Wextra
-
-# Run
 ./molecular_dynamics
 ```
-
-## Usage
-
-Run the compiled program to see the demonstrated concepts in action.

@@ -1,42 +1,27 @@
 # switch_demo.c
 
-switch_demo.c
+> switch_demo.c
 Demonstrates proper use of switch statements
-
 Topics: switch-case, break, default, fall-through
 
 ## Overview
 
 - **File:** `03-control-flow/switch_demo.c`
-- **Language:** C
+- **Language:** C source
 - **Module:** `03-control-flow`
+- **Lines:** 115
+- **Libraries:** `stdio.h`
 
-## Key Concepts
+## Concepts
 
-This file demonstrates essential C programming concepts including:
-- Standard input/output operations using `printf` and `scanf`
-
-## Functions
-
-- `week()`
-- `evaluation()`
-- `calculator()`
-- `month()`
-- `days()`
+- Standard I/O: `printf`, `scanf` for console input/output
+- Pointer operations: declaration, dereferencing (`*`), address-of (`&`), arithmetic
+- Enumerations (`enum`) for named integer constants
 
 ## Compilation
 
 ```bash
-# Navigate to the module directory
 cd 03-control-flow
-
-# Compile
 gcc switch_demo.c -o switch_demo -std=c11 -Wall -Wextra
-
-# Run
 ./switch_demo
 ```
-
-## Usage
-
-Run the compiled program to see the demonstrated concepts in action.

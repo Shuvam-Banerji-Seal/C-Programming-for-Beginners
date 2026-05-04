@@ -1,56 +1,37 @@
 # conditional_compilation.c
 
-conditional_compilation.c
+> conditional_compilation.c
 Advanced conditional compilation techniques
 Topics: Feature flags, debug builds, optimization levels
 
 ## Overview
 
 - **File:** `10-preprocessor/conditional_compilation.c`
-- **Language:** C
+- **Language:** C source
 - **Module:** `10-preprocessor`
+- **Lines:** 262
+- **Libraries:** `stdio.h`, `time.h`, `stdlib.h`
 
-## Key Concepts
+## Concepts
 
-This file demonstrates essential C programming concepts including:
-- Standard input/output operations using `printf` and `scanf`
-- Standard library functions (`malloc`, `free`, `atoi`, etc.)
+- Standard I/O: `printf`, `scanf` for console input/output
+- Standard library: memory allocation (`malloc`/`free`), conversions (`atoi`), exit codes
+- Time/date functions: `time`, `clock`, `srand`/`rand` for randomization
+- Pointer operations: declaration, dereferencing (`*`), address-of (`&`), arithmetic
+- Heap memory allocation: `malloc`/`calloc`/`realloc` and `free`
 
 ## Functions
 
-- `LOG_ERROR()`
-- `LOG_WARNING()`
-- `LOG_INFO()`
-- `LOG_VERBOSE()`
-- `START_TIMER()`
-- `END_TIMER()`
-- `VALIDATE_RANGE()`
-- `VALIDATE_NOT_NULL()`
-- `MAKE_VERSION()`
-- `hints()`
-- `LIKELY()`
-- `UNLIKELY()`
-- `__attribute__()`
-- `MALLOC()`
-- `FREE()`
-- `defined()`
-- `compute()`
-- `fast_multiply()`
-- `printf()`
+### `compute()`
+
+```c
+int compute(int n);
+```
 
 ## Compilation
 
 ```bash
-# Navigate to the module directory
 cd 10-preprocessor
-
-# Compile
 gcc conditional_compilation.c -o conditional_compilation -std=c11 -Wall -Wextra
-
-# Run
 ./conditional_compilation
 ```
-
-## Usage
-
-Run the compiled program to see the demonstrated concepts in action.

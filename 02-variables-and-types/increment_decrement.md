@@ -1,35 +1,21 @@
 # increment_decrement.c
 
-This c file is part of the C Programming Course.
-
 ## Overview
 
 - **File:** `02-variables-and-types/increment_decrement.c`
-- **Language:** C
+- **Language:** C source
 - **Module:** `02-variables-and-types`
+- **Lines:** 41
+- **Libraries:** `stdio.h`
 
-## Key Concepts
+## Concepts
 
-This file demonstrates essential C programming concepts including:
-- Standard input/output operations using `printf` and `scanf`
-
-## Functions
-
-- `printf()`
+- Standard I/O: `printf`, `scanf` for console input/output
 
 ## Compilation
 
 ```bash
-# Navigate to the module directory
 cd 02-variables-and-types
-
-# Compile
 gcc increment_decrement.c -o increment_decrement -std=c11 -Wall -Wextra
-
-# Run
 ./increment_decrement
 ```
-
-## Usage
-
-Run the compiled program to see the demonstrated concepts in action.

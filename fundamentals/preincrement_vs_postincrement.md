@@ -1,35 +1,21 @@
 # preincrement_vs_postincrement.c
 
-This c file is part of the C Programming Course.
-
 ## Overview
 
 - **File:** `fundamentals/preincrement_vs_postincrement.c`
-- **Language:** C
+- **Language:** C source
 - **Module:** `fundamentals`
+- **Lines:** 41
+- **Libraries:** `stdio.h`
 
-## Key Concepts
+## Concepts
 
-This file demonstrates essential C programming concepts including:
-- Standard input/output operations using `printf` and `scanf`
-
-## Functions
-
-- `printf()`
+- Standard I/O: `printf`, `scanf` for console input/output
 
 ## Compilation
 
 ```bash
-# Navigate to the module directory
 cd fundamentals
-
-# Compile
 gcc preincrement_vs_postincrement.c -o preincrement_vs_postincrement -std=c11 -Wall -Wextra
-
-# Run
 ./preincrement_vs_postincrement
 ```
-
-## Usage
-
-Run the compiled program to see the demonstrated concepts in action.

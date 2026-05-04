@@ -1,40 +1,26 @@
 # preprocessor_demo.c
 
-preprocessor_demo.c
+> preprocessor_demo.c
 Demonstrates C preprocessor directives
 Topics: #define, #include, #ifdef, macros, conditional compilation
 
 ## Overview
 
 - **File:** `10-preprocessor/preprocessor_demo.c`
-- **Language:** C
+- **Language:** C source
 - **Module:** `10-preprocessor`
+- **Lines:** 56
+- **Libraries:** `stdio.h`
 
-## Key Concepts
+## Concepts
 
-This file demonstrates essential C programming concepts including:
-- Standard input/output operations using `printf` and `scanf`
-
-## Functions
-
-- `SQUARE()`
-- `MAX()`
-- `PRINT_VAR()`
-- `printf()`
+- Standard I/O: `printf`, `scanf` for console input/output
+- Pointer operations: declaration, dereferencing (`*`), address-of (`&`), arithmetic
 
 ## Compilation
 
 ```bash
-# Navigate to the module directory
 cd 10-preprocessor
-
-# Compile
 gcc preprocessor_demo.c -o preprocessor_demo -std=c11 -Wall -Wextra
-
-# Run
 ./preprocessor_demo
 ```
-
-## Usage
-
-Run the compiled program to see the demonstrated concepts in action.

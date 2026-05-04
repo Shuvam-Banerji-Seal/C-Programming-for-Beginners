@@ -1,46 +1,61 @@
 # bst.c
 
-Create new node
+> Create new node
 
 ## Overview
 
 - **File:** `12-advanced-data-structures/bst.c`
-- **Language:** C
+- **Language:** C source
 - **Module:** `12-advanced-data-structures`
+- **Lines:** 186
+- **Libraries:** `stdio.h`, `stdlib.h`
 
-## Key Concepts
+## Concepts
 
-This file demonstrates essential C programming concepts including:
-- Standard input/output operations using `printf` and `scanf`
-- Standard library functions (`malloc`, `free`, `atoi`, etc.)
+- Standard I/O: `printf`, `scanf` for console input/output
+- Standard library: memory allocation (`malloc`/`free`), conversions (`atoi`), exit codes
+- Pointer operations: declaration, dereferencing (`*`), address-of (`&`), arithmetic
+- Structures: defining structs, member access (`.`/`->`), nested structs
+- Heap memory allocation: `malloc`/`calloc`/`realloc` and `free`
+- Type aliasing with `typedef` for cleaner type definitions
+- Memory layout analysis using `sizeof` operator
 
 ## Functions
 
-- `createNode()`
-- `search()`
-- `inorder()`
-- `preorder()`
-- `postorder()`
-- `countNodes()`
-- `height()`
-- `structure()`
-- `printf()`
-- `traversal()`
-- `50()`
+### `inorder()`
+
+```c
+void inorder(Node *root);
+```
+
+### `preorder()`
+
+```c
+void preorder(Node *root);
+```
+
+### `postorder()`
+
+```c
+void postorder(Node *root);
+```
+
+### `countNodes()`
+
+```c
+int countNodes(Node *root);
+```
+
+### `height()`
+
+```c
+int height(Node *root);
+```
 
 ## Compilation
 
 ```bash
-# Navigate to the module directory
 cd 12-advanced-data-structures
-
-# Compile
 gcc bst.c -o bst -std=c11 -Wall -Wextra
-
-# Run
 ./bst
 ```
-
-## Usage
-
-Run the compiled program to see the demonstrated concepts in action.

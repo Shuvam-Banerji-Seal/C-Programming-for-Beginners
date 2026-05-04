@@ -1,41 +1,26 @@
 # loop_control.c
 
-loop_control.c
+> loop_control.c
 Demonstrates break and continue statements
-
 Topics: break, continue, loop control flow
 
 ## Overview
 
 - **File:** `03-control-flow/loop_control.c`
-- **Language:** C
+- **Language:** C source
 - **Module:** `03-control-flow`
+- **Lines:** 163
+- **Libraries:** `stdio.h`
 
-## Key Concepts
+## Concepts
 
-This file demonstrates essential C programming concepts including:
-- Standard input/output operations using `printf` and `scanf`
-
-## Functions
-
-- `printf()`
-- `loops()`
-- `50()`
-- `simulation()`
+- Standard I/O: `printf`, `scanf` for console input/output
+- Pointer operations: declaration, dereferencing (`*`), address-of (`&`), arithmetic
 
 ## Compilation
 
 ```bash
-# Navigate to the module directory
 cd 03-control-flow
-
-# Compile
 gcc loop_control.c -o loop_control -std=c11 -Wall -Wextra
-
-# Run
 ./loop_control
 ```
-
-## Usage
-
-Run the compiled program to see the demonstrated concepts in action.

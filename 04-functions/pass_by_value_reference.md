@@ -1,39 +1,50 @@
 # pass_by_value_reference.c
 
-Pass by value
+> Pass by value
 
 ## Overview
 
 - **File:** `04-functions/pass_by_value_reference.c`
-- **Language:** C
+- **Language:** C source
 - **Module:** `04-functions`
+- **Lines:** 72
+- **Libraries:** `stdio.h`
 
-## Key Concepts
+## Concepts
 
-This file demonstrates essential C programming concepts including:
-- Standard input/output operations using `printf` and `scanf`
+- Standard I/O: `printf`, `scanf` for console input/output
+- Memory layout analysis using `sizeof` operator
 
 ## Functions
 
-- `tryToModify()`
-- `modify()`
-- `swap()`
-- `getMinMax()`
-- `printf()`
+### `tryToModify()`
+
+```c
+void tryToModify(int x);
+```
+
+### `modify()`
+
+```c
+void modify(int *x);
+```
+
+### `swap()`
+
+```c
+void swap(int *a, int *b);
+```
+
+### `getMinMax()`
+
+```c
+void getMinMax(int arr[], int size, int *min, int *max);
+```
 
 ## Compilation
 
 ```bash
-# Navigate to the module directory
 cd 04-functions
-
-# Compile
 gcc pass_by_value_reference.c -o pass_by_value_reference -std=c11 -Wall -Wextra
-
-# Run
 ./pass_by_value_reference
 ```
-
-## Usage
-
-Run the compiled program to see the demonstrated concepts in action.

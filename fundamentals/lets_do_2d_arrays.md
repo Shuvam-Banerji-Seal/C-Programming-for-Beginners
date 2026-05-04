@@ -1,31 +1,21 @@
 # lets_do_2d_arrays.c
 
-This c file is part of the C Programming Course.
-
 ## Overview
 
 - **File:** `fundamentals/lets_do_2d_arrays.c`
-- **Language:** C
+- **Language:** C source
 - **Module:** `fundamentals`
+- **Lines:** 21
+- **Libraries:** `stdio.h`
 
-## Key Concepts
+## Concepts
 
-This file demonstrates essential C programming concepts including:
-- Standard input/output operations using `printf` and `scanf`
+- Standard I/O: `printf`, `scanf` for console input/output
 
 ## Compilation
 
 ```bash
-# Navigate to the module directory
 cd fundamentals
-
-# Compile
 gcc lets_do_2d_arrays.c -o lets_do_2d_arrays -std=c11 -Wall -Wextra
-
-# Run
 ./lets_do_2d_arrays
 ```
-
-## Usage
-
-Run the compiled program to see the demonstrated concepts in action.

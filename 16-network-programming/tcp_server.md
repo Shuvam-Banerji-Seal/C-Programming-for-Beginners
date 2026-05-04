@@ -1,37 +1,27 @@
 # tcp_server.c
 
-Create socket
+> Create socket
 
 ## Overview
 
 - **File:** `16-network-programming/tcp_server.c`
-- **Language:** C
+- **Language:** C source
 - **Module:** `16-network-programming`
+- **Lines:** 85
+- **Libraries:** `stdio.h`, `stdlib.h`, `string.h`, `unistd.h`, `arpa/inet.h`
 
-## Key Concepts
+## Concepts
 
-This file demonstrates essential C programming concepts including:
-- Standard input/output operations using `printf` and `scanf`
-- Standard library functions (`malloc`, `free`, `atoi`, etc.)
-- String manipulation functions
-
-## Functions
-
-- `send()`
+- Standard I/O: `printf`, `scanf` for console input/output
+- Standard library: memory allocation (`malloc`/`free`), conversions (`atoi`), exit codes
+- String manipulation: `strlen`, `strcpy`, `strcmp`, `strcat`
+- Structures: defining structs, member access (`.`/`->`), nested structs
+- Memory layout analysis using `sizeof` operator
 
 ## Compilation
 
 ```bash
-# Navigate to the module directory
 cd 16-network-programming
-
-# Compile
 gcc tcp_server.c -o tcp_server -std=c11 -Wall -Wextra
-
-# Run
 ./tcp_server
 ```
-
-## Usage
-
-Run the compiled program to see the demonstrated concepts in action.

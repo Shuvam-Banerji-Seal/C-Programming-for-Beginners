@@ -1,40 +1,30 @@
 # file_operations.c
 
-file_operations.c
+> file_operations.c
 Demonstrates file I/O operations in C
 Topics: fopen, fclose, fprintf, fscanf, fread, fwrite
 
 ## Overview
 
 - **File:** `09-file-io/file_operations.c`
-- **Language:** C
+- **Language:** C source
 - **Module:** `09-file-io`
+- **Lines:** 68
+- **Libraries:** `stdio.h`, `stdlib.h`, `string.h`
 
-## Key Concepts
+## Concepts
 
-This file demonstrates essential C programming concepts including:
-- Standard input/output operations using `printf` and `scanf`
-- Standard library functions (`malloc`, `free`, `atoi`, etc.)
-- String manipulation functions
-
-## Functions
-
-- `printf()`
-- `remove()`
+- Standard I/O: `printf`, `scanf` for console input/output
+- Standard library: memory allocation (`malloc`/`free`), conversions (`atoi`), exit codes
+- String manipulation: `strlen`, `strcpy`, `strcmp`, `strcat`
+- File I/O: open, read, write, close files in text and binary modes
+- Pointer operations: declaration, dereferencing (`*`), address-of (`&`), arithmetic
+- Memory layout analysis using `sizeof` operator
 
 ## Compilation
 
 ```bash
-# Navigate to the module directory
 cd 09-file-io
-
-# Compile
 gcc file_operations.c -o file_operations -std=c11 -Wall -Wextra
-
-# Run
 ./file_operations
 ```
-
-## Usage
-
-Run the compiled program to see the demonstrated concepts in action.

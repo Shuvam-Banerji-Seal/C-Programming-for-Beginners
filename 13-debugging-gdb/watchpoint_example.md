@@ -1,40 +1,40 @@
 # watchpoint_example.c
 
-watchpoint_example.c
+> watchpoint_example.c
 Example for practicing GDB watchpoints
-
 Learn to track when variables change
 
 ## Overview
 
 - **File:** `13-debugging-gdb/watchpoint_example.c`
-- **Language:** C
+- **Language:** C source
 - **Module:** `13-debugging-gdb`
+- **Lines:** 53
+- **Libraries:** `stdio.h`
 
-## Key Concepts
+## Concepts
 
-This file demonstrates essential C programming concepts including:
-- Standard input/output operations using `printf` and `scanf`
+- Standard I/O: `printf`, `scanf` for console input/output
+- Pointer operations: declaration, dereferencing (`*`), address-of (`&`), arithmetic
 
 ## Functions
 
-- `increment_counter()`
-- `reset_counter()`
-- `increment()`
+### `increment_counter()`
+
+```c
+void increment_counter(int amount);
+```
+
+### `reset_counter()`
+
+```c
+void reset_counter();
+```
 
 ## Compilation
 
 ```bash
-# Navigate to the module directory
 cd 13-debugging-gdb
-
-# Compile
 gcc watchpoint_example.c -o watchpoint_example -std=c11 -Wall -Wextra
-
-# Run
 ./watchpoint_example
 ```
-
-## Usage
-
-Run the compiled program to see the demonstrated concepts in action.

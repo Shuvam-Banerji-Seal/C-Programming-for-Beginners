@@ -1,50 +1,92 @@
 # tictactoe.c
 
-Global board
+> Global board
 
 ## Overview
 
 - **File:** `15-game-projects/tictactoe.c`
-- **Language:** C
+- **Language:** C source
 - **Module:** `15-game-projects`
+- **Lines:** 265
+- **Libraries:** `stdio.h`, `stdlib.h`, `stdbool.h`, `limits.h`
 
-## Key Concepts
+## Concepts
 
-This file demonstrates essential C programming concepts including:
-- Standard input/output operations using `printf` and `scanf`
-- Standard library functions (`malloc`, `free`, `atoi`, etc.)
+- Standard I/O: `printf`, `scanf` for console input/output
+- Standard library: memory allocation (`malloc`/`free`), conversions (`atoi`), exit codes
 
 ## Functions
 
-- `initBoard()`
-- `printBoard()`
-- `isMoveValid()`
-- `makeMove()`
-- `checkWinner()`
-- `isBoardFull()`
-- `evaluateBoard()`
-- `isMovesLeft()`
-- `minimax()`
-- `findBestMove()`
-- `playGame()`
-- `choice()`
-- `turn()`
-- `row()`
-- `col()`
+### `initBoard()`
+
+```c
+void initBoard();
+```
+
+### `printBoard()`
+
+```c
+void printBoard();
+```
+
+### `isMoveValid()`
+
+```c
+bool isMoveValid(int row, int col);
+```
+
+### `makeMove()`
+
+```c
+void makeMove(int row, int col, char player);
+```
+
+### `checkWinner()`
+
+```c
+char checkWinner();
+```
+
+### `isBoardFull()`
+
+```c
+bool isBoardFull();
+```
+
+### `evaluateBoard()`
+
+```c
+int evaluateBoard();
+```
+
+### `isMovesLeft()`
+
+```c
+bool isMovesLeft();
+```
+
+### `minimax()`
+
+```c
+int minimax(int depth, bool isMax);
+```
+
+### `findBestMove()`
+
+```c
+void findBestMove();
+```
+
+### `playGame()`
+
+```c
+void playGame(int mode);
+```
 
 ## Compilation
 
 ```bash
-# Navigate to the module directory
 cd 15-game-projects
-
-# Compile
 gcc tictactoe.c -o tictactoe -std=c11 -Wall -Wextra
-
-# Run
 ./tictactoe
 ```
-
-## Usage
-
-Run the compiled program to see the demonstrated concepts in action.

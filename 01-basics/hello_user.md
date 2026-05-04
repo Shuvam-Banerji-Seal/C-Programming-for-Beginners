@@ -1,37 +1,25 @@
 # hello_user.c
 
-hello_user.c
+> hello_user.c
 A program that greets the user by name
 
 ## Overview
 
 - **File:** `01-basics/hello_user.c`
-- **Language:** C
+- **Language:** C source
 - **Module:** `01-basics`
+- **Lines:** 22
+- **Libraries:** `stdio.h`
 
-## Key Concepts
+## Concepts
 
-This file demonstrates essential C programming concepts including:
-- Standard input/output operations using `printf` and `scanf`
-
-## Functions
-
-- `printf()`
-- `scanf()`
+- Standard I/O: `printf`, `scanf` for console input/output
+- Pointer operations: declaration, dereferencing (`*`), address-of (`&`), arithmetic
 
 ## Compilation
 
 ```bash
-# Navigate to the module directory
 cd 01-basics
-
-# Compile
 gcc hello_user.c -o hello_user -std=c11 -Wall -Wextra
-
-# Run
 ./hello_user
 ```
-
-## Usage
-
-Run the compiled program to see the demonstrated concepts in action.

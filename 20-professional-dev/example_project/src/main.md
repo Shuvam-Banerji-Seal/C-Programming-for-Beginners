@@ -1,31 +1,22 @@
 # main.c
 
-This c file is part of the C Programming Course.
-
 ## Overview
 
 - **File:** `20-professional-dev/example_project/src/main.c`
-- **Language:** C
+- **Language:** C source
 - **Module:** `src`
+- **Lines:** 16
+- **Libraries:** `stdio.h`, `math_utils.h`
 
-## Key Concepts
+## Concepts
 
-This file demonstrates essential C programming concepts including:
-- Standard input/output operations using `printf` and `scanf`
+- Standard I/O: `printf`, `scanf` for console input/output
+- Pointer operations: declaration, dereferencing (`*`), address-of (`&`), arithmetic
 
 ## Compilation
 
 ```bash
-# Navigate to the module directory
 cd 20-professional-dev/example_project/src
-
-# Compile
 gcc main.c -o main -std=c11 -Wall -Wextra
-
-# Run
 ./main
 ```
-
-## Usage
-
-Run the compiled program to see the demonstrated concepts in action.

@@ -1,47 +1,83 @@
 # advanced_strings.c
 
-advanced_strings.c
+> advanced_strings.c
 Advanced string algorithms and manipulation
 Topics: Pattern matching, string tokenization, anagrams, palindromes
 
 ## Overview
 
 - **File:** `05-arrays-and-strings/advanced_strings.c`
-- **Language:** C
+- **Language:** C source
 - **Module:** `05-arrays-and-strings`
+- **Lines:** 267
+- **Libraries:** `stdio.h`, `string.h`, `ctype.h`, `stdbool.h`
 
-## Key Concepts
+## Concepts
 
-This file demonstrates essential C programming concepts including:
-- Standard input/output operations using `printf` and `scanf`
-- String manipulation functions
+- Standard I/O: `printf`, `scanf` for console input/output
+- String manipulation: `strlen`, `strcpy`, `strcmp`, `strcat`
+- Pointer operations: declaration, dereferencing (`*`), address-of (`&`), arithmetic
 
 ## Functions
 
-- `isPalindrome()`
-- `areAnagrams()`
-- `reverseWords()`
-- `patternMatch()`
-- `countOccurrences()`
-- `removeDuplicates()`
-- `longestCommonPrefix()`
-- `runLengthEncode()`
-- `demonstrateTokenization()`
-- `printf()`
+### `isPalindrome()`
+
+```c
+bool isPalindrome(const char *str);
+```
+
+### `areAnagrams()`
+
+```c
+bool areAnagrams(const char *str1, const char *str2);
+```
+
+### `reverseWords()`
+
+```c
+void reverseWords(char *str);
+```
+
+### `patternMatch()`
+
+```c
+int patternMatch(const char *text, const char *pattern);
+```
+
+### `countOccurrences()`
+
+```c
+int countOccurrences(const char *text, const char *pattern);
+```
+
+### `removeDuplicates()`
+
+```c
+void removeDuplicates(char *str);
+```
+
+### `longestCommonPrefix()`
+
+```c
+void longestCommonPrefix(char *strings[], int count, char *result);
+```
+
+### `runLengthEncode()`
+
+```c
+void runLengthEncode(const char *str, char *encoded);
+```
+
+### `demonstrateTokenization()`
+
+```c
+void demonstrateTokenization();
+```
 
 ## Compilation
 
 ```bash
-# Navigate to the module directory
 cd 05-arrays-and-strings
-
-# Compile
 gcc advanced_strings.c -o advanced_strings -std=c11 -Wall -Wextra
-
-# Run
 ./advanced_strings
 ```
-
-## Usage
-
-Run the compiled program to see the demonstrated concepts in action.

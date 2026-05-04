@@ -1,38 +1,30 @@
 # unions_demo.c
 
-unions_demo.c
+> unions_demo.c
 Demonstrates unions in C
 Topics: union definition, memory sharing, use cases
 
 ## Overview
 
 - **File:** `08-structures-unions/unions_demo.c`
-- **Language:** C
+- **Language:** C source
 - **Module:** `08-structures-unions`
+- **Lines:** 51
+- **Libraries:** `stdio.h`, `string.h`
 
-## Key Concepts
+## Concepts
 
-This file demonstrates essential C programming concepts including:
-- Standard input/output operations using `printf` and `scanf`
-- String manipulation functions
-
-## Functions
-
-- `printf()`
+- Standard I/O: `printf`, `scanf` for console input/output
+- String manipulation: `strlen`, `strcpy`, `strcmp`, `strcat`
+- Pointer operations: declaration, dereferencing (`*`), address-of (`&`), arithmetic
+- Unions: shared memory layout, type punning between members
+- Type aliasing with `typedef` for cleaner type definitions
+- Memory layout analysis using `sizeof` operator
 
 ## Compilation
 
 ```bash
-# Navigate to the module directory
 cd 08-structures-unions
-
-# Compile
 gcc unions_demo.c -o unions_demo -std=c11 -Wall -Wextra
-
-# Run
 ./unions_demo
 ```
-
-## Usage
-
-Run the compiled program to see the demonstrated concepts in action.

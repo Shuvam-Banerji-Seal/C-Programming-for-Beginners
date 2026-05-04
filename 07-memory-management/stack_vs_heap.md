@@ -1,44 +1,38 @@
 # stack_vs_heap.c
 
-stack_vs_heap.c
+> stack_vs_heap.c
 Demonstrates the difference between stack and heap memory
-
 Topics: Stack allocation, heap allocation, scope, lifetime
 
 ## Overview
 
 - **File:** `07-memory-management/stack_vs_heap.c`
-- **Language:** C
+- **Language:** C source
 - **Module:** `07-memory-management`
+- **Lines:** 150
+- **Libraries:** `stdio.h`, `stdlib.h`
 
-## Key Concepts
+## Concepts
 
-This file demonstrates essential C programming concepts including:
-- Standard input/output operations using `printf` and `scanf`
-- Standard library functions (`malloc`, `free`, `atoi`, etc.)
+- Standard I/O: `printf`, `scanf` for console input/output
+- Standard library: memory allocation (`malloc`/`free`), conversions (`atoi`), exit codes
+- Pointer operations: declaration, dereferencing (`*`), address-of (`&`), arithmetic
+- Structures: defining structs, member access (`.`/`->`), nested structs
+- Heap memory allocation: `malloc`/`calloc`/`realloc` and `free`
+- Memory layout analysis using `sizeof` operator
 
 ## Functions
 
-- `variable()`
-- `stack_example()`
-- `printf()`
-- `size()`
-- `together()`
-- `segment()`
+### `stack_example()`
+
+```c
+void stack_example();
+```
 
 ## Compilation
 
 ```bash
-# Navigate to the module directory
 cd 07-memory-management
-
-# Compile
 gcc stack_vs_heap.c -o stack_vs_heap -std=c11 -Wall -Wextra
-
-# Run
 ./stack_vs_heap
 ```
-
-## Usage
-
-Run the compiled program to see the demonstrated concepts in action.

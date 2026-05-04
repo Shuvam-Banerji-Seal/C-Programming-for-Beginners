@@ -1,42 +1,30 @@
 # dynamic_memory.c
 
-dynamic_memory.c
+> dynamic_memory.c
 Demonstrates dynamic memory allocation in C
-
 Topics: malloc, calloc, realloc, free, memory leaks
 
 ## Overview
 
 - **File:** `07-memory-management/dynamic_memory.c`
-- **Language:** C
+- **Language:** C source
 - **Module:** `07-memory-management`
+- **Lines:** 139
+- **Libraries:** `stdio.h`, `stdlib.h`, `string.h`
 
-## Key Concepts
+## Concepts
 
-This file demonstrates essential C programming concepts including:
-- Standard input/output operations using `printf` and `scanf`
-- Standard library functions (`malloc`, `free`, `atoi`, etc.)
-- String manipulation functions
-
-## Functions
-
-- `printf()`
-- `integers()`
-- `realloc()`
+- Standard I/O: `printf`, `scanf` for console input/output
+- Standard library: memory allocation (`malloc`/`free`), conversions (`atoi`), exit codes
+- String manipulation: `strlen`, `strcpy`, `strcmp`, `strcat`
+- Pointer operations: declaration, dereferencing (`*`), address-of (`&`), arithmetic
+- Heap memory allocation: `malloc`/`calloc`/`realloc` and `free`
+- Memory layout analysis using `sizeof` operator
 
 ## Compilation
 
 ```bash
-# Navigate to the module directory
 cd 07-memory-management
-
-# Compile
 gcc dynamic_memory.c -o dynamic_memory -std=c11 -Wall -Wextra
-
-# Run
 ./dynamic_memory
 ```
-
-## Usage
-
-Run the compiled program to see the demonstrated concepts in action.

@@ -1,40 +1,51 @@
 # linked_list.c
 
-linked_list.c
+> linked_list.c
 Implements a singly linked list
 Topics: Nodes, insertion, deletion, traversal
 
 ## Overview
 
 - **File:** `11-data-structures/linked_list.c`
-- **Language:** C
+- **Language:** C source
 - **Module:** `11-data-structures`
+- **Lines:** 76
+- **Libraries:** `stdio.h`, `stdlib.h`
 
-## Key Concepts
+## Concepts
 
-This file demonstrates essential C programming concepts including:
-- Standard input/output operations using `printf` and `scanf`
-- Standard library functions (`malloc`, `free`, `atoi`, etc.)
+- Standard I/O: `printf`, `scanf` for console input/output
+- Standard library: memory allocation (`malloc`/`free`), conversions (`atoi`), exit codes
+- Pointer operations: declaration, dereferencing (`*`), address-of (`&`), arithmetic
+- Structures: defining structs, member access (`.`/`->`), nested structs
+- Heap memory allocation: `malloc`/`calloc`/`realloc` and `free`
+- Type aliasing with `typedef` for cleaner type definitions
+- Memory layout analysis using `sizeof` operator
 
 ## Functions
 
-- `insert_front()`
-- `print_list()`
-- `free_list()`
+### `insert_front()`
+
+```c
+void insert_front(Node **head, int data);
+```
+
+### `print_list()`
+
+```c
+void print_list(Node *head);
+```
+
+### `free_list()`
+
+```c
+void free_list(Node *head);
+```
 
 ## Compilation
 
 ```bash
-# Navigate to the module directory
 cd 11-data-structures
-
-# Compile
 gcc linked_list.c -o linked_list -std=c11 -Wall -Wextra
-
-# Run
 ./linked_list
 ```
-
-## Usage
-
-Run the compiled program to see the demonstrated concepts in action.

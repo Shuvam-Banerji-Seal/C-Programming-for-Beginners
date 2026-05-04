@@ -1,37 +1,41 @@
 # math_utils.c
 
-This c file is part of the C Programming Course.
-
 ## Overview
 
 - **File:** `20-professional-dev/example_project/lib/math_utils.c`
-- **Language:** C
+- **Language:** C source
 - **Module:** `lib`
+- **Lines:** 15
+- **Libraries:** `math_utils.h`
 
-## Key Concepts
+## Concepts
 
-This file demonstrates essential C programming concepts including:
-- C syntax and program structure
+- Pointer operations: declaration, dereferencing (`*`), address-of (`&`), arithmetic
 
 ## Functions
 
-- `add()`
-- `multiply()`
-- `factorial()`
+### `add()`
+
+```c
+int add(int a, int b);
+```
+
+### `multiply()`
+
+```c
+int multiply(int a, int b);
+```
+
+### `factorial()`
+
+```c
+int factorial(int n);
+```
 
 ## Compilation
 
 ```bash
-# Navigate to the module directory
 cd 20-professional-dev/example_project/lib
-
-# Compile
 gcc math_utils.c -o math_utils -std=c11 -Wall -Wextra
-
-# Run
 ./math_utils
 ```
-
-## Usage
-
-Run the compiled program to see the demonstrated concepts in action.

@@ -1,35 +1,24 @@
 # loops_performance_comparision.c
 
---- For loop ---
+> --- For loop ---
 
 ## Overview
 
 - **File:** `fundamentals/loops_performance_comparision.c`
-- **Language:** C
+- **Language:** C source
 - **Module:** `fundamentals`
+- **Lines:** 49
+- **Libraries:** `stdio.h`, `time.h`
 
-## Key Concepts
+## Concepts
 
-This file demonstrates essential C programming concepts including:
-- Standard input/output operations using `printf` and `scanf`
-
-## Functions
-
-- `seconds()`
+- Standard I/O: `printf`, `scanf` for console input/output
+- Time/date functions: `time`, `clock`, `srand`/`rand` for randomization
 
 ## Compilation
 
 ```bash
-# Navigate to the module directory
 cd fundamentals
-
-# Compile
 gcc loops_performance_comparision.c -o loops_performance_comparision -std=c11 -Wall -Wextra
-
-# Run
 ./loops_performance_comparision
 ```
-
-## Usage
-
-Run the compiled program to see the demonstrated concepts in action.

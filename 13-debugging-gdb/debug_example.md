@@ -1,40 +1,41 @@
 # debug_example.c
 
-debug_example.c
+> debug_example.c
 Example program for GDB debugging practice
-
 This program has a bug - can you find it with GDB?
 
 ## Overview
 
 - **File:** `13-debugging-gdb/debug_example.c`
-- **Language:** C
+- **Language:** C source
 - **Module:** `13-debugging-gdb`
+- **Lines:** 51
+- **Libraries:** `stdio.h`
 
-## Key Concepts
+## Concepts
 
-This file demonstrates essential C programming concepts including:
-- Standard input/output operations using `printf` and `scanf`
+- Standard I/O: `printf`, `scanf` for console input/output
+- Pointer operations: declaration, dereferencing (`*`), address-of (`&`), arithmetic
+- Memory layout analysis using `sizeof` operator
 
 ## Functions
 
-- `factorial()`
-- `sum_array()`
-- `printf()`
+### `factorial()`
+
+```c
+int factorial(int n);
+```
+
+### `sum_array()`
+
+```c
+int sum_array(int *arr, int size);
+```
 
 ## Compilation
 
 ```bash
-# Navigate to the module directory
 cd 13-debugging-gdb
-
-# Compile
 gcc debug_example.c -o debug_example -std=c11 -Wall -Wextra
-
-# Run
 ./debug_example
 ```
-
-## Usage
-
-Run the compiled program to see the demonstrated concepts in action.

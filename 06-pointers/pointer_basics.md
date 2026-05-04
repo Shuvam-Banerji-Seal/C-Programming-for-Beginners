@@ -1,42 +1,27 @@
 # pointer_basics.c
 
-pointer_basics.c
+> pointer_basics.c
 Introduction to pointers in C
-
 Topics: Pointer declaration, address-of (&), dereference (*), NULL pointers
 
 ## Overview
 
 - **File:** `06-pointers/pointer_basics.c`
-- **Language:** C
+- **Language:** C source
 - **Module:** `06-pointers`
+- **Lines:** 105
+- **Libraries:** `stdio.h`, `stddef.h`
 
-## Key Concepts
+## Concepts
 
-This file demonstrates essential C programming concepts including:
-- Standard input/output operations using `printf` and `scanf`
-
-## Functions
-
-- `printf()`
-- `ptr()`
-- `NULL()`
-- `pointer()`
-- `Pointer()`
+- Standard I/O: `printf`, `scanf` for console input/output
+- Pointer operations: declaration, dereferencing (`*`), address-of (`&`), arithmetic
+- Memory layout analysis using `sizeof` operator
 
 ## Compilation
 
 ```bash
-# Navigate to the module directory
 cd 06-pointers
-
-# Compile
 gcc pointer_basics.c -o pointer_basics -std=c11 -Wall -Wextra
-
-# Run
 ./pointer_basics
 ```
-
-## Usage
-
-Run the compiled program to see the demonstrated concepts in action.

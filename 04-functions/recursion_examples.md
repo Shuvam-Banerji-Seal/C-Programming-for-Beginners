@@ -1,44 +1,75 @@
 # recursion_examples.c
 
-Factorial
+> Factorial
 
 ## Overview
 
 - **File:** `04-functions/recursion_examples.c`
-- **Language:** C
+- **Language:** C source
 - **Module:** `04-functions`
+- **Lines:** 117
+- **Libraries:** `stdio.h`
 
-## Key Concepts
+## Concepts
 
-This file demonstrates essential C programming concepts including:
-- Standard input/output operations using `printf` and `scanf`
+- Standard I/O: `printf`, `scanf` for console input/output
+- Pointer operations: declaration, dereferencing (`*`), address-of (`&`), arithmetic
+- Recursion: functions calling themselves with base/termination cases
 
 ## Functions
 
-- `factorial()`
-- `fibonacci()`
-- `sumOfDigits()`
-- `power()`
-- `gcd()`
-- `printBinary()`
-- `towerOfHanoi()`
-- `isPalindrome()`
-- `printf()`
-- `Hanoi()`
+### `factorial()`
+
+```c
+int factorial(int n);
+```
+
+### `fibonacci()`
+
+```c
+int fibonacci(int n);
+```
+
+### `sumOfDigits()`
+
+```c
+int sumOfDigits(int n);
+```
+
+### `power()`
+
+```c
+int power(int base, int exp);
+```
+
+### `gcd()`
+
+```c
+int gcd(int a, int b);
+```
+
+### `printBinary()`
+
+```c
+void printBinary(int n);
+```
+
+### `towerOfHanoi()`
+
+```c
+void towerOfHanoi(int n, char from, char to, char aux);
+```
+
+### `isPalindrome()`
+
+```c
+int isPalindrome(char str[], int start, int end);
+```
 
 ## Compilation
 
 ```bash
-# Navigate to the module directory
 cd 04-functions
-
-# Compile
 gcc recursion_examples.c -o recursion_examples -std=c11 -Wall -Wextra
-
-# Run
 ./recursion_examples
 ```
-
-## Usage
-
-Run the compiled program to see the demonstrated concepts in action.

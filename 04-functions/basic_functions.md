@@ -1,41 +1,61 @@
 # basic_functions.c
 
-Function declarations
+> Function declarations
 
 ## Overview
 
 - **File:** `04-functions/basic_functions.c`
-- **Language:** C
+- **Language:** C source
 - **Module:** `04-functions`
+- **Lines:** 63
+- **Libraries:** `stdio.h`
 
-## Key Concepts
+## Concepts
 
-This file demonstrates essential C programming concepts including:
-- Standard input/output operations using `printf` and `scanf`
+- Standard I/O: `printf`, `scanf` for console input/output
 
 ## Functions
 
-- `greet()`
-- `add()`
-- `subtract()`
-- `divide()`
-- `maximum()`
-- `printLine()`
-- `printf()`
+### `greet()`
+
+```c
+void greet(void);
+```
+
+### `add()`
+
+```c
+int add(int a, int b);
+```
+
+### `subtract()`
+
+```c
+int subtract(int a, int b);
+```
+
+### `divide()`
+
+```c
+float divide(float a, float b);
+```
+
+### `maximum()`
+
+```c
+int maximum(int a, int b, int c);
+```
+
+### `printLine()`
+
+```c
+void printLine(int length);
+```
 
 ## Compilation
 
 ```bash
-# Navigate to the module directory
 cd 04-functions
-
-# Compile
 gcc basic_functions.c -o basic_functions -std=c11 -Wall -Wextra
-
-# Run
 ./basic_functions
 ```
-
-## Usage
-
-Run the compiled program to see the demonstrated concepts in action.

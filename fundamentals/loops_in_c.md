@@ -1,35 +1,23 @@
 # loops_in_c.c
 
-For Loop
+> For Loop
 
 ## Overview
 
 - **File:** `fundamentals/loops_in_c.c`
-- **Language:** C
+- **Language:** C source
 - **Module:** `fundamentals`
+- **Lines:** 31
+- **Libraries:** `stdio.h`
 
-## Key Concepts
+## Concepts
 
-This file demonstrates essential C programming concepts including:
-- Standard input/output operations using `printf` and `scanf`
-
-## Functions
-
-- `printf()`
+- Standard I/O: `printf`, `scanf` for console input/output
 
 ## Compilation
 
 ```bash
-# Navigate to the module directory
 cd fundamentals
-
-# Compile
 gcc loops_in_c.c -o loops_in_c -std=c11 -Wall -Wextra
-
-# Run
 ./loops_in_c
 ```
-
-## Usage
-
-Run the compiled program to see the demonstrated concepts in action.

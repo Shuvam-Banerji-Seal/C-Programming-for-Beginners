@@ -1,34 +1,24 @@
 # my_headers.h
 
-This c header file is part of the C Programming Course.
-
 ## Overview
 
 - **File:** `fundamentals/my_headers.h`
-- **Language:** C Header
+- **Language:** C header
 - **Module:** `fundamentals`
+- **Lines:** 7
+- **Libraries:** `stdio.h`, `stdlib.h`, `string.h`, `math.h`
 
-## Key Concepts
+## Concepts
 
-This file demonstrates essential C programming concepts including:
-- Standard input/output operations using `printf` and `scanf`
-- Standard library functions (`malloc`, `free`, `atoi`, etc.)
-- String manipulation functions
-- Mathematical operations
+- Standard I/O: `printf`, `scanf` for console input/output
+- Standard library: memory allocation (`malloc`/`free`), conversions (`atoi`), exit codes
+- String manipulation: `strlen`, `strcpy`, `strcmp`, `strcat`
+- Mathematical operations: `sqrt`, `pow`, `sin`, `cos`
 
 ## Compilation
 
 ```bash
-# Navigate to the module directory
 cd fundamentals
-
-# Compile
 gcc my_headers.h -o my_headers -std=c11 -Wall -Wextra
-
-# Run
 ./my_headers
 ```
-
-## Usage
-
-Run the compiled program to see the demonstrated concepts in action.

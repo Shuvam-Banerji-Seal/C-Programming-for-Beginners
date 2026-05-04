@@ -1,60 +1,30 @@
 # advanced_preprocessor.c
 
-advanced_preprocessor.c
+> advanced_preprocessor.c
 Advanced preprocessor directives and macros
 Topics: Variadic macros, token pasting, stringification, X-macros
 
 ## Overview
 
 - **File:** `10-preprocessor/advanced_preprocessor.c`
-- **Language:** C
+- **Language:** C source
 - **Module:** `10-preprocessor`
+- **Lines:** 246
+- **Libraries:** `stdio.h`, `string.h`
 
-## Key Concepts
+## Concepts
 
-This file demonstrates essential C programming concepts including:
-- Standard input/output operations using `printf` and `scanf`
-- String manipulation functions
-
-## Functions
-
-- `concatenation()`
-- `CONCAT()`
-- `VAR_NAME()`
-- `TO_STRING()`
-- `STRINGIFY()`
-- `PRINT_ARGS()`
-- `DEBUG_PRINT()`
-- `MIN()`
-- `MAX()`
-- `ARRAY_SIZE()`
-- `FOR_EACH()`
-- `CHECK_NULL()`
-- `X()`
-- `defined()`
-- `STATIC_ASSERT()`
-- `SWAP()`
-- `SET_BIT()`
-- `CLEAR_BIT()`
-- `TOGGLE_BIT()`
-- `CHECK_BIT()`
-- `PRINT_ARRAY()`
-- `SQRT()`
-- `printf()`
+- Standard I/O: `printf`, `scanf` for console input/output
+- String manipulation: `strlen`, `strcpy`, `strcmp`, `strcat`
+- Pointer operations: declaration, dereferencing (`*`), address-of (`&`), arithmetic
+- Type aliasing with `typedef` for cleaner type definitions
+- Enumerations (`enum`) for named integer constants
+- Memory layout analysis using `sizeof` operator
 
 ## Compilation
 
 ```bash
-# Navigate to the module directory
 cd 10-preprocessor
-
-# Compile
 gcc advanced_preprocessor.c -o advanced_preprocessor -std=c11 -Wall -Wextra
-
-# Run
 ./advanced_preprocessor
 ```
-
-## Usage
-
-Run the compiled program to see the demonstrated concepts in action.

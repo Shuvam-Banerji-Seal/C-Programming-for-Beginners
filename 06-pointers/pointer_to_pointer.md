@@ -1,46 +1,44 @@
 # pointer_to_pointer.c
 
-pointer_to_pointer.c
+> pointer_to_pointer.c
 Demonstrates pointer to pointer (double pointers)
-
 Topics: Double pointers, triple pointers, use cases
 
 ## Overview
 
 - **File:** `06-pointers/pointer_to_pointer.c`
-- **Language:** C
+- **Language:** C source
 - **Module:** `06-pointers`
+- **Lines:** 151
+- **Libraries:** `stdio.h`, `stdlib.h`, `string.h`
 
-## Key Concepts
+## Concepts
 
-This file demonstrates essential C programming concepts including:
-- Standard input/output operations using `printf` and `scanf`
-- Standard library functions (`malloc`, `free`, `atoi`, etc.)
-- String manipulation functions
+- Standard I/O: `printf`, `scanf` for console input/output
+- Standard library: memory allocation (`malloc`/`free`), conversions (`atoi`), exit codes
+- String manipulation: `strlen`, `strcpy`, `strcmp`, `strcat`
+- Pointer operations: declaration, dereferencing (`*`), address-of (`&`), arithmetic
+- Heap memory allocation: `malloc`/`calloc`/`realloc` and `free`
+- Memory layout analysis using `sizeof` operator
 
 ## Functions
 
-- `pointer()`
-- `allocate_memory()`
-- `swap_pointers()`
-- `printf()`
-- `ptr()`
-- `pptr()`
-- `array()`
+### `allocate_memory()`
+
+```c
+void allocate_memory(int **ptr, int value);
+```
+
+### `swap_pointers()`
+
+```c
+void swap_pointers(int **p1, int **p2);
+```
 
 ## Compilation
 
 ```bash
-# Navigate to the module directory
 cd 06-pointers
-
-# Compile
 gcc pointer_to_pointer.c -o pointer_to_pointer -std=c11 -Wall -Wextra
-
-# Run
 ./pointer_to_pointer
 ```
-
-## Usage
-
-Run the compiled program to see the demonstrated concepts in action.

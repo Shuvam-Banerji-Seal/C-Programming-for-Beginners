@@ -1,5 +1,6 @@
 # math_utils.h
 
+> *
 @brief Add two integers
 @param a First number
 @param b Second number
@@ -8,33 +9,18 @@
 ## Overview
 
 - **File:** `20-professional-dev/example_project/include/math_utils.h`
-- **Language:** C Header
+- **Language:** C header
 - **Module:** `include`
+- **Lines:** 28
 
-## Key Concepts
+## Concepts
 
-This file demonstrates essential C programming concepts including:
-- C Header syntax and program structure
-
-## Functions
-
-- `add()`
-- `multiply()`
-- `factorial()`
+- Pointer operations: declaration, dereferencing (`*`), address-of (`&`), arithmetic
 
 ## Compilation
 
 ```bash
-# Navigate to the module directory
 cd 20-professional-dev/example_project/include
-
-# Compile
 gcc math_utils.h -o math_utils -std=c11 -Wall -Wextra
-
-# Run
 ./math_utils
 ```
-
-## Usage
-
-Run the compiled program to see the demonstrated concepts in action.

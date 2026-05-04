@@ -1,42 +1,61 @@
 # scope_lifetime.c
 
-Global variable
+> Global variable
 
 ## Overview
 
 - **File:** `04-functions/scope_lifetime.c`
-- **Language:** C
+- **Language:** C source
 - **Module:** `04-functions`
+- **Lines:** 99
+- **Libraries:** `stdio.h`
 
-## Key Concepts
+## Concepts
 
-This file demonstrates essential C programming concepts including:
-- Standard input/output operations using `printf` and `scanf`
+- Standard I/O: `printf`, `scanf` for console input/output
 
 ## Functions
 
-- `counter()`
-- `localDemo()`
-- `printf()`
-- `modifyGlobal()`
-- `shadowDemo()`
-- `variable()`
-- `registerDemo()`
-- `blockScope()`
+### `counter()`
+
+```c
+void counter();
+```
+
+### `localDemo()`
+
+```c
+void localDemo();
+```
+
+### `modifyGlobal()`
+
+```c
+void modifyGlobal();
+```
+
+### `shadowDemo()`
+
+```c
+void shadowDemo();
+```
+
+### `registerDemo()`
+
+```c
+void registerDemo();
+```
+
+### `blockScope()`
+
+```c
+void blockScope();
+```
 
 ## Compilation
 
 ```bash
-# Navigate to the module directory
 cd 04-functions
-
-# Compile
 gcc scope_lifetime.c -o scope_lifetime -std=c11 -Wall -Wextra
-
-# Run
 ./scope_lifetime
 ```
-
-## Usage
-
-Run the compiled program to see the demonstrated concepts in action.

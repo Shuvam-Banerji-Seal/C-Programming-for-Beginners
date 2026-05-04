@@ -1,46 +1,55 @@
 # segfault_example.c
 
-segfault_example.c
+> segfault_example.c
 Example program that demonstrates common segmentation faults
-
 Use GDB to find and understand the crashes
 
 ## Overview
 
 - **File:** `13-debugging-gdb/segfault_example.c`
-- **Language:** C
+- **Language:** C source
 - **Module:** `13-debugging-gdb`
+- **Lines:** 67
+- **Libraries:** `stdio.h`, `stdlib.h`
 
-## Key Concepts
+## Concepts
 
-This file demonstrates essential C programming concepts including:
-- Standard input/output operations using `printf` and `scanf`
-- Standard library functions (`malloc`, `free`, `atoi`, etc.)
+- Standard I/O: `printf`, `scanf` for console input/output
+- Standard library: memory allocation (`malloc`/`free`), conversions (`atoi`), exit codes
+- Pointer operations: declaration, dereferencing (`*`), address-of (`&`), arithmetic
+- Heap memory allocation: `malloc`/`calloc`/`realloc` and `free`
+- Memory layout analysis using `sizeof` operator
 
 ## Functions
 
-- `example1_null_pointer()`
-- `dereference()`
-- `example2_buffer_overflow()`
-- `printf()`
-- `example3_use_after_free()`
-- `example4_stack_overflow()`
-- `Overflow()`
-- `example()`
+### `example1_null_pointer()`
+
+```c
+void example1_null_pointer();
+```
+
+### `example2_buffer_overflow()`
+
+```c
+void example2_buffer_overflow();
+```
+
+### `example3_use_after_free()`
+
+```c
+void example3_use_after_free();
+```
+
+### `example4_stack_overflow()`
+
+```c
+void example4_stack_overflow();
+```
 
 ## Compilation
 
 ```bash
-# Navigate to the module directory
 cd 13-debugging-gdb
-
-# Compile
 gcc segfault_example.c -o segfault_example -std=c11 -Wall -Wextra
-
-# Run
 ./segfault_example
 ```
-
-## Usage
-
-Run the compiled program to see the demonstrated concepts in action.

@@ -1,53 +1,39 @@
 # bitfields_and_unions.c
 
-bitfields_and_unions.c
+> bitfields_and_unions.c
 Advanced bit fields and unions
 Topics: Bit manipulation with structures, union memory sharing, packed structures
 
 ## Overview
 
 - **File:** `08-structures-unions/bitfields_and_unions.c`
-- **Language:** C
+- **Language:** C source
 - **Module:** `08-structures-unions`
+- **Lines:** 248
+- **Libraries:** `stdio.h`, `string.h`, `stdint.h`
 
-## Key Concepts
+## Concepts
 
-This file demonstrates essential C programming concepts including:
-- Standard input/output operations using `printf` and `scanf`
-- String manipulation functions
+- Standard I/O: `printf`, `scanf` for console input/output
+- String manipulation: `strlen`, `strcpy`, `strcmp`, `strcat`
+- Pointer operations: declaration, dereferencing (`*`), address-of (`&`), arithmetic
+- Structures: defining structs, member access (`.`/`->`), nested structs
+- Unions: shared memory layout, type punning between members
+- Type aliasing with `typedef` for cleaner type definitions
+- Memory layout analysis using `sizeof` operator
 
 ## Functions
 
-- `version()`
-- `length()`
-- `service()`
-- `offset()`
-- `live()`
-- `permissions()`
-- `pragma()`
-- `defined()`
-- `pack()`
-- `printPermissions()`
-- `printf()`
-- `Header()`
-- `Permissions()`
-- `Structure()`
-- `__attribute__()`
-- `bytes()`
+### `printPermissions()`
+
+```c
+void printPermissions(Permissions p);
+```
 
 ## Compilation
 
 ```bash
-# Navigate to the module directory
 cd 08-structures-unions
-
-# Compile
 gcc bitfields_and_unions.c -o bitfields_and_unions -std=c11 -Wall -Wextra
-
-# Run
 ./bitfields_and_unions
 ```
-
-## Usage
-
-Run the compiled program to see the demonstrated concepts in action.

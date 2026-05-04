@@ -1,38 +1,29 @@
 # structures_demo.c
 
-structures_demo.c
+> structures_demo.c
 Demonstrates structures in C
 Topics: struct definition, initialization, nested structures, arrays of structures
 
 ## Overview
 
 - **File:** `08-structures-unions/structures_demo.c`
-- **Language:** C
+- **Language:** C source
 - **Module:** `08-structures-unions`
+- **Lines:** 80
+- **Libraries:** `stdio.h`, `string.h`
 
-## Key Concepts
+## Concepts
 
-This file demonstrates essential C programming concepts including:
-- Standard input/output operations using `printf` and `scanf`
-- String manipulation functions
-
-## Functions
-
-- `printf()`
+- Standard I/O: `printf`, `scanf` for console input/output
+- String manipulation: `strlen`, `strcpy`, `strcmp`, `strcat`
+- Pointer operations: declaration, dereferencing (`*`), address-of (`&`), arithmetic
+- Structures: defining structs, member access (`.`/`->`), nested structs
+- Type aliasing with `typedef` for cleaner type definitions
 
 ## Compilation
 
 ```bash
-# Navigate to the module directory
 cd 08-structures-unions
-
-# Compile
 gcc structures_demo.c -o structures_demo -std=c11 -Wall -Wextra
-
-# Run
 ./structures_demo
 ```
-
-## Usage
-
-Run the compiled program to see the demonstrated concepts in action.

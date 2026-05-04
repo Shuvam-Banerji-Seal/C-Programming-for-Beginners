@@ -1,45 +1,76 @@
 # function_pointers.c
 
-Arithmetic operations
+> Arithmetic operations
 
 ## Overview
 
 - **File:** `04-functions/function_pointers.c`
-- **Language:** C
+- **Language:** C source
 - **Module:** `04-functions`
+- **Lines:** 94
+- **Libraries:** `stdio.h`
 
-## Key Concepts
+## Concepts
 
-This file demonstrates essential C programming concepts including:
-- Standard input/output operations using `printf` and `scanf`
+- Standard I/O: `printf`, `scanf` for console input/output
+- Pointer operations: declaration, dereferencing (`*`), address-of (`&`), arithmetic
+- Type aliasing with `typedef` for cleaner type definitions
+- Memory layout analysis using `sizeof` operator
 
 ## Functions
 
-- `add()`
-- `subtract()`
-- `multiply()`
-- `divide()`
-- `forEach()`
-- `printDouble()`
-- `printSquare()`
-- `printCube()`
-- `calculator()`
-- `operation()`
-- `printf()`
+### `add()`
+
+```c
+int add(int a, int b);
+```
+
+### `subtract()`
+
+```c
+int subtract(int a, int b);
+```
+
+### `multiply()`
+
+```c
+int multiply(int a, int b);
+```
+
+### `divide()`
+
+```c
+int divide(int a, int b);
+```
+
+### `forEach()`
+
+```c
+void forEach(int arr[], int size, PrintCallback callback);
+```
+
+### `printDouble()`
+
+```c
+void printDouble(int n);
+```
+
+### `printSquare()`
+
+```c
+void printSquare(int n);
+```
+
+### `printCube()`
+
+```c
+void printCube(int n);
+```
 
 ## Compilation
 
 ```bash
-# Navigate to the module directory
 cd 04-functions
-
-# Compile
 gcc function_pointers.c -o function_pointers -std=c11 -Wall -Wextra
-
-# Run
 ./function_pointers
 ```
-
-## Usage
-
-Run the compiled program to see the demonstrated concepts in action.
